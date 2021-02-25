@@ -5,7 +5,7 @@
 }
 
 .app {
-  padding: 2rem;
+  padding: 2rem 2rem 4rem 2rem;
 }
 
 ul {
@@ -20,7 +20,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .movies-list > li {
@@ -43,7 +43,7 @@ ul {
 }
 
 .pagination {
-  margin: 2rem 0 0 0;
+  margin: 2rem 0;
 }
 
 .pagination > li {
@@ -51,4 +51,8 @@ ul {
   border: 1px solid blue;
   color: white;
   padding: 20px;
+}
+
+.is-fullwidth {
+  width: 100% !important;
 }

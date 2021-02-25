@@ -27,7 +27,7 @@ function App() {
         <Title>Search Movies</Title>
 
         <br />
-        <div className="is-flex is-justify-content-center">
+        <div className="is-flex is-justify-content-center is-fullwidth">
           <SearchForm submitResults={showResults} apiKey={apiKey} />
         </div>
 
@@ -43,6 +43,25 @@ function App() {
                       : `url(${process.env.PUBLIC_URL}/default-movie.png)`,
                   }}
                 ></span>
+                <progress
+                  className={`progress ${
+                    movie.popularity < 15 && "is-danger"
+                  } ${
+                    movie.popularity >= 15 &&
+                    movie.popularity < 30 &&
+                    "is-warning"
+                  } ${
+                    movie.popularity >= 30 && movie.popularity < 50 && "is-info"
+                  } ${
+                    movie.popularity >= 50 &&
+                    movie.popularity < 100 &&
+                    "is-primary"
+                  }`}
+                  value={movie.popularity}
+                  max="100"
+                >
+                  {movie.popularity}%
+                </progress>
                 <span className="movies-list__title">{movie.title}</span>
               </li>
             ))}
@@ -52,7 +71,10 @@ function App() {
             role="navigation"
             aria-label="pagination"
           >
-            <ul className="pagination-list">
+            <ul
+              style={{ display: movies.length === 0 && "none" }}
+              className="pagination-list"
+            >
               <li style={{ display: currentPage === 1 && "none" }}>
                 <button
                   type="button"

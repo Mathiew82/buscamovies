@@ -29,10 +29,10 @@ export class SearchForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="is-fullwidth">
         <form onSubmit={this._handleSubmit}>
           <div className="field has-addons is-flex is-justify-content-center">
-            <div className="control">
+            <div className="is-fullwidth control">
               <input
                 className="input"
                 type="text"
