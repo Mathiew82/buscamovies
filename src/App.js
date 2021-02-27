@@ -1,7 +1,9 @@
 import "./App.css";
 import "bulma/css/bulma.css";
 import { Title } from "./components/ui/Title";
+import { Pagination } from "./components/ui/Pagination";
 import { SearchForm } from "./components/SearchForm";
+import { MoviesList } from "./components/MoviesList";
 import { useState } from "react";
 
 const apiUrl = "https://api.themoviedb.org/3/search/movie";
@@ -55,112 +57,16 @@ function App() {
         </div>
 
         <div>
-          <ul className="movies-list">
-            {movies.map((movie) => (
-              <li key={movie.id}>
-                <span
-                  className="movies-list__img"
-                  style={{
-                    backgroundImage: movie.poster_path
-                      ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
-                      : `url(${process.env.PUBLIC_URL}/default-movie.png)`,
-                  }}
-                >
-                  <span className="movies-list-popularity-value">
-                    {getPopularityInteger(movie.popularity)}
-                    <small>%</small>
-                  </span>
-                  <progress
-                    className={`progress ${
-                      movie.popularity < 15 ? "is-danger" : ""
-                    } ${
-                      movie.popularity >= 15 && movie.popularity < 30
-                        ? "is-warning"
-                        : ""
-                    } ${
-                      movie.popularity >= 30 && movie.popularity < 50
-                        ? "is-info"
-                        : ""
-                    } ${movie.popularity >= 50 ? "is-primary" : ""}`}
-                    value={`${getPopularityInteger(movie.popularity)}`}
-                    max="100"
-                  />
-                </span>
-                <span className="movies-list__title">{movie.title}</span>
-              </li>
-            ))}
-          </ul>
-          <nav
-            className="pagination is-centered"
-            role="navigation"
-            aria-label="pagination"
-          >
-            <ul
-              style={{ display: movies.length === 0 && "none" }}
-              className="pagination-list"
-            >
-              <li style={{ display: currentPage === 1 && "none" }}>
-                <button
-                  type="button"
-                  className="pagination-link"
-                  onClick={_handleClickPage}
-                >
-                  1
-                </button>
-              </li>
-              <li>
-                <span className="pagination-ellipsis">&hellip;</span>
-              </li>
-              <li style={{ display: currentPage === 1 && "none" }}>
-                <button
-                  type="button"
-                  className="pagination-link"
-                  onClick={_handleClickPage}
-                >
-                  {currentPage - 1}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  className="pagination-link is-current"
-                  aria-current="page"
-                  onClick={_handleClickPage}
-                >
-                  {currentPage}
-                </button>
-              </li>
-              <li
-                style={{
-                  display: currentPage + 1 > paginationLength && "none",
-                }}
-              >
-                <button
-                  type="button"
-                  className="pagination-link"
-                  onClick={_handleClickPage}
-                >
-                  {currentPage + 1}
-                </button>
-              </li>
-              <li>
-                <span className="pagination-ellipsis">&hellip;</span>
-              </li>
-              <li
-                style={{
-                  display: currentPage + 1 >= paginationLength && "none",
-                }}
-              >
-                <button
-                  type="button"
-                  className="pagination-link"
-                  onClick={_handleClickPage}
-                >
-                  {paginationLength}
-                </button>
-              </li>
-            </ul>
-          </nav>
+          <MoviesList
+            movies={movies}
+            getPopularityInteger={getPopularityInteger}
+          />
+          <Pagination
+            moviesLength={movies.length}
+            currentPage={currentPage}
+            paginationLength={paginationLength}
+            handleClickPage={_handleClickPage}
+          />
         </div>
       </div>
     </div>

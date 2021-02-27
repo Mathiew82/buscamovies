@@ -61,25 +61,25 @@ ul {
   width: 22px;
   color: white;
   display: inline-block;
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 700;
   position: absolute;
-  bottom: 20px;
+  bottom: 23px;
   left: 14px;
   text-align: center;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 .movies-list > li > .movies-list__img > .movies-list-popularity-value > small {
-  font-size: 8px;
+  font-size: 7px;
 }
 
 .movies-list > li > .movies-list__img > .progress {
   width: 22px;
-  height: 6px;
+  height: 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   position: absolute;
-  bottom: 14px;
+  bottom: 17px;
   left: 14px;
 }
 
