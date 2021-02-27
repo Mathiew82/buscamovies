@@ -7,18 +7,22 @@ export class SearchForm extends Component {
   };
 
   _handleSubmit = (event, page) => {
-    console.log(event, page);
     if (typeof event !== "undefined") {
       event.preventDefault();
       this.props.updateCurrentPage(page);
     }
 
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${this.state.inputValue}&page=${page}&include_adult=false&language=es-ES`
-    )
+    const urlToSearch = new URL(
+      `${this.props.apiUrl}?api_key=${this.props.apiKey}`
+    );
+    urlToSearch.searchParams.append("query", this.state.inputValue);
+    urlToSearch.searchParams.append("page", page);
+    urlToSearch.searchParams.append("language", "es-ES");
+    urlToSearch.searchParams.append("include_adult", false);
+
+    fetch(urlToSearch)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         this.props.submitResults(data);
       })
       .catch((err) => {

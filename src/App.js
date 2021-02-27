@@ -4,6 +4,7 @@ import { Title } from "./components/ui/Title";
 import { SearchForm } from "./components/SearchForm";
 import { useState } from "react";
 
+const apiUrl = "https://api.themoviedb.org/3/search/movie";
 const apiKey = "4081eee7cd72cb08acc0d2f49deec1da";
 
 function App() {
@@ -11,9 +12,16 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [paginationLength, setPaginationLength] = useState(0);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
   const showResults = (data) => {
     setMovies(data.results);
     setPaginationLength(data.total_pages);
+    scrollToTop();
   };
 
   const updateCurrentPage = (value) => {
@@ -33,13 +41,14 @@ function App() {
   return (
     <div className="container">
       <div className="app">
-        <Title>Search Movies</Title>
+        <Title>Search Movies with React</Title>
 
         <br />
         <div className="is-flex is-justify-content-center is-fullwidth">
           <SearchForm
             submitResults={showResults}
             updateCurrentPage={updateCurrentPage}
+            apiUrl={apiUrl}
             apiKey={apiKey}
             page={currentPage}
           />
@@ -63,25 +72,19 @@ function App() {
                   </span>
                   <progress
                     className={`progress ${
-                      movie.popularity < 15 && "is-danger"
+                      movie.popularity < 15 ? "is-danger" : ""
                     } ${
-                      movie.popularity >= 15 &&
-                      movie.popularity < 30 &&
-                      "is-warning"
+                      movie.popularity >= 15 && movie.popularity < 30
+                        ? "is-warning"
+                        : ""
                     } ${
-                      movie.popularity >= 30 &&
-                      movie.popularity < 50 &&
-                      "is-info"
-                    } ${
-                      movie.popularity >= 50 &&
-                      movie.popularity < 100 &&
-                      "is-primary"
-                    }`}
-                    value={movie.popularity}
+                      movie.popularity >= 30 && movie.popularity < 50
+                        ? "is-info"
+                        : ""
+                    } ${movie.popularity >= 50 ? "is-primary" : ""}`}
+                    value={`${getPopularityInteger(movie.popularity)}`}
                     max="100"
-                  >
-                    {getPopularityInteger(movie.popularity)}%
-                  </progress>
+                  />
                 </span>
                 <span className="movies-list__title">{movie.title}</span>
               </li>
