@@ -15,6 +15,10 @@ ul {
   padding: 0;
 }
 
+.title {
+  margin-bottom: 0.5rem;
+}
+
 .movies-list {
   margin: 2rem 0 0 0;
   display: grid;
@@ -34,25 +38,93 @@ ul {
   background-size: cover;
   border-radius: 8px;
   display: inline-block;
+  position: relative;
+}
+
+.movies-list > li:hover > .movies-list__img {
+  box-shadow: 0 0 0 0.125em rgb(50 115 220 / 25%);
+}
+
+.movies-list > li > .movies-list__img:before {
+  width: 38px;
+  height: 38px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.movies-list > li > .movies-list__img > .movies-list-popularity-value {
+  width: 22px;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  position: absolute;
+  bottom: 20px;
+  left: 14px;
+  text-align: center;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.movies-list > li > .movies-list__img > .movies-list-popularity-value > small {
+  font-size: 8px;
+}
+
+.movies-list > li > .movies-list__img > .progress {
+  width: 22px;
+  height: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
 }
 
 .movies-list > li > .movies-list__title {
   color: black;
   font-size: 16px;
   font-weight: 700;
+  transition: color 0.2s;
+}
+
+.movies-list > li:hover {
+  cursor: pointer;
+}
+
+.movies-list > li:hover > .movies-list__title {
+  color: #25d;
 }
 
 .pagination {
   margin: 2rem 0;
 }
 
-.pagination > li {
-  background-color: red;
-  border: 1px solid blue;
-  color: white;
-  padding: 20px;
-}
-
 .is-fullwidth {
   width: 100% !important;
+}
+
+.button.is-primary {
+  background-color: #222 !important;
+  padding: 7px 25px;
+  transition: background-color 0.2s;
+}
+
+.button.is-primary:hover {
+  background-color: #444 !important;
+}
+
+.search-wrapper input {
+  border-top: 2px solid rgba(0, 0, 0, 0.4);
+  border-right: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  border-left: 2px solid rgba(0, 0, 0, 0.4);
+  border-radius: 30px 0 0 30px;
+  padding: 7px 25px;
+}
+
+.search-wrapper button {
+  border-radius: 30px;
 }

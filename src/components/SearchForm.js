@@ -3,13 +3,18 @@ import React, { Component } from "react";
 export class SearchForm extends Component {
   state = {
     inputValue: "",
+    currentPage: 1,
   };
 
-  _handleSubmit = (event) => {
-    event.preventDefault();
+  _handleSubmit = (event, page) => {
+    console.log(event, page);
+    if (typeof event !== "undefined") {
+      event.preventDefault();
+      this.props.updateCurrentPage(page);
+    }
 
     fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${this.state.inputValue}&page=2&include_adult=false`
+      `https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&query=${this.state.inputValue}&page=${page}&include_adult=false&language=es-ES`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -27,11 +32,27 @@ export class SearchForm extends Component {
     });
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.page !== state.currentPage) {
+      return {
+        inputValue: state.inputValue,
+        currentPage: props.page,
+      };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentPage !== this.state.currentPage) {
+      this._handleSubmit(undefined, this.state.currentPage);
+    }
+  }
+
   render() {
     return (
       <div className="is-fullwidth">
-        <form onSubmit={this._handleSubmit}>
-          <div className="field has-addons is-flex is-justify-content-center">
+        <form onSubmit={(event) => this._handleSubmit(event, 1)}>
+          <div className="search-wrapper field has-addons is-flex is-justify-content-center">
             <div className="is-fullwidth control">
               <input
                 className="input"
@@ -41,7 +62,7 @@ export class SearchForm extends Component {
               />
             </div>
             <div className="control">
-              <button type="submit" className="button is-info">
+              <button type="submit" className="button is-primary">
                 Buscar
               </button>
             </div>
