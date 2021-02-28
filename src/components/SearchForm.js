@@ -6,25 +6,29 @@ export class SearchForm extends Component {
     currentPage: 1,
   };
 
+  createUrl(page) {
+    const urlToSearch = new URL(
+      `${this.props.apiUrl}?api_key=${this.props.apiKey}`
+    );
+
+    urlToSearch.searchParams.append("query", this.state.inputValue);
+    urlToSearch.searchParams.append("page", page);
+    urlToSearch.searchParams.append("language", "es-ES");
+    urlToSearch.searchParams.append("include_adult", false);
+    return urlToSearch;
+  }
+
   _handleSubmit = (event, page) => {
     if (typeof event !== "undefined") {
       event.preventDefault();
       this.props.updateCurrentPage(page);
     }
 
-    const urlToSearch = new URL(
-      `${this.props.apiUrl}?api_key=${this.props.apiKey}`
-    );
-    urlToSearch.searchParams.append("query", this.state.inputValue);
-    urlToSearch.searchParams.append("page", page);
-    urlToSearch.searchParams.append("language", "es-ES");
-    urlToSearch.searchParams.append("include_adult", false);
+    const url = this.createUrl(page);
 
-    fetch(urlToSearch)
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log("data");
-        console.log(data);
         this.props.submitResults(data);
       })
       .catch((err) => {

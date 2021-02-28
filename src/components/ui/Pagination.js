@@ -21,6 +21,8 @@ export class Pagination extends Component {
   }
 
   render() {
+    const { handleClickPage, currentPage, paginationLength } = this.props;
+
     return (
       <nav
         className="pagination is-centered"
@@ -32,7 +34,7 @@ export class Pagination extends Component {
             <button
               type="button"
               className="pagination-link"
-              onClick={this.props.handleClickPage}
+              onClick={handleClickPage}
             >
               1
             </button>
@@ -44,9 +46,9 @@ export class Pagination extends Component {
             <button
               type="button"
               className="pagination-link"
-              onClick={this.props.handleClickPage}
+              onClick={handleClickPage}
             >
-              {this.props.currentPage - 1}
+              {currentPage - 1}
             </button>
           </li>
           <li>
@@ -54,18 +56,18 @@ export class Pagination extends Component {
               type="button"
               className="pagination-link is-current"
               aria-current="page"
-              onClick={this.props.handleClickPage}
+              onClick={handleClickPage}
             >
-              {this.props.currentPage}
+              {currentPage}
             </button>
           </li>
           <li style={{ display: this.doNotShowNextPage() && "none" }}>
             <button
               type="button"
               className="pagination-link"
-              onClick={this.props.handleClickPage}
+              onClick={handleClickPage}
             >
-              {this.props.currentPage + 1}
+              {currentPage + 1}
             </button>
           </li>
           <li style={{ display: this.doNotShowLastPage() && "none" }}>
@@ -75,9 +77,9 @@ export class Pagination extends Component {
             <button
               type="button"
               className="pagination-link"
-              onClick={this.props.handleClickPage}
+              onClick={handleClickPage}
             >
-              {this.props.paginationLength}
+              {paginationLength}
             </button>
           </li>
         </ul>

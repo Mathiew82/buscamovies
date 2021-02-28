@@ -37,11 +37,6 @@ function App() {
     setCurrentPage(value);
   };
 
-  const getPopularityInteger = (value) => {
-    const valueInteger = parseInt(value);
-    return valueInteger > 100 ? 100 : valueInteger;
-  };
-
   const _handleClickPage = (event) => {
     const currentValueButton = Number(event.target.innerHTML);
     setCurrentPage(currentValueButton);
@@ -64,10 +59,7 @@ function App() {
 
         {movies.length > 0 ? (
           <div>
-            <MoviesList
-              movies={movies}
-              getPopularityInteger={getPopularityInteger}
-            />
+            <MoviesList movies={movies} />
             <Pagination
               moviesLength={movies.length}
               currentPage={currentPage}
