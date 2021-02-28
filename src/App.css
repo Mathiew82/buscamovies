@@ -96,7 +96,7 @@ ul {
   font-size: 24px;
 }
 
-.movies-list > li > .movies-list__img > .movies-list-popularity-value {
+.movies-list > li > .movies-list__img > .movies-list-vote-average-value {
   width: 22px;
   color: white;
   display: inline-block;
@@ -109,7 +109,11 @@ ul {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
-.movies-list > li > .movies-list__img > .movies-list-popularity-value > small {
+.movies-list
+  > li
+  > .movies-list__img
+  > .movies-list-vote-average-value
+  > small {
   font-size: 7px;
 }
 

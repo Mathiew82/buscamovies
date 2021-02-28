@@ -6,14 +6,13 @@ export class Movie extends Component {
     movie: PropTypes.object,
   };
 
-  getPopularityInteger = (value) => {
-    const valueInteger = parseInt(value);
-    return valueInteger > 100 ? 100 : valueInteger;
+  getVoteAverageInteger = (value) => {
+    return value * 10;
   };
 
   render() {
     const { movie } = this.props;
-    const popularity = this.getPopularityInteger(movie.popularity);
+    const voteAverage = this.getVoteAverageInteger(movie.vote_average);
 
     return (
       <li>
@@ -28,17 +27,17 @@ export class Movie extends Component {
           <span className="icon is-large">
             <i className="far fa-heart fa-2x"></i>
           </span>
-          <span className="movies-list-popularity-value">
-            {popularity}
+          <span className="movies-list-vote-average-value">
+            {voteAverage}
             <small>%</small>
           </span>
           <progress
-            className={`progress ${popularity < 15 ? "is-danger" : ""} ${
-              popularity >= 15 && popularity < 30 ? "is-warning" : ""
-            } ${popularity >= 30 && popularity < 50 ? "is-info" : ""} ${
-              popularity >= 50 ? "is-primary" : ""
+            className={`progress ${voteAverage < 15 ? "is-danger" : ""} ${
+              voteAverage >= 15 && voteAverage < 30 ? "is-warning" : ""
+            } ${voteAverage >= 30 && voteAverage < 50 ? "is-info" : ""} ${
+              voteAverage >= 50 ? "is-primary" : ""
             }`}
-            value={`${popularity}`}
+            value={`${voteAverage}`}
             max="100"
           />
         </span>
