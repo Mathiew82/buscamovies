@@ -28,7 +28,7 @@ export class SearchForm extends Component {
     return urlToSearch;
   };
 
-  _handleSubmit = (event, page) => {
+  handleSubmit = (event, page) => {
     if (typeof event !== "undefined") {
       event.preventDefault();
       this.props.updateCurrentPage(page);
@@ -52,7 +52,7 @@ export class SearchForm extends Component {
       });
   };
 
-  _handleChange = (event) => {
+  handleChange = (event) => {
     this.setState({
       inputValue: event.target.value,
     });
@@ -70,20 +70,20 @@ export class SearchForm extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.currentPage !== this.state.currentPage) {
-      this._handleSubmit(undefined, this.state.currentPage);
+      this.handleSubmit(undefined, this.state.currentPage);
     }
   };
 
   render() {
     return (
       <div className="is-fullwidth">
-        <form onSubmit={(event) => this._handleSubmit(event, 1)}>
+        <form onSubmit={(event) => this.handleSubmit(event, 1)}>
           <div className="search-wrapper field has-addons is-flex is-justify-content-center">
             <div className="is-fullwidth control">
               <input
                 className="input"
                 type="text"
-                onChange={this._handleChange}
+                onChange={this.handleChange}
                 placeholder="Busca una película"
               />
             </div>

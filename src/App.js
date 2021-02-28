@@ -2,6 +2,7 @@ import "./App.css";
 import "bulma/css/bulma.css";
 import { Title } from "./components/ui/Title";
 import { Pagination } from "./components/ui/Pagination";
+import { Loading } from "./components/Loading";
 import { SearchForm } from "./components/SearchForm";
 import { MoviesList } from "./components/MoviesList";
 import { useState } from "react";
@@ -42,19 +43,14 @@ function App() {
     setCurrentPage(value);
   };
 
-  const _handleClickPage = (event) => {
+  const handleClickPage = (event) => {
     const currentValueButton = Number(event.target.innerHTML);
     setCurrentPage(currentValueButton);
   };
 
   return (
     <div className="container">
-      <div
-        style={{ display: loadingResults && "block" }}
-        className="loading-wrapper"
-      >
-        <div className="loading"></div>
-      </div>
+      <Loading loading={loadingResults} />
       <div className="app">
         <Title>Search Movies with React</Title>
 
@@ -76,7 +72,7 @@ function App() {
               moviesLength={movies.length}
               currentPage={currentPage}
               paginationLength={paginationLength}
-              handleClickPage={_handleClickPage}
+              handleClickPage={handleClickPage}
             />
           </div>
         ) : noMatches ? (
