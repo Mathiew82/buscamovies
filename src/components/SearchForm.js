@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class SearchForm extends Component {
   state = {
@@ -6,7 +7,15 @@ export class SearchForm extends Component {
     currentPage: 1,
   };
 
-  createUrl(page) {
+  static propTypes = {
+    submitResults: PropTypes.func,
+    updateCurrentPage: PropTypes.func,
+    apiUrl: PropTypes.string,
+    apiKey: PropTypes.string,
+    page: PropTypes.number,
+  };
+
+  createUrl = (page) => {
     const urlToSearch = new URL(
       `${this.props.apiUrl}?api_key=${this.props.apiKey}`
     );
@@ -16,7 +25,7 @@ export class SearchForm extends Component {
     urlToSearch.searchParams.append("language", "es-ES");
     urlToSearch.searchParams.append("include_adult", false);
     return urlToSearch;
-  }
+  };
 
   _handleSubmit = (event, page) => {
     if (typeof event !== "undefined") {
@@ -29,6 +38,7 @@ export class SearchForm extends Component {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         this.props.submitResults(data);
       })
       .catch((err) => {
@@ -42,7 +52,7 @@ export class SearchForm extends Component {
     });
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps = (props, state) => {
     if (props.page !== state.currentPage) {
       return {
         inputValue: state.inputValue,
@@ -50,13 +60,13 @@ export class SearchForm extends Component {
       };
     }
     return null;
-  }
+  };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate = (prevProps, prevState) => {
     if (prevState.currentPage !== this.state.currentPage) {
       this._handleSubmit(undefined, this.state.currentPage);
     }
-  }
+  };
 
   render() {
     return (

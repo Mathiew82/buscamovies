@@ -1,24 +1,32 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class Pagination extends Component {
-  doNotShowFirstPage() {
+  static propTypes = {
+    moviesLength: PropTypes.number,
+    currentPage: PropTypes.number,
+    paginationLength: PropTypes.number,
+    handleClickPage: PropTypes.func,
+  };
+
+  doNotShowFirstPage = () => {
     return this.props.currentPage === 1 || this.props.currentPage === 2;
-  }
+  };
 
-  doNotShowPrevPage() {
+  doNotShowPrevPage = () => {
     return this.props.currentPage === 1;
-  }
+  };
 
-  doNotShowNextPage() {
+  doNotShowNextPage = () => {
     return this.props.currentPage + 1 > this.props.paginationLength;
-  }
+  };
 
-  doNotShowLastPage() {
+  doNotShowLastPage = () => {
     return (
       this.props.currentPage === this.props.paginationLength ||
       this.props.currentPage === this.props.paginationLength - 1
     );
-  }
+  };
 
   render() {
     const { handleClickPage, currentPage, paginationLength } = this.props;

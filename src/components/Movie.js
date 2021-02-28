@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class Movie extends Component {
-  getPopularityInteger(value) {
+  static propTypes = {
+    movie: PropTypes.object,
+  };
+
+  getPopularityInteger = (value) => {
     const valueInteger = parseInt(value);
     return valueInteger > 100 ? 100 : valueInteger;
-  }
+  };
 
   render() {
     const { movie } = this.props;
