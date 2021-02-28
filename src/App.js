@@ -27,6 +27,20 @@ function App() {
     setLoadingResults(value);
   };
 
+  const addFavoriteMovies = (results) => {
+    let favoriteMovies = JSON.parse(
+      window.localStorage.getItem("favoriteMovies")
+    );
+    if (!favoriteMovies) favoriteMovies = [];
+
+    results.forEach((item) => {
+      let currentMovie = favoriteMovies.find((i) => i.id === item.id);
+      if (currentMovie) item.isFavorite = true;
+    });
+
+    return results;
+  };
+
   const showResults = (data) => {
     const { results, total_pages } = data;
 
@@ -34,7 +48,9 @@ function App() {
     if (results.length === 0) setNoMatches(true);
     if (results.length > 0) setNoMatches(false);
 
-    setMovies(results);
+    const resultsWithFavorites = addFavoriteMovies(results);
+
+    setMovies(resultsWithFavorites);
     setPaginationLength(total_pages);
     scrollToTop();
   };

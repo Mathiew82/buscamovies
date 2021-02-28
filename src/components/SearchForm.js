@@ -34,7 +34,7 @@ export class SearchForm extends Component {
       this.props.updateCurrentPage(page);
     }
 
-    document.querySelector(".input").blur();
+    window.document.querySelector(".input").blur();
     this.props.setLoadingFromSearchForm(true);
 
     const url = this.createUrl(page);

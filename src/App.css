@@ -96,7 +96,7 @@ ul {
   left: 5px;
 }
 
-.movies-list > li > .movies-list__img > .icon {
+.movies-list > li > .movies-list__img > .icon-wrapper {
   width: 36px;
   height: 36px;
   background-color: rgba(0, 0, 0, 0.4);
@@ -106,11 +106,11 @@ ul {
   right: 0;
 }
 
-.movies-list > li > .movies-list__img > .icon:hover {
+.movies-list > li > .movies-list__img > .icon-wrapper:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-.movies-list > li > .movies-list__img > .icon:hover:before {
+.movies-list > li > .movies-list__img > .icon-wrapper:hover:before {
   width: auto;
   height: 36px;
   line-height: 36px;
@@ -126,9 +126,23 @@ ul {
   right: 40px;
 }
 
-.movies-list > li > .movies-list__img > .icon > svg {
+.movies-list > li > .movies-list__img > .icon-wrapper > .click-zone {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.movies-list > li > .movies-list__img > .icon-wrapper > .icon {
   color: #eee;
-  font-size: 24px;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .movies-list > li > .movies-list__img > .movies-list-vote-average-value {
