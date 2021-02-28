@@ -10,6 +10,7 @@ const API_URL = "https://api.themoviedb.org/3/search/movie";
 const API_KEY = "4081eee7cd72cb08acc0d2f49deec1da";
 
 function App() {
+  const [loadingResults, setLoadingResults] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [paginationLength, setPaginationLength] = useState(0);
@@ -19,6 +20,10 @@ function App() {
     window.scrollTo({
       top: 0,
     });
+  };
+
+  const setLoadingFromSearchForm = (value) => {
+    setLoadingResults(value);
   };
 
   const showResults = (data) => {
@@ -44,11 +49,18 @@ function App() {
 
   return (
     <div className="container">
+      <div
+        style={{ display: loadingResults && "block" }}
+        className="loading-wrapper"
+      >
+        <div className="loading"></div>
+      </div>
       <div className="app">
         <Title>Search Movies with React</Title>
 
         <div className="is-flex is-justify-content-center is-fullwidth">
           <SearchForm
+            setLoadingFromSearchForm={setLoadingFromSearchForm}
             submitResults={showResults}
             updateCurrentPage={updateCurrentPage}
             apiUrl={API_URL}

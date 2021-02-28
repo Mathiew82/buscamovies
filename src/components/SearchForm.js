@@ -8,6 +8,7 @@ export class SearchForm extends Component {
   };
 
   static propTypes = {
+    setLoadingFromSearchForm: PropTypes.func,
     submitResults: PropTypes.func,
     updateCurrentPage: PropTypes.func,
     apiUrl: PropTypes.string,
@@ -33,6 +34,9 @@ export class SearchForm extends Component {
       this.props.updateCurrentPage(page);
     }
 
+    document.querySelector(".input").blur();
+    this.props.setLoadingFromSearchForm(true);
+
     const url = this.createUrl(page);
 
     fetch(url)
@@ -42,6 +46,9 @@ export class SearchForm extends Component {
       })
       .catch((err) => {
         throw new Error(`Error: ${err}`);
+      })
+      .finally(() => {
+        this.props.setLoadingFromSearchForm(false);
       });
   };
 
