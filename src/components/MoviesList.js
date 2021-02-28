@@ -14,6 +14,9 @@ export class MoviesList extends Component {
                   : `url(${process.env.PUBLIC_URL}/default-movie.png)`,
               }}
             >
+              <span className="icon is-large">
+                <i className="far fa-heart fa-2x"></i>
+              </span>
               <span className="movies-list-popularity-value">
                 {this.props.getPopularityInteger(movie.popularity)}
                 <small>%</small>

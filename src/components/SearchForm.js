@@ -23,6 +23,8 @@ export class SearchForm extends Component {
     fetch(urlToSearch)
       .then((response) => response.json())
       .then((data) => {
+        console.log("data");
+        console.log(data);
         this.props.submitResults(data);
       })
       .catch((err) => {

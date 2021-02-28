@@ -6,13 +6,14 @@ import { SearchForm } from "./components/SearchForm";
 import { MoviesList } from "./components/MoviesList";
 import { useState } from "react";
 
-const apiUrl = "https://api.themoviedb.org/3/search/movie";
-const apiKey = "4081eee7cd72cb08acc0d2f49deec1da";
+const API_URL = "https://api.themoviedb.org/3/search/movie";
+const API_KEY = "4081eee7cd72cb08acc0d2f49deec1da";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
   const [paginationLength, setPaginationLength] = useState(0);
+  const [noMatches, setNoMatches] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -21,8 +22,14 @@ function App() {
   };
 
   const showResults = (data) => {
-    setMovies(data.results);
-    setPaginationLength(data.total_pages);
+    const { results, total_pages } = data;
+
+    if (!results) return;
+    if (results.length === 0) setNoMatches(true);
+    if (results.length > 0) setNoMatches(false);
+
+    setMovies(results);
+    setPaginationLength(total_pages);
     scrollToTop();
   };
 
@@ -45,29 +52,38 @@ function App() {
       <div className="app">
         <Title>Search Movies with React</Title>
 
-        <br />
         <div className="is-flex is-justify-content-center is-fullwidth">
           <SearchForm
             submitResults={showResults}
             updateCurrentPage={updateCurrentPage}
-            apiUrl={apiUrl}
-            apiKey={apiKey}
+            apiUrl={API_URL}
+            apiKey={API_KEY}
             page={currentPage}
           />
         </div>
 
-        <div>
-          <MoviesList
-            movies={movies}
-            getPopularityInteger={getPopularityInteger}
-          />
-          <Pagination
-            moviesLength={movies.length}
-            currentPage={currentPage}
-            paginationLength={paginationLength}
-            handleClickPage={_handleClickPage}
-          />
-        </div>
+        {movies.length > 0 ? (
+          <div>
+            <MoviesList
+              movies={movies}
+              getPopularityInteger={getPopularityInteger}
+            />
+            <Pagination
+              moviesLength={movies.length}
+              currentPage={currentPage}
+              paginationLength={paginationLength}
+              handleClickPage={_handleClickPage}
+            />
+          </div>
+        ) : noMatches ? (
+          <div className="no-movie-results">
+            No hay películas que coincidan con tu búsqueda
+          </div>
+        ) : (
+          <div className="no-movie-results">
+            Utiliza el buscador para buscar películas
+          </div>
+        )}
       </div>
     </div>
   );

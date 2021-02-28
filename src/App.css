@@ -16,7 +16,11 @@ ul {
 }
 
 .title {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.no-movie-results {
+  margin: 2rem 0 0 0;
 }
 
 .movies-list {
@@ -55,6 +59,41 @@ ul {
   position: absolute;
   bottom: 5px;
   left: 5px;
+}
+
+.movies-list > li > .movies-list__img > .icon {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 4px 8px 4px 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.movies-list > li > .movies-list__img > .icon:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.movies-list > li > .movies-list__img > .icon:hover:before {
+  width: auto;
+  height: 36px;
+  line-height: 36px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  color: white;
+  content: "Favorito";
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 8px;
+  position: absolute;
+  top: 0;
+  right: 40px;
+}
+
+.movies-list > li > .movies-list__img > .icon > svg {
+  color: #eee;
+  font-size: 24px;
 }
 
 .movies-list > li > .movies-list__img > .movies-list-popularity-value {
