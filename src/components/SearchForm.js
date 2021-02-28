@@ -85,6 +85,7 @@ export class SearchForm extends Component {
                 type="text"
                 onChange={this.handleChange}
                 placeholder="Busca una película"
+                autoFocus
               />
             </div>
             <div className="control">
