@@ -104,7 +104,9 @@ export class Movie extends Component {
           />
         </span>
         {this.isAddedToFavorites() && <div>es favorita</div>}
-        <span className="movies-list__title">{movie.title}</span>
+        <span className="movies-list__title" title={movie.title}>
+          {movie.title}
+        </span>
       </li>
     );
   }
