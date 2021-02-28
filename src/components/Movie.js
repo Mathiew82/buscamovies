@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export class Movie extends Component {
   state = {
-    isFavorite: false,
+    isFavorite: this.props.movie.isFavorite,
   };
 
   static propTypes = {
@@ -15,8 +15,8 @@ export class Movie extends Component {
   };
 
   addToFavorites = (event) => {
+    console.log("addToFavorites");
     let currentMovie = JSON.parse(event.target.dataset.movie);
-    currentMovie.isFavorite = true;
 
     let favoriteMovies = JSON.parse(
       window.localStorage.getItem("favoriteMovies")
@@ -36,13 +36,17 @@ export class Movie extends Component {
   };
 
   removeToFavorites = (event) => {
+    console.log("removeToFavorites");
     const currentMovie = JSON.parse(event.target.dataset.movie);
 
     let favoriteMovies = JSON.parse(
       window.localStorage.getItem("favoriteMovies")
     );
 
-    const moviePositionInArray = favoriteMovies.indexOf(currentMovie);
+    const movieToDelete = favoriteMovies.find(
+      (item) => item.id === currentMovie.id
+    );
+    const moviePositionInArray = favoriteMovies.indexOf(movieToDelete);
     favoriteMovies.splice(moviePositionInArray, 1);
 
     window.localStorage.setItem(
@@ -56,7 +60,7 @@ export class Movie extends Component {
   };
 
   isAddedToFavorites() {
-    return this.props.movie.isFavorite || this.state.isFavorite;
+    return this.state.isFavorite;
   }
 
   render() {
