@@ -15,7 +15,6 @@ export class Movie extends Component {
   };
 
   addToFavorites = (event) => {
-    console.log("addToFavorites");
     let currentMovie = JSON.parse(event.target.dataset.movie);
 
     let favoriteMovies = JSON.parse(
@@ -36,7 +35,6 @@ export class Movie extends Component {
   };
 
   removeToFavorites = (event) => {
-    console.log("removeToFavorites");
     const currentMovie = JSON.parse(event.target.dataset.movie);
 
     let favoriteMovies = JSON.parse(
@@ -107,7 +105,6 @@ export class Movie extends Component {
             max="100"
           />
         </span>
-        {this.isAddedToFavorites() && <div>es favorita</div>}
         <span className="movies-list__title" title={movie.title}>
           {movie.title}
         </span>
