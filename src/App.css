@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+:root {
+  --primary-color: black;
+  --secondary-color: #25d;
+}
+
 @keyframes loading-animation {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -15,6 +20,38 @@
 
 .app {
   padding: 2rem 2rem 4rem 2rem;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header > h1 {
+  width: 60%;
+  display: inline-block;
+}
+
+header > nav {
+  width: 40%;
+  display: inline-block;
+}
+
+header > nav > ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+
+header > nav li > a {
+  color: var(--secondary-color);
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 1.5rem;
+  padding: 7px 0;
 }
 
 ul {
@@ -195,7 +232,7 @@ ul {
 }
 
 .movies-list > li:hover > .movies-list__title {
-  color: #25d;
+  color: var(--secondary-color);
 }
 
 .search-wrapper input {

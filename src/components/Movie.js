@@ -105,9 +105,13 @@ export class Movie extends Component {
             max="100"
           />
         </span>
-        <span className="movies-list__title" title={movie.title}>
+        <a
+          href={`?id=${movie.id}`}
+          className="movies-list__title"
+          title={movie.title}
+        >
           {movie.title}
-        </span>
+        </a>
       </li>
     );
   }

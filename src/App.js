@@ -5,6 +5,7 @@ import { Pagination } from "./components/ui/Pagination";
 import { Loading } from "./components/Loading";
 import { SearchForm } from "./components/SearchForm";
 import { MoviesList } from "./components/MoviesList";
+import { MovieDetail } from "./pages/MovieDetail";
 import { useState } from "react";
 
 const API_URL = "https://api.themoviedb.org/3/search/movie";
@@ -64,11 +65,33 @@ function App() {
     setCurrentPage(currentValueButton);
   };
 
+  const url = new URL(document.location);
+  const hasId = url.searchParams.has("id");
+
+  if (hasId) {
+    return <MovieDetail id={url.searchParams.get("id")} />;
+  }
+
   return (
     <div className="container">
       <Loading loading={loadingResults} />
       <div className="app">
-        <Title>Search Movies with React</Title>
+        <header>
+          <Title>Search Movies with React</Title>
+          <nav>
+            <ul>
+              <li>
+                <a href="./">Página principal</a>
+              </li>
+              <li>
+                <a href="./populares">Populares</a>
+              </li>
+              <li>
+                <a href="./favoritos">Mis favoritos</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
 
         <div className="is-flex is-justify-content-center is-fullwidth">
           <SearchForm
