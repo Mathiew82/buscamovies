@@ -18,7 +18,7 @@ export class SearchForm extends Component {
 
   createUrl = (page) => {
     const urlToSearch = new URL(
-      `${this.props.apiUrl}?api_key=${this.props.apiKey}`
+      `${this.props.apiUrl}/search/movie?api_key=${this.props.apiKey}`
     );
 
     urlToSearch.searchParams.append("query", this.state.inputValue);

@@ -107,7 +107,7 @@ ul {
   margin-bottom: 1rem;
 }
 
-.movies-list > li > .movies-list__img {
+.movies-list > li > a > .movies-list__img {
   width: 100%;
   height: 240px;
   background-position: center center;
@@ -117,11 +117,11 @@ ul {
   position: relative;
 }
 
-.movies-list > li:hover > .movies-list__img {
+.movies-list > li:hover > a > .movies-list__img {
   box-shadow: 0 0 0 0.125em rgb(50 115 220 / 25%);
 }
 
-.movies-list > li > .movies-list__img:before {
+.movies-list > li > a > .movies-list__img:before {
   width: 38px;
   height: 38px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -133,7 +133,7 @@ ul {
   left: 5px;
 }
 
-.movies-list > li > .movies-list__img > .icon-wrapper {
+.movies-list > li > a > .movies-list__img > .icon-wrapper {
   width: 36px;
   height: 36px;
   background-color: rgba(0, 0, 0, 0.4);
@@ -143,11 +143,11 @@ ul {
   right: 0;
 }
 
-.movies-list > li > .movies-list__img > .icon-wrapper:hover {
+.movies-list > li > a > .movies-list__img > .icon-wrapper:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-.movies-list > li > .movies-list__img > .icon-wrapper:hover:before {
+.movies-list > li > a > .movies-list__img > .icon-wrapper:hover:before {
   width: auto;
   height: 36px;
   line-height: 36px;
@@ -163,7 +163,7 @@ ul {
   right: 40px;
 }
 
-.movies-list > li > .movies-list__img > .icon-wrapper > .click-zone {
+.movies-list > li > a > .movies-list__img > .icon-wrapper > .click-zone {
   width: 100%;
   height: 100%;
   display: inline-block;
@@ -173,7 +173,7 @@ ul {
   z-index: 1;
 }
 
-.movies-list > li > .movies-list__img > .icon-wrapper > .icon {
+.movies-list > li > a > .movies-list__img > .icon-wrapper > .icon {
   color: #eee;
   font-size: 20px;
   position: absolute;
@@ -182,7 +182,7 @@ ul {
   transform: translate(-50%, -50%);
 }
 
-.movies-list > li > .movies-list__img > .movies-list-vote-average-value {
+.movies-list > li > a > .movies-list__img > .movies-list-vote-average-value {
   width: 22px;
   color: white;
   display: inline-block;
@@ -197,13 +197,14 @@ ul {
 
 .movies-list
   > li
+  > a
   > .movies-list__img
   > .movies-list-vote-average-value
   > small {
   font-size: 7px;
 }
 
-.movies-list > li > .movies-list__img > .progress {
+.movies-list > li > a > .movies-list__img > .progress {
   width: 22px;
   height: 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -212,7 +213,7 @@ ul {
   left: 14px;
 }
 
-.movies-list > li > .movies-list__title {
+.movies-list > li > a > .movies-list__title {
   height: auto;
   line-height: 1.2;
   color: black;
@@ -227,11 +228,7 @@ ul {
   transition: color 0.2s;
 }
 
-.movies-list > li:hover {
-  cursor: pointer;
-}
-
-.movies-list > li:hover > .movies-list__title {
+.movies-list > li:hover > a > .movies-list__title {
   color: var(--secondary-color);
 }
 

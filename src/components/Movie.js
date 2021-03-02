@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export class Movie extends Component {
@@ -67,51 +68,49 @@ export class Movie extends Component {
 
     return (
       <li>
-        <span
-          className="movies-list__img"
-          style={{
-            backgroundImage: movie.poster_path
-              ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
-              : `url(${process.env.PUBLIC_URL}/default-movie.png)`,
-          }}
-        >
-          <span className="icon-wrapper">
-            <span
-              className="click-zone"
-              data-movie={JSON.stringify(movie)}
-              onClick={
-                this.isAddedToFavorites()
-                  ? this.removeToFavorites
-                  : this.addToFavorites
-              }
+        <Link to={`/pelicula/${movie.id}`}>
+          <span
+            className="movies-list__img"
+            style={{
+              backgroundImage: movie.poster_path
+                ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
+                : `url(${process.env.PUBLIC_URL}/default-movie.png)`,
+            }}
+          >
+            <span className="icon-wrapper">
+              <span
+                className="click-zone"
+                data-movie={JSON.stringify(movie)}
+                onClick={
+                  this.isAddedToFavorites()
+                    ? this.removeToFavorites
+                    : this.addToFavorites
+                }
+              />
+              {this.isAddedToFavorites() ? (
+                <i className="icon icon-heart" />
+              ) : (
+                <i className="icon icon-heart-empty" />
+              )}
+            </span>
+            <span className="movies-list-vote-average-value">
+              {voteAverage}
+              <small>%</small>
+            </span>
+            <progress
+              className={`progress ${voteAverage < 15 ? "is-danger" : ""} ${
+                voteAverage >= 15 && voteAverage < 30 ? "is-warning" : ""
+              } ${voteAverage >= 30 && voteAverage < 50 ? "is-info" : ""} ${
+                voteAverage >= 50 ? "is-primary" : ""
+              }`}
+              value={`${voteAverage}`}
+              max="100"
             />
-            {this.isAddedToFavorites() ? (
-              <i className="icon icon-heart" />
-            ) : (
-              <i className="icon icon-heart-empty" />
-            )}
           </span>
-          <span className="movies-list-vote-average-value">
-            {voteAverage}
-            <small>%</small>
+          <span className="movies-list__title" title={movie.title}>
+            {movie.title}
           </span>
-          <progress
-            className={`progress ${voteAverage < 15 ? "is-danger" : ""} ${
-              voteAverage >= 15 && voteAverage < 30 ? "is-warning" : ""
-            } ${voteAverage >= 30 && voteAverage < 50 ? "is-info" : ""} ${
-              voteAverage >= 50 ? "is-primary" : ""
-            }`}
-            value={`${voteAverage}`}
-            max="100"
-          />
-        </span>
-        <a
-          href={`?id=${movie.id}`}
-          className="movies-list__title"
-          title={movie.title}
-        >
-          {movie.title}
-        </a>
+        </Link>
       </li>
     );
   }
