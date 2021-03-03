@@ -3,7 +3,7 @@ import "bulma/css/bulma.css";
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import { MovieDetail } from "./pages/MovieDetail";
+import MovieDetail from "./pages/MovieDetail";
 
 const API_URL = "https://api.themoviedb.org/3";
 const API_KEY = "4081eee7cd72cb08acc0d2f49deec1da";
