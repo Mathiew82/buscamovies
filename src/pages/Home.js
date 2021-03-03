@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import Title from "../components/ui/Title";
 import Pagination from "../components/ui/Pagination";
 import Loading from "../components/Loading";
@@ -9,6 +10,7 @@ import MoviesList from "../components/MoviesList";
 function Home(props) {
   const { apiUrl, apiKey } = props;
 
+  const [isActive, setisActive] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState([]);
@@ -67,31 +69,13 @@ function Home(props) {
       <Loading loading={loadingResults} />
       <div className="app">
         <header>
-          {/* <img
-            src={`${process.env.PUBLIC_URL}/logo.png`}
-            alt="Search Movies App"
-            className="logo"
-          />
-          <nav>
-            <ul>
-              <li>
-                <a href="./">Página principal</a>
-              </li>
-              <li>
-                <a href="./populares">Populares</a>
-              </li>
-              <li>
-                <a href="./favoritos">Mis favoritos</a>
-              </li>
-            </ul>
-          </nav> */}
-          {/* <nav
+          <nav
             className="navbar is-fullwidth"
             role="navigation"
             aria-label="main navigation"
           >
             <div className="navbar-brand">
-              <a className="navbar-item" href="https://bulma.io">
+              <a className="navbar-item pl0" href="https://bulma.io">
                 <img
                   src={`${process.env.PUBLIC_URL}/logo.png`}
                   alt="Search Movies App"
@@ -100,9 +84,13 @@ function Home(props) {
               </a>
 
               <a
-                href="@"
+                onClick={() => {
+                  setisActive(!isActive);
+                }}
                 role="button"
-                className="navbar-burger"
+                className={`navbar-burger burger ${
+                  isActive ? "is-active" : ""
+                }`}
                 aria-label="menu"
                 aria-expanded="false"
                 data-target="navbarBasicExample"
@@ -113,33 +101,23 @@ function Home(props) {
               </a>
             </div>
 
-            <div id="navbarBasicExample" className="navbar-menu">
+            <div
+              id="navbarBasicExample"
+              className={`navbar-menu ${isActive ? "is-active" : ""}`}
+            >
               <div className="navbar-start">
                 <Link to={"/"} className="navbar-item">
-                  Página principal
+                  Principal
                 </Link>
                 <Link to={"/populares"} className="navbar-item">
                   Populares
                 </Link>
                 <Link to={"/favoritos"} className="navbar-item">
-                  Mis favoritos
+                  Favoritos
                 </Link>
               </div>
-
-              <div className="navbar-end">
-                <div className="navbar-item">
-                  <div className="buttons">
-                    <a href="@" className="button is-primary">
-                      <strong>Sign up</strong>
-                    </a>
-                    <a href="@" className="button is-light">
-                      Log in
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
-          </nav> */}
+          </nav>
         </header>
 
         <div className="is-flex is-justify-content-center is-fullwidth">

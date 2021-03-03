@@ -58,6 +58,18 @@ function Movie(props) {
 
   return (
     <li>
+      <span className="icon-wrapper">
+        <span
+          className="click-zone"
+          data-movie={JSON.stringify(movie)}
+          onClick={isAddedToFavorites() ? removeToFavorites : addToFavorites}
+        />
+        {isAddedToFavorites() ? (
+          <i className="icon icon-heart" />
+        ) : (
+          <i className="icon icon-heart-empty" />
+        )}
+      </span>
       <Link to={`/pelicula/${movie.id}`}>
         <span
           className="movies-list__img"
@@ -67,20 +79,6 @@ function Movie(props) {
               : `url(${process.env.PUBLIC_URL}/default-movie.png)`,
           }}
         >
-          <span className="icon-wrapper">
-            <span
-              className="click-zone"
-              data-movie={JSON.stringify(movie)}
-              onClick={
-                isAddedToFavorites() ? removeToFavorites : addToFavorites
-              }
-            />
-            {isAddedToFavorites() ? (
-              <i className="icon icon-heart" />
-            ) : (
-              <i className="icon icon-heart-empty" />
-            )}
-          </span>
           <span className="movies-list-vote-average-value">
             {voteAverage}
             <small>%</small>
