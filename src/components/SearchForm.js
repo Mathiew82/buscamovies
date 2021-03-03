@@ -1,101 +1,96 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-export class SearchForm extends Component {
-  state = {
-    inputValue: "",
-    currentPage: 1,
-  };
+function SearchForm(props) {
+  const {
+    apiUrl,
+    apiKey,
+    updateCurrentPage,
+    setLoadingFromSearchForm,
+    submitResults,
+    page,
+  } = props;
 
-  static propTypes = {
-    setLoadingFromSearchForm: PropTypes.func,
-    submitResults: PropTypes.func,
-    updateCurrentPage: PropTypes.func,
-    apiUrl: PropTypes.string,
-    apiKey: PropTypes.string,
-    page: PropTypes.number,
-  };
+  const [inputValue, setInputValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  createUrl = (page) => {
-    const urlToSearch = new URL(
-      `${this.props.apiUrl}/search/movie?api_key=${this.props.apiKey}`
-    );
+  const createUrl = (page) => {
+    const urlToSearch = new URL(`${apiUrl}/search/movie?api_key=${apiKey}`);
 
-    urlToSearch.searchParams.append("query", this.state.inputValue);
+    urlToSearch.searchParams.append("query", inputValue);
     urlToSearch.searchParams.append("page", page);
     urlToSearch.searchParams.append("language", "es-ES");
     urlToSearch.searchParams.append("include_adult", false);
     return urlToSearch;
   };
 
-  handleSubmit = (event, page) => {
+  const handleSubmit = (event, page) => {
     if (typeof event !== "undefined") {
       event.preventDefault();
-      this.props.updateCurrentPage(page);
+      updateCurrentPage(page);
     }
 
     window.document.querySelector(".input").blur();
-    this.props.setLoadingFromSearchForm(true);
+    setLoadingFromSearchForm(true);
 
-    const url = this.createUrl(page);
+    const url = createUrl(page);
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        this.props.submitResults(data);
+        submitResults(data);
       })
       .catch((err) => {
         throw new Error(`Error: ${err}`);
       })
       .finally(() => {
-        this.props.setLoadingFromSearchForm(false);
+        setLoadingFromSearchForm(false);
       });
   };
 
-  handleChange = (event) => {
-    this.setState({
-      inputValue: event.target.value,
-    });
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
   };
 
-  static getDerivedStateFromProps = (props, state) => {
-    if (props.page !== state.currentPage) {
-      return {
-        inputValue: state.inputValue,
-        currentPage: props.page,
-      };
-    }
-    return null;
-  };
+  if (page !== currentPage) {
+    setCurrentPage(page);
 
-  componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.currentPage !== this.state.currentPage) {
-      this.handleSubmit(undefined, this.state.currentPage);
-    }
-  };
-
-  render() {
-    return (
-      <div className="is-fullwidth">
-        <form onSubmit={(event) => this.handleSubmit(event, 1)}>
-          <div className="search-wrapper field has-addons is-flex is-justify-content-center">
-            <div className="is-fullwidth control">
-              <input
-                className="input"
-                type="text"
-                onChange={this.handleChange}
-                placeholder="Busca una película"
-                autoFocus
-              />
-            </div>
-            <div className="control">
-              <button type="submit" className="button is-primary">
-                Buscar
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    );
+    setTimeout(() => {
+      handleSubmit(undefined, page);
+    }, 200);
   }
+
+  return (
+    <div className="is-fullwidth">
+      <form onSubmit={(event) => handleSubmit(event, 1)}>
+        <div className="search-wrapper field has-addons is-flex is-justify-content-center">
+          <div className="is-fullwidth control">
+            <input
+              className="input"
+              type="text"
+              onChange={handleChange}
+              placeholder="Busca una película"
+              autoFocus
+            />
+          </div>
+          <div className="control">
+            <button type="submit" className="button is-primary">
+              Buscar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
 }
+
+SearchForm.propTypes = {
+  setLoadingFromSearchForm: PropTypes.func,
+  submitResults: PropTypes.func,
+  updateCurrentPage: PropTypes.func,
+  apiUrl: PropTypes.string,
+  apiKey: PropTypes.string,
+  page: PropTypes.number,
+};
+
+export default SearchForm;
