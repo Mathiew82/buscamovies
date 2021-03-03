@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Title } from "../components/ui/Title";
+import Title from "../components/ui/Title";
 import { Pagination } from "../components/ui/Pagination";
-import { Loading } from "../components/Loading";
+import Loading from "../components/Loading";
 import { SearchForm } from "../components/SearchForm";
 import { MoviesList } from "../components/MoviesList";
 

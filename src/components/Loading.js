@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-export class Loading extends Component {
-  render() {
-    const { loading } = this.props;
+import React from "react";
 
-    return (
-      <div style={{ display: loading && "block" }} className="loading-wrapper">
-        <div className="loading"></div>
-      </div>
-    );
-  }
+function Loading(props) {
+  const { loading } = props;
+
+  return (
+    <div style={{ display: loading && "block" }} className="loading-wrapper">
+      <div className="loading"></div>
+    </div>
+  );
 }
+
+export default Loading;
