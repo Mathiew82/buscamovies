@@ -1,97 +1,96 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-export class Pagination extends Component {
-  static propTypes = {
-    moviesLength: PropTypes.number,
-    currentPage: PropTypes.number,
-    paginationLength: PropTypes.number,
-    handleClickPage: PropTypes.func,
+function Pagination(props) {
+  const { handleClickPage, currentPage, paginationLength } = props;
+
+  const doNotShowFirstPage = () => {
+    return currentPage === 1 || currentPage === 2;
   };
 
-  doNotShowFirstPage = () => {
-    return this.props.currentPage === 1 || this.props.currentPage === 2;
+  const doNotShowPrevPage = () => {
+    return currentPage === 1;
   };
 
-  doNotShowPrevPage = () => {
-    return this.props.currentPage === 1;
+  const doNotShowNextPage = () => {
+    return currentPage + 1 > paginationLength;
   };
 
-  doNotShowNextPage = () => {
-    return this.props.currentPage + 1 > this.props.paginationLength;
-  };
-
-  doNotShowLastPage = () => {
+  const doNotShowLastPage = () => {
     return (
-      this.props.currentPage === this.props.paginationLength ||
-      this.props.currentPage === this.props.paginationLength - 1
+      currentPage === paginationLength || currentPage === paginationLength - 1
     );
   };
 
-  render() {
-    const { handleClickPage, currentPage, paginationLength } = this.props;
-
-    return (
-      <nav
-        className="pagination is-centered"
-        role="navigation"
-        aria-label="pagination"
-      >
-        <ul className="pagination-list">
-          <li style={{ display: this.doNotShowFirstPage() && "none" }}>
-            <button
-              type="button"
-              className="pagination-link"
-              onClick={handleClickPage}
-            >
-              1
-            </button>
-          </li>
-          <li style={{ display: this.doNotShowFirstPage() && "none" }}>
-            <span className="pagination-ellipsis">&hellip;</span>
-          </li>
-          <li style={{ display: this.doNotShowPrevPage() && "none" }}>
-            <button
-              type="button"
-              className="pagination-link"
-              onClick={handleClickPage}
-            >
-              {currentPage - 1}
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              className="pagination-link is-current"
-              aria-current="page"
-              onClick={handleClickPage}
-            >
-              {currentPage}
-            </button>
-          </li>
-          <li style={{ display: this.doNotShowNextPage() && "none" }}>
-            <button
-              type="button"
-              className="pagination-link"
-              onClick={handleClickPage}
-            >
-              {currentPage + 1}
-            </button>
-          </li>
-          <li style={{ display: this.doNotShowLastPage() && "none" }}>
-            <span className="pagination-ellipsis">&hellip;</span>
-          </li>
-          <li style={{ display: this.doNotShowLastPage() && "none" }}>
-            <button
-              type="button"
-              className="pagination-link"
-              onClick={handleClickPage}
-            >
-              {paginationLength}
-            </button>
-          </li>
-        </ul>
-      </nav>
-    );
-  }
+  return (
+    <nav
+      className="pagination is-centered"
+      role="navigation"
+      aria-label="pagination"
+    >
+      <ul className="pagination-list">
+        <li style={{ display: doNotShowFirstPage() && "none" }}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={handleClickPage}
+          >
+            1
+          </button>
+        </li>
+        <li style={{ display: doNotShowFirstPage() && "none" }}>
+          <span className="pagination-ellipsis">&hellip;</span>
+        </li>
+        <li style={{ display: doNotShowPrevPage() && "none" }}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={handleClickPage}
+          >
+            {currentPage - 1}
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            className="pagination-link is-current"
+            aria-current="page"
+            onClick={handleClickPage}
+          >
+            {currentPage}
+          </button>
+        </li>
+        <li style={{ display: doNotShowNextPage() && "none" }}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={handleClickPage}
+          >
+            {currentPage + 1}
+          </button>
+        </li>
+        <li style={{ display: doNotShowLastPage() && "none" }}>
+          <span className="pagination-ellipsis">&hellip;</span>
+        </li>
+        <li style={{ display: doNotShowLastPage() && "none" }}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={handleClickPage}
+          >
+            {paginationLength}
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
 }
+
+Pagination.propTypes = {
+  moviesLength: PropTypes.number,
+  currentPage: PropTypes.number,
+  paginationLength: PropTypes.number,
+  handleClickPage: PropTypes.func,
+};
+
+export default Pagination;

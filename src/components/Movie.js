@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function Movie(props) {
-  const [isFavorite, setIsFavorite] = useState(props.movie.isFavorite);
+  const { movie } = props;
+
+  const [isFavorite, setIsFavorite] = useState(movie.isFavorite);
 
   const getVoteAverageInteger = (value) => {
     return value * 10;
@@ -52,7 +54,6 @@ function Movie(props) {
     return isFavorite;
   };
 
-  const { movie } = props;
   const voteAverage = getVoteAverageInteger(movie.vote_average);
 
   return (
