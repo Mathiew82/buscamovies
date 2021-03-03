@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Movie } from "./Movie";
 
-export class MoviesList extends Component {
-  static propTypes = {
-    movies: PropTypes.array,
-  };
+function MoviesList(props) {
+  const { movies } = props;
 
-  render() {
-    const { movies } = this.props;
-
-    return (
-      <ul className="movies-list">
-        {movies.map((movie) => (
-          <Movie key={movie.id} movie={movie} />
-        ))}
-      </ul>
-    );
-  }
+  return (
+    <ul className="movies-list">
+      {movies.map((movie) => (
+        <Movie key={movie.id} movie={movie} />
+      ))}
+    </ul>
+  );
 }
+
+MoviesList.propTypes = {
+  movies: PropTypes.array,
+};
+
+export default MoviesList;
