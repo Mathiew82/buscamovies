@@ -1,19 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import Title from "../components/ui/Title";
 import Pagination from "../components/ui/Pagination";
 import Loading from "../components/Loading";
 import SearchForm from "../components/SearchForm";
 import MoviesList from "../components/MoviesList";
 
 function Home(props) {
-  const { apiUrl, apiKey } = props;
+  const { apiUrl, apiKey, movies, setMovies } = props;
 
   const [isActive, setisActive] = useState(false);
   const [loadingResults, setLoadingResults] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [movies, setMovies] = useState([]);
   const [paginationLength, setPaginationLength] = useState(0);
   const [noMatches, setNoMatches] = useState(false);
 
