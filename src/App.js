@@ -2,20 +2,18 @@ import "./App.css";
 import "bulma/css/bulma.css";
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import HomeContainer from "./containers/Home";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
+import env from "./env";
 
-const API_URL = "https://api.themoviedb.org/3";
-const API_KEY = "4081eee7cd72cb08acc0d2f49deec1da";
+const { API_URL, API_KEY } = env;
 
 function App() {
   return (
     <div className="container">
       <Switch>
         <Route exact path="/">
-          <HomeContainer apiUrl={API_URL} apiKey={API_KEY} />
-          {/* <Home apiUrl={API_URL} apiKey={API_KEY} /> */}
+          <Home />
         </Route>
         <Route
           path={"/pelicula/:id"}
