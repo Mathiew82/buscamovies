@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import useVoteAverage from "../hooks/useVoteAverage";
 
 function Movie(props) {
   const { movie } = props;
 
   const [isFavorite, setIsFavorite] = useState(movie.isFavorite);
-
-  const getVoteAverageInteger = (value) => {
-    return value * 10;
-  };
 
   const addToFavorites = (event) => {
     const currentMovie = JSON.parse(event.target.dataset.movie);
@@ -54,7 +51,7 @@ function Movie(props) {
     return isFavorite;
   };
 
-  const voteAverage = getVoteAverageInteger(movie.vote_average);
+  const voteAverage = useVoteAverage(movie.vote_average);
 
   return (
     <li>
