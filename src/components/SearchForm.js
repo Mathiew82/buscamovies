@@ -64,10 +64,6 @@ function SearchForm(props) {
     setInputValue(event.target.value);
   };
 
-  if (inputElement && inputElement.value === "" && inputValue !== "") {
-    inputElement.value = inputValue;
-  }
-
   if (page !== currentPage) {
     setCurrentPage(page);
 
@@ -86,6 +82,7 @@ function SearchForm(props) {
               type="text"
               onChange={handleChange}
               placeholder="Busca una película"
+              value={inputValue}
               autoFocus
             />
           </div>
