@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import useToggleFavorite from "../hooks/useToggleFavorite";
+import Header from "../components/ui/Header";
 import Title from "../components/ui/Title";
 import Subtitle from "../components/ui/Subtitle";
 import Label from "../components/ui/Label";
@@ -14,7 +14,11 @@ function MovieDetail(props) {
     isAddedToFavorites,
     addToFavorites,
     removeToFavorites,
-  } = useToggleFavorite();
+  } = useToggleFavorite(props.movieId);
+
+  const goToBack = () => {
+    window.history.back();
+  };
 
   const formatRevenue = (value) => {
     return new Intl.NumberFormat("es-ES", {
@@ -31,7 +35,6 @@ function MovieDetail(props) {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setMovie(data);
       })
       .catch((err) => {
@@ -44,28 +47,27 @@ function MovieDetail(props) {
 
   return (
     <div className="more-detail-page">
+      <Header />
       {movie && Object.keys(movie).length > 0 && (
         <div className="row">
           <div className="col xs-12 sm-12 md-4 lg-4">
-            <span className="icon-wrapper">
-              <span
-                className="click-zone"
-                data-movie={JSON.stringify(movie)}
-                onClick={
-                  isAddedToFavorites() ? removeToFavorites : addToFavorites
-                }
-              />
-              {isAddedToFavorites() ? (
-                <i className="icon icon-heart" />
-              ) : (
-                <i className="icon icon-heart-empty" />
-              )}
-            </span>
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
               className="more-detail-page__img"
             />
+            <button
+              type="button"
+              className="button is-danger is-outlined is-fullwidth"
+              data-movie={JSON.stringify(movie)}
+              onClick={
+                isAddedToFavorites() ? removeToFavorites : addToFavorites
+              }
+            >
+              {isAddedToFavorites()
+                ? "Eliminar de tus favoritos"
+                : "Agregar a tus favoritos"}
+            </button>
             <p>
               <span className="more-detail-page-vote-average-value">
                 {voteAverage} de 100 de valoración
@@ -141,9 +143,13 @@ function MovieDetail(props) {
                 </ul>
               </div>
             )}
-            <Link className="button is-primary mt-6" to="/">
-              Volver al listado
-            </Link>
+            <button
+              type="button"
+              className="button is-primary mt-6"
+              onClick={goToBack}
+            >
+              Volver atrás
+            </button>
           </div>
         </div>
       )}

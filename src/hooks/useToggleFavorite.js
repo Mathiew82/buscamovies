@@ -1,7 +1,25 @@
 import { useState } from "react";
 
-const useToggleFavorite = (movieIsFavorite) => {
-  const [isFavorite, setIsFavorite] = useState(movieIsFavorite);
+const useToggleFavorite = (movieId) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [checkedFilm, setCheckedFilm] = useState(false);
+
+  const checkIfItsFavorite = () => {
+    let favoriteMovies = JSON.parse(
+      window.localStorage.getItem("favoriteMovies")
+    );
+
+    const findCurrentMovie = favoriteMovies.find(
+      (item) => item.id === Number(movieId)
+    );
+
+    return typeof findCurrentMovie !== "undefined" ? true : false;
+  };
+
+  if (!checkedFilm) {
+    setIsFavorite(checkIfItsFavorite);
+    setCheckedFilm(true);
+  }
 
   const addToFavorites = (event) => {
     const currentMovie = JSON.parse(event.target.dataset.movie);
