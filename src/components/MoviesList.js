@@ -6,11 +6,18 @@ import Pagination from "../components/ui/Pagination";
 import Movie from "./Movie";
 
 function MoviesList(props) {
-  const { movies, setMovies } = props;
+  const {
+    movies,
+    setMovies,
+    inputValue,
+    setInputValue,
+    currentPage,
+    setCurrentPage,
+    paginationLength,
+    setPaginationLength,
+  } = props;
 
   const [loadingResults, setLoadingResults] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [paginationLength, setPaginationLength] = useState(0);
   const [noMatches, setNoMatches] = useState(false);
 
   const scrollToTop = () => {
@@ -62,6 +69,8 @@ function MoviesList(props) {
 
       <div className="is-flex is-justify-content-center is-fullwidth">
         <SearchForm
+          inputValue={inputValue}
+          setInputValue={setInputValue}
           setLoadingFromSearchForm={setLoadingFromSearchForm}
           submitResults={showResults}
           page={currentPage}
@@ -96,6 +105,10 @@ function MoviesList(props) {
 MoviesList.propTypes = {
   movies: PropTypes.array,
   setMovies: PropTypes.func,
+  currentPage: PropTypes.number,
+  setCurrentPage: PropTypes.func,
+  paginationLength: PropTypes.number,
+  setPaginationLength: PropTypes.func,
 };
 
 export default MoviesList;

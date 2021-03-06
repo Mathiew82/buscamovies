@@ -5,10 +5,17 @@ import env from "../env";
 const { API_URL, API_KEY } = env;
 
 function SearchForm(props) {
-  const { setLoadingFromSearchForm, submitResults, page } = props;
+  const {
+    inputValue,
+    setInputValue,
+    setLoadingFromSearchForm,
+    submitResults,
+    page,
+  } = props;
 
-  const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  const inputElement = window.document.querySelector(".input");
 
   const createUrl = (page) => {
     const urlToSearch = new URL(`${API_URL}/search/movie?api_key=${API_KEY}`);
@@ -29,8 +36,6 @@ function SearchForm(props) {
     if (typeof event !== "undefined") {
       event.preventDefault();
     }
-
-    const inputElement = window.document.querySelector(".input");
 
     if (!checkValueInput(inputValue)) {
       inputElement.value = "";
@@ -58,6 +63,10 @@ function SearchForm(props) {
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
+
+  if (inputElement && inputElement.value === "" && inputValue !== "") {
+    inputElement.value = inputValue;
+  }
 
   if (page !== currentPage) {
     setCurrentPage(page);
@@ -92,11 +101,10 @@ function SearchForm(props) {
 }
 
 SearchForm.propTypes = {
+  inputValue: PropTypes.string,
+  setInputValue: PropTypes.func,
   setLoadingFromSearchForm: PropTypes.func,
   submitResults: PropTypes.func,
-  updateCurrentPage: PropTypes.func,
-  apiUrl: PropTypes.string,
-  apiKey: PropTypes.string,
   page: PropTypes.number,
 };
 

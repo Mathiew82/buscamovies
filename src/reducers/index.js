@@ -1,12 +1,31 @@
 const INITIAL_STATE = {
   movies: [],
+  inputValue: "",
+  currentPage: 1,
+  paginationLength: 0,
 };
 
 export function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "SET_MOVIES":
       return {
+        ...state,
         movies: action.payload.movies,
+      };
+    case "SET_INPUT_VALUE":
+      return {
+        ...state,
+        inputValue: action.payload.inputValue,
+      };
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        currentPage: action.payload.currentPage,
+      };
+    case "SET_PAGINATION_LENGTH":
+      return {
+        ...state,
+        paginationLength: action.payload.paginationLength,
       };
     default:
       return state;
