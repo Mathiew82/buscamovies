@@ -5,12 +5,8 @@ import MoviesListContainer from "../containers/MoviesList";
 function Home() {
   return (
     <div className="home-page">
-      <div className="app">
-        <Header />
-        <div>
-          <MoviesListContainer />
-        </div>
-      </div>
+      <Header />
+      <MoviesListContainer />
     </div>
   );
 }

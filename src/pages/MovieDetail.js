@@ -66,6 +66,7 @@ function MovieDetail(props) {
           <div className="col xs-12 sm-12 md-8 lg-8 more-detail-page__info">
             <Title>{movie.title}</Title>
             <Subtitle>{movie.tagline}</Subtitle>
+
             <p>{movie.overview}</p>
             <p>
               <Label>Fecha de lanzamiento:</Label> {movie.release_date}
