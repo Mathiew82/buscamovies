@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import useToggleFavorite from "../hooks/useToggleFavorite";
 import Title from "../components/ui/Title";
 import Subtitle from "../components/ui/Subtitle";
 import Label from "../components/ui/Label";
@@ -8,6 +9,12 @@ import useVoteAverage from "../hooks/useVoteAverage";
 
 function MovieDetail(props) {
   const [movie, setMovie] = useState({});
+
+  const {
+    isAddedToFavorites,
+    addToFavorites,
+    removeToFavorites,
+  } = useToggleFavorite();
 
   const formatRevenue = (value) => {
     return new Intl.NumberFormat("es-ES", {
@@ -40,6 +47,20 @@ function MovieDetail(props) {
       {movie && Object.keys(movie).length > 0 && (
         <div className="row">
           <div className="col xs-12 sm-12 md-4 lg-4">
+            <span className="icon-wrapper">
+              <span
+                className="click-zone"
+                data-movie={JSON.stringify(movie)}
+                onClick={
+                  isAddedToFavorites() ? removeToFavorites : addToFavorites
+                }
+              />
+              {isAddedToFavorites() ? (
+                <i className="icon icon-heart" />
+              ) : (
+                <i className="icon icon-heart-empty" />
+              )}
+            </span>
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
@@ -58,9 +79,9 @@ function MovieDetail(props) {
                 value={`${voteAverage}`}
                 max="100"
               />
-              <div className="tac">
+              <span className="inline-block tac">
                 <Label>Votos totales:</Label> {movie.vote_count}
-              </div>
+              </span>
             </p>
           </div>
           <div className="col xs-12 sm-12 md-8 lg-8 more-detail-page__info">
@@ -84,30 +105,42 @@ function MovieDetail(props) {
               <Label>Ingresos:</Label>{" "}
               {movie.revenue === 0 ? "Sin información" : formattedRevenue}
             </p>
-            <p>
-              <Label>Producida en:</Label>
-              <ul>
-                {movie.production_countries.map((country) => (
-                  <li>{country.name}</li>
-                ))}
-              </ul>
-            </p>
-            <p>
-              <Label>Géneros:</Label>
-              <ul>
-                {movie.genres.map((genre) => (
-                  <li>{genre.name}</li>
-                ))}
-              </ul>
-            </p>
-            <p>
-              <Label>Compañías de producción:</Label>
-              <ul>
-                {movie.production_companies.map((company) => (
-                  <li>{company.name}</li>
-                ))}
-              </ul>
-            </p>
+            {movie.production_countries.length > 0 && (
+              <div>
+                <p>
+                  <Label>Producida en:</Label>
+                </p>
+                <ul>
+                  {movie.production_countries.map((country) => (
+                    <li key={country.name}>{country.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {movie.genres.length > 0 && (
+              <div>
+                <p>
+                  <Label>Géneros:</Label>
+                </p>
+                <ul>
+                  {movie.genres.map((genre) => (
+                    <li key={genre.name}>{genre.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {movie.production_companies.length > 0 && (
+              <div>
+                <p>
+                  <Label>Compañías de producción:</Label>
+                </p>
+                <ul>
+                  {movie.production_companies.map((company) => (
+                    <li key={company.name}>{company.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <Link className="button is-primary mt-6" to="/">
               Volver al listado
             </Link>

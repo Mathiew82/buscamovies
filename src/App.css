@@ -203,6 +203,10 @@ p {
   font-weight: 700;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .tac {
   text-align: center;
 }

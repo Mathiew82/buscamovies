@@ -1,55 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import useToggleFavorite from "../hooks/useToggleFavorite";
 import useVoteAverage from "../hooks/useVoteAverage";
 
 function Movie(props) {
   const { movie } = props;
 
-  const [isFavorite, setIsFavorite] = useState(movie.isFavorite);
-
-  const addToFavorites = (event) => {
-    const currentMovie = JSON.parse(event.target.dataset.movie);
-
-    let favoriteMovies = JSON.parse(
-      window.localStorage.getItem("favoriteMovies")
-    );
-    if (!favoriteMovies) favoriteMovies = [];
-
-    favoriteMovies.push(currentMovie);
-
-    window.localStorage.setItem(
-      "favoriteMovies",
-      JSON.stringify(favoriteMovies)
-    );
-
-    setIsFavorite(true);
-  };
-
-  const removeToFavorites = (event) => {
-    const currentMovie = JSON.parse(event.target.dataset.movie);
-
-    let favoriteMovies = JSON.parse(
-      window.localStorage.getItem("favoriteMovies")
-    );
-
-    const movieToDelete = favoriteMovies.find(
-      (item) => item.id === currentMovie.id
-    );
-    const moviePositionInArray = favoriteMovies.indexOf(movieToDelete);
-    favoriteMovies.splice(moviePositionInArray, 1);
-
-    window.localStorage.setItem(
-      "favoriteMovies",
-      JSON.stringify(favoriteMovies)
-    );
-
-    setIsFavorite(false);
-  };
-
-  const isAddedToFavorites = () => {
-    return isFavorite;
-  };
+  const {
+    isAddedToFavorites,
+    addToFavorites,
+    removeToFavorites,
+  } = useToggleFavorite();
 
   const voteAverage = useVoteAverage(movie.vote_average);
 
