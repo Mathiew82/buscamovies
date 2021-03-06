@@ -1,3 +1,3 @@
 # Search Movies React JS
 
-Proyecto de búsqueda de películas para aprender a trabajar con React.
+Proyecto de búsqueda de películas desarrollado en React JS y alimentado por la api de TMDb.
