@@ -4,9 +4,6 @@ import SearchForm from "../components/SearchForm";
 import Loading from "../components/Loading";
 import Pagination from "../components/ui/Pagination";
 import Movie from "./Movie";
-import env from "../env";
-
-const { API_URL, API_KEY } = env;
 
 function MoviesList(props) {
   const { movies, setMovies } = props;
@@ -54,10 +51,6 @@ function MoviesList(props) {
     scrollToTop();
   };
 
-  const updateCurrentPage = (value) => {
-    setCurrentPage(value);
-  };
-
   const handleClickPage = (event) => {
     const currentValueButton = Number(event.target.innerHTML);
     setCurrentPage(currentValueButton);
@@ -71,9 +64,6 @@ function MoviesList(props) {
         <SearchForm
           setLoadingFromSearchForm={setLoadingFromSearchForm}
           submitResults={showResults}
-          updateCurrentPage={updateCurrentPage}
-          apiUrl={API_URL}
-          apiKey={API_KEY}
           page={currentPage}
         />
       </div>
@@ -95,7 +85,6 @@ function MoviesList(props) {
       )}
 
       <Pagination
-        moviesLength={movies.length}
         currentPage={currentPage}
         paginationLength={paginationLength}
         handleClickPage={handleClickPage}
@@ -106,6 +95,7 @@ function MoviesList(props) {
 
 MoviesList.propTypes = {
   movies: PropTypes.array,
+  setMovies: PropTypes.func,
 };
 
 export default MoviesList;

@@ -12,13 +12,13 @@ function Navbar() {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item pl0" href="https://bulma.io">
+        <Link to={"/"} className="navbar-item pl0">
           <img
             src={`${process.env.PUBLIC_URL}/logo.png`}
             alt="Search Movies App"
             className="logo"
           />
-        </a>
+        </Link>
 
         <a
           onClick={() => {

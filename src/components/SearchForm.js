@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import env from "../env";
+
+const { API_URL, API_KEY } = env;
 
 function SearchForm(props) {
-  const {
-    apiUrl,
-    apiKey,
-    updateCurrentPage,
-    setLoadingFromSearchForm,
-    submitResults,
-    page,
-  } = props;
+  const { setLoadingFromSearchForm, submitResults, page } = props;
 
   const [inputValue, setInputValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const createUrl = (page) => {
-    const urlToSearch = new URL(`${apiUrl}/search/movie?api_key=${apiKey}`);
+    const urlToSearch = new URL(`${API_URL}/search/movie?api_key=${API_KEY}`);
 
     urlToSearch.searchParams.append("query", inputValue);
     urlToSearch.searchParams.append("page", page);
@@ -24,10 +20,21 @@ function SearchForm(props) {
     return urlToSearch;
   };
 
+  const checkValueInput = (val) => {
+    const query = val.trim();
+    return query.length > 0;
+  };
+
   const handleSubmit = (event, page) => {
     if (typeof event !== "undefined") {
       event.preventDefault();
-      updateCurrentPage(page);
+    }
+
+    const inputElement = window.document.querySelector(".input");
+
+    if (!checkValueInput(inputValue)) {
+      inputElement.value = "";
+      return false;
     }
 
     window.document.querySelector(".input").blur();

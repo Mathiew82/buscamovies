@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Pagination(props) {
-  const { handleClickPage, currentPage, paginationLength } = props;
+  const { currentPage, paginationLength, handleClickPage } = props;
 
   const doNotShowFirstPage = () => {
     return currentPage === 1 || currentPage === 2;
@@ -24,6 +24,7 @@ function Pagination(props) {
 
   return (
     <nav
+      style={{ display: paginationLength < 2 && "none" }}
       className="pagination is-centered"
       role="navigation"
       aria-label="pagination"
@@ -87,7 +88,6 @@ function Pagination(props) {
 }
 
 Pagination.propTypes = {
-  moviesLength: PropTypes.number,
   currentPage: PropTypes.number,
   paginationLength: PropTypes.number,
   handleClickPage: PropTypes.func,
