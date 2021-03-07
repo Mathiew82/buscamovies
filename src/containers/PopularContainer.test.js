@@ -6,24 +6,22 @@ import "@testing-library/jest-dom/extend-expect";
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import { rootReducer } from "./reducers";
-import App from "./App";
+import { rootReducer } from "../reducers";
+import PopularConatiner from "./PopularConatiner";
 
 const store = createStore(rootReducer);
 
-describe("Components rendering", () => {
-  test("Full app rendering", () => {
+describe("Component rendering", () => {
+  test("Popular component rendering", () => {
     const history = createMemoryHistory();
     render(
       <Provider store={store}>
         <Router history={history}>
-          <App />
+          <PopularConatiner />
         </Router>
       </Provider>
     );
 
-    expect(
-      screen.getByText("Utiliza el buscador para buscar películas")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Las Populares")).toBeInTheDocument();
   });
 });
