@@ -1,0 +1,89 @@
+import React, { useState } from "react";
+import Loading from "../components/Loading";
+import Header from "../components/ui/Header";
+import Title from "../components/ui/Title";
+import Movie from "../components/Movie";
+import Pagination from "../components/ui/Pagination";
+import env from "../env";
+
+const { API_URL, API_KEY } = env;
+
+function Popular(props) {
+  const {
+    movies,
+    setMovies,
+    currentPage,
+    setCurrentPage,
+    paginationLength,
+    setPaginationLength,
+  } = props;
+
+  const [loading, setLoading] = useState(false);
+  const [popularMoviesAdded, setPopularMoviesAdded] = useState(false);
+
+  const createUrl = (page) => {
+    const urlToSearch = new URL(`${API_URL}/discover/movie?api_key=${API_KEY}`);
+
+    urlToSearch.searchParams.append("sort_by", "popularity.desc");
+    urlToSearch.searchParams.append("page", page);
+    urlToSearch.searchParams.append("include_adult", false);
+    return urlToSearch;
+  };
+
+  const setPopularMovies = (page = 1) => {
+    setLoading(true);
+    const url = createUrl(page);
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        const { results, total_pages } = data;
+        setMovies(results);
+        setPaginationLength(total_pages);
+      })
+      .catch((err) => {
+        throw new Error(`Error: ${err}`);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const handleClickPage = (event) => {
+    const currentValueButton = Number(event.target.innerHTML);
+    setCurrentPage(currentValueButton);
+    setPopularMovies(currentPage + 1);
+  };
+
+  if (movies.length < 1 && !popularMoviesAdded) {
+    setPopularMovies();
+    setPopularMoviesAdded(true);
+  }
+
+  return (
+    <div className="popular-page">
+      <Loading loading={loading} />
+
+      <Header />
+      <Title>Las Populares</Title>
+
+      {movies.length > 0 ? (
+        <ul className="movies-list">
+          {movies.map((movie) => (
+            <Movie key={movie.id} movie={movie} />
+          ))}
+        </ul>
+      ) : (
+        <div className="no-movie-results">No hay películas populares</div>
+      )}
+
+      <Pagination
+        currentPage={currentPage}
+        paginationLength={paginationLength}
+        handleClickPage={handleClickPage}
+      />
+    </div>
+  );
+}
+
+export default Popular;

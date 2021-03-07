@@ -4,6 +4,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
+import PopularConatiner from "./containers/PopularConatiner";
 import Favorites from "./pages/Favorites";
 import env from "./env";
 
@@ -28,7 +29,10 @@ function App() {
                 />
               )}
             />
-            <Route exact path="/favoritos">
+            <Route path="/populares">
+              <PopularConatiner />
+            </Route>
+            <Route path="/favoritos">
               <Favorites />
             </Route>
           </Switch>

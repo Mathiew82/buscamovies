@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/ui/Header";
-import MoviesListContainer from "../containers/MoviesList";
+import MoviesListContainer from "../containers/MoviesListContainer";
 
 function Home() {
   return (
