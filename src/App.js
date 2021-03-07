@@ -6,9 +6,6 @@ import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import PopularConatiner from "./containers/PopularConatiner";
 import Favorites from "./pages/Favorites";
-import env from "./env";
-
-const { API_URL, API_KEY } = env;
 
 function App() {
   return (
@@ -22,11 +19,7 @@ function App() {
             <Route
               path={"/pelicula/:id"}
               render={(props) => (
-                <MovieDetail
-                  movieId={props.match.params.id}
-                  apiUrl={API_URL}
-                  apiKey={API_KEY}
-                />
+                <MovieDetail movieId={props.match.params.id} />
               )}
             />
             <Route path="/populares">

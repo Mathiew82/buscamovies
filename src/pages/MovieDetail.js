@@ -6,6 +6,9 @@ import Title from "../components/ui/Title";
 import Subtitle from "../components/ui/Subtitle";
 import Label from "../components/ui/Label";
 import useVoteAverage from "../hooks/useVoteAverage";
+import env from "../env";
+
+const { API_URL, API_KEY } = env;
 
 function MovieDetail(props) {
   const [movie, setMovie] = useState({});
@@ -28,8 +31,8 @@ function MovieDetail(props) {
   };
 
   useEffect(() => {
-    const { movieId, apiUrl, apiKey } = props;
-    const url = new URL(`${apiUrl}/movie/${movieId}?api_key=${apiKey}`);
+    const { movieId } = props;
+    const url = new URL(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
     url.searchParams.append("language", "es-ES");
 
     fetch(url)

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Loading from "../components/Loading";
 import Header from "../components/ui/Header";
 import Title from "../components/ui/Title";
@@ -93,5 +94,14 @@ function Popular(props) {
     </div>
   );
 }
+
+Popular.propTypes = {
+  movies: PropTypes.array,
+  setMovies: PropTypes.func,
+  currentPage: PropTypes.number,
+  setCurrentPage: PropTypes.func,
+  paginationLength: PropTypes.number,
+  setPaginationLength: PropTypes.func,
+};
 
 export default Popular;

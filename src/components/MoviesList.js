@@ -105,6 +105,8 @@ function MoviesList(props) {
 MoviesList.propTypes = {
   movies: PropTypes.array,
   setMovies: PropTypes.func,
+  inputValue: PropTypes.string,
+  setInputValue: PropTypes.func,
   currentPage: PropTypes.number,
   setCurrentPage: PropTypes.func,
   paginationLength: PropTypes.number,
