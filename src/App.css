@@ -505,13 +505,20 @@ ul {
   transition: background-color 0.2s;
 }
 
-.more-detail-page__img {
+.more-detail-page-img {
   width: 100%;
   border-radius: 10px;
 }
 
-.more-detail-page__info {
+.more-detail-page__right {
   padding-left: 2rem;
+}
+@media (max-width: 768px) {
+  .more-detail-page__left,
+  .more-detail-page__right {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .more-detail-page-vote-average-value {

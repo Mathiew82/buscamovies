@@ -8,6 +8,7 @@ const useToggleFavorite = (movieId) => {
     let favoriteMovies = JSON.parse(
       window.localStorage.getItem("favoriteMovies")
     );
+    if (!favoriteMovies) favoriteMovies = [];
 
     const findCurrentMovie = favoriteMovies.find(
       (item) => item.id === Number(movieId)

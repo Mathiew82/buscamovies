@@ -50,11 +50,11 @@ function MovieDetail(props) {
       <Header />
       {movie && Object.keys(movie).length > 0 && (
         <div className="row">
-          <div className="col xs-12 sm-12 md-4 lg-4">
+          <div className="col xs-12 sm-12 md-4 lg-4 more-detail-page__left">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
-              className="more-detail-page__img"
+              className="more-detail-page-img"
             />
             <button
               type="button"
@@ -86,7 +86,7 @@ function MovieDetail(props) {
               </span>
             </p>
           </div>
-          <div className="col xs-12 sm-12 md-8 lg-8 more-detail-page__info">
+          <div className="col xs-12 sm-12 md-8 lg-8 more-detail-page__right">
             <Title>{movie.title}</Title>
             <Subtitle>{movie.tagline}</Subtitle>
 
