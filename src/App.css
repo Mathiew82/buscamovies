@@ -192,7 +192,7 @@ p {
 }
 
 .app {
-  padding: 2rem 2rem 4rem 2rem;
+  padding: 2rem 14px 4rem 14px;
 }
 
 .navbar {
@@ -201,6 +201,18 @@ p {
 
 .navbar .navbar-start > .navbar-item {
   font-weight: 700;
+}
+
+.navbar-burger {
+  width: 20px !important;
+  height: 20px !important;
+  background-color: transparent !important;
+  margin-top: 16px;
+}
+
+.navbar-burger span {
+  width: 20px !important;
+  height: 3px !important;
 }
 
 .inline-block {
@@ -489,6 +501,7 @@ ul {
 }
 
 .pagination-link {
+  background-color: #f0f1f2 !important;
   border-color: rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -510,7 +523,12 @@ ul {
   border-radius: 10px;
 }
 
+.more-detail-page__left {
+  padding-left: 0;
+}
+
 .more-detail-page__right {
+  padding-right: 0;
   padding-left: 2rem;
 }
 @media (max-width: 768px) {
