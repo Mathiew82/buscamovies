@@ -5,18 +5,28 @@ import Movie from "../components/Movie";
 
 function Favorites() {
   const [movies, setMovies] = useState([]);
+  const [favoriteMoviesAdded, setFavoriteMoviesAdded] = useState(false);
 
-  if (movies.length === 0) {
+  const setFavoriteMovies = () => {
     let favoriteMovies = JSON.parse(
       window.localStorage.getItem("favoriteMovies")
     );
 
-    favoriteMovies = favoriteMovies.map((movie) => {
-      movie.isFavorite = true;
-      return movie;
-    });
+    if (favoriteMovies) {
+      favoriteMovies = favoriteMovies.map((movie) => {
+        movie.isFavorite = true;
+        return movie;
+      });
+    }
 
-    setMovies(favoriteMovies);
+    if (!favoriteMovies) favoriteMovies = [];
+
+    if (movies !== favoriteMovies) setMovies(favoriteMovies);
+  };
+
+  if (!favoriteMoviesAdded) {
+    setFavoriteMovies();
+    setFavoriteMoviesAdded(true);
   }
 
   return (
