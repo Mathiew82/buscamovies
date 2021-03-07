@@ -21,6 +21,12 @@ function Popular(props) {
   const [loading, setLoading] = useState(false);
   const [popularMoviesAdded, setPopularMoviesAdded] = useState(false);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
   const createUrl = (page) => {
     const urlToSearch = new URL(`${API_URL}/discover/movie?api_key=${API_KEY}`);
 
@@ -38,8 +44,10 @@ function Popular(props) {
       .then((response) => response.json())
       .then((data) => {
         const { results, total_pages } = data;
+
         setMovies(results);
         setPaginationLength(total_pages);
+        scrollToTop();
       })
       .catch((err) => {
         throw new Error(`Error: ${err}`);
