@@ -1,6 +1,6 @@
 /** Grid Layout */
 .container {
-  margin-top: 1rem !important;
+  margin-top: 0 !important;
   margin-bottom: 2rem !important;
 }
 .row {
@@ -192,7 +192,7 @@ p {
 }
 
 .app {
-  padding: 2rem 14px 4rem 14px;
+  padding: 0.5rem 14px 4rem 14px;
 }
 
 .navbar {
@@ -204,7 +204,7 @@ p {
 }
 
 .navbar-burger {
-  width: 20px !important;
+  width: 24px !important;
   height: 20px !important;
   background-color: transparent !important;
   margin-top: 16px;
@@ -505,11 +505,13 @@ ul {
   border-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.pagination-link:hover {
-  background-color: var(--secondary-color) !important;
-  border-color: var(--secondary-color) !important;
-  color: white !important;
-  cursor: pointer;
+@media (min-width: 769px) {
+  .pagination-link:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    color: white !important;
+    cursor: pointer;
+  }
 }
 
 .pagination-link.is-current {
