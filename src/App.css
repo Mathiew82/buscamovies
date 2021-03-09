@@ -202,6 +202,11 @@ p {
 .navbar .navbar-start > .navbar-item {
   font-weight: 700;
 }
+@media (max-width: 576px) {
+  .navbar .navbar-start > .navbar-item {
+    padding: 0.8rem 0.75rem;
+  }
+}
 
 .navbar-burger {
   width: 24px !important;
@@ -279,7 +284,8 @@ ul {
 }
 
 .title {
-  margin-bottom: 2rem !important;
+  font-size: 28px !important;
+  margin-bottom: 1rem !important;
 }
 
 .subtitle {
@@ -323,7 +329,7 @@ ul {
 }
 
 .movies-list {
-  margin: 2rem 0 0 0;
+  margin: 1rem 0 0 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 1rem;
