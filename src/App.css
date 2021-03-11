@@ -354,6 +354,12 @@ ul {
   z-index: 1;
 }
 
+@media (max-width: 576px) {
+  .movies-list > li > .icon-wrapper {
+    display: inline-block;
+  }
+}
+
 .movies-list > li:hover > .icon-wrapper {
   display: inline-block;
 }
@@ -378,6 +384,12 @@ ul {
   position: absolute;
   top: 0;
   right: 29px;
+}
+
+@media (max-width: 576px) {
+  .movies-list > li > .icon-wrapper:hover:before {
+    display: none;
+  }
 }
 
 .movies-list > li > .icon-wrapper > .click-zone {
