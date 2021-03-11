@@ -291,6 +291,7 @@ ul {
 .subtitle {
   font-size: 18px;
   font-weight: 700;
+  margin-top: 0 !important;
   margin-bottom: 1rem !important;
 }
 

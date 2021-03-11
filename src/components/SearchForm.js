@@ -19,7 +19,6 @@ function SearchForm(props) {
               placeholder="Busca una película"
               onChange={handleChange}
               value={inputValue}
-              autoFocus
             />
           </div>
           <div className="control">
