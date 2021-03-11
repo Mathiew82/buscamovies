@@ -4,6 +4,9 @@ import SearchForm from "../components/SearchForm";
 import Loading from "../components/Loading";
 import Pagination from "../components/ui/Pagination";
 import Movie from "./Movie";
+import env from "../env";
+
+const { API_URL, API_KEY } = env;
 
 function MoviesList(props) {
   const {
@@ -24,10 +27,6 @@ function MoviesList(props) {
     window.scrollTo({
       top: 0,
     });
-  };
-
-  const setLoadingFromSearchForm = (value) => {
-    setLoadingResults(value);
   };
 
   const addFavoriteMovies = (results) => {
@@ -61,6 +60,50 @@ function MoviesList(props) {
   const handleClickPage = (event) => {
     const currentValueButton = Number(event.target.innerHTML);
     setCurrentPage(currentValueButton);
+    handleSubmit(undefined, currentValueButton);
+  };
+
+  const checkValueInput = (val) => {
+    const query = val.trim();
+    return query.length > 0;
+  };
+
+  const createUrl = (page) => {
+    const urlToSearch = new URL(`${API_URL}/search/movie?api_key=${API_KEY}`);
+
+    urlToSearch.searchParams.append("query", inputValue);
+    urlToSearch.searchParams.append("page", page);
+    urlToSearch.searchParams.append("language", "es-ES");
+    urlToSearch.searchParams.append("include_adult", false);
+    return urlToSearch;
+  };
+
+  const handleSubmit = (event, page) => {
+    if (typeof event !== "undefined") {
+      event.preventDefault();
+      setCurrentPage(page);
+    }
+
+    if (!checkValueInput(inputValue)) {
+      setInputValue("");
+      return false;
+    }
+
+    setLoadingResults(true);
+
+    const url = createUrl(page);
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        showResults(data);
+      })
+      .catch((err) => {
+        throw new Error(`Error: ${err}`);
+      })
+      .finally(() => {
+        setLoadingResults(false);
+      });
   };
 
   return (
@@ -71,9 +114,7 @@ function MoviesList(props) {
         <SearchForm
           inputValue={inputValue}
           setInputValue={setInputValue}
-          setLoadingFromSearchForm={setLoadingFromSearchForm}
-          submitResults={showResults}
-          page={currentPage}
+          submit={handleSubmit}
         />
       </div>
 
@@ -96,7 +137,7 @@ function MoviesList(props) {
       <Pagination
         currentPage={currentPage}
         paginationLength={paginationLength}
-        handleClickPage={handleClickPage}
+        clickPage={handleClickPage}
       />
     </div>
   );

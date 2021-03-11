@@ -59,9 +59,10 @@ function Popular(props) {
   };
 
   const handleClickPage = (event) => {
+    console.log("handleClickPage");
     const currentValueButton = Number(event.target.innerHTML);
     setCurrentPage(currentValueButton);
-    setPopularMovies(currentPage + 1);
+    setPopularMovies(currentValueButton);
   };
 
   if (movies.length < 1 && !popularMoviesAdded) {
@@ -89,7 +90,7 @@ function Popular(props) {
       <Pagination
         currentPage={currentPage}
         paginationLength={paginationLength}
-        handleClickPage={handleClickPage}
+        clickPage={handleClickPage}
       />
     </div>
   );
