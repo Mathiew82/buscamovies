@@ -82,6 +82,7 @@ function MoviesList(props) {
     if (typeof event !== "undefined") {
       event.preventDefault();
       setCurrentPage(page);
+      window.document.querySelector(".search-wrapper .button").blur();
     }
 
     if (!checkValueInput(inputValue)) {

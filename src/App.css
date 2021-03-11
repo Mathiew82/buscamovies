@@ -484,7 +484,7 @@ ul {
   padding: 7px 25px;
 }
 
-.search-wrapper button {
+.search-wrapper .button {
   border-radius: 8px;
 }
 
@@ -504,6 +504,12 @@ ul {
 
 .button.is-primary:hover {
   background-color: var(--secondary-color) !important;
+}
+
+@media (max-width: 576px) {
+  .button.is-primary:hover {
+    background-color: var(--semiblack-color) !important;
+  }
 }
 
 .pagination-link {
