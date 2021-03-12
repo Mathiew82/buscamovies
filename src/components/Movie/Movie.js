@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import useToggleFavorite from "../hooks/useToggleFavorite";
-import useVoteAverage from "../hooks/useVoteAverage";
+import useToggleFavorite from "../../hooks/useToggleFavorite/useToggleFavorite";
+import useVoteAverage from "../../hooks/useVoteAverage/useVoteAverage";
 
 function Movie(props) {
   const { movie } = props;

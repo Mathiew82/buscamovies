@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import useToggleFavorite from "../hooks/useToggleFavorite";
-import Header from "../components/ui/Header";
-import Title from "../components/ui/Title";
-import Subtitle from "../components/ui/Subtitle";
-import Label from "../components/ui/Label";
-import useVoteAverage from "../hooks/useVoteAverage";
-import env from "../env";
+import useToggleFavorite from "../../hooks/useToggleFavorite/useToggleFavorite";
+import Header from "../../components/ui/Header/Header";
+import Title from "../../components/ui/Title/Title";
+import Subtitle from "../../components/ui/Subtitle/Subtitle";
+import Label from "../../components/ui/Label/Label";
+import useVoteAverage from "../../hooks/useVoteAverage/useVoteAverage";
+import env from "../../env";
 
 const { API_URL, API_KEY } = env;
 

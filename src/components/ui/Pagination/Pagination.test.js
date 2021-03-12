@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Pagination from "../ui/Pagination";
+import Pagination from "./Pagination";
 
 describe("Pagination Component Tests", () => {
   test("Component should render correctly", () => {

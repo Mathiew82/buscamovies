@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import SearchForm from "../components/SearchForm";
-import Loading from "../components/Loading";
-import Pagination from "../components/ui/Pagination";
-import Movie from "./Movie";
-import env from "../env";
+import SearchForm from "../SearchForm/SearchForm";
+import Loading from "../Loading/Loading";
+import Pagination from "../ui/Pagination/Pagination";
+import Movie from "../Movie/Movie";
+import env from "../../env";
 
 const { API_URL, API_KEY } = env;
 

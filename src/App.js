@@ -2,10 +2,10 @@ import "./App.css";
 import "bulma/css/bulma.css";
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import MovieDetail from "./pages/MovieDetail";
-import PopularConatiner from "./containers/PopularConatiner";
-import Favorites from "./pages/Favorites";
+import Home from "./pages/Home/Home";
+import MovieDetail from "./pages/MovieDetail/MovieDetail";
+import PopularConatiner from "./containers/PopularContainer/PopularConatiner";
+import Favorites from "./pages/Favorites/Favorites";
 
 function App() {
   return (

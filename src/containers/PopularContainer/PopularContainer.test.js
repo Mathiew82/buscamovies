@@ -6,8 +6,8 @@ import "@testing-library/jest-dom/extend-expect";
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import { rootReducer } from "../reducers";
-import PopularConatiner from "./PopularConatiner";
+import { rootReducer } from "../../reducers";
+import PopularConatiner from "../../containers/PopularContainer/PopularConatiner";
 
 const store = createStore(rootReducer);
 

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Loading from "../components/Loading";
-import Header from "../components/ui/Header";
-import Title from "../components/ui/Title";
-import Movie from "../components/Movie";
-import Pagination from "../components/ui/Pagination";
-import env from "../env";
+import Loading from "../../components/Loading/Loading";
+import Header from "../../components/ui/Header/Header";
+import Title from "../../components/ui/Title/Title";
+import Movie from "../../components/Movie/Movie";
+import Pagination from "../../components/ui/Pagination/Pagination";
+import env from "../../env";
 
 const { API_URL, API_KEY } = env;
 

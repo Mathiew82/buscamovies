@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Header from "../components/ui/Header";
-import Title from "../components/ui/Title";
-import Movie from "../components/Movie";
+import Header from "../../components/ui/Header/Header";
+import Title from "../../components/ui/Title/Title";
+import Movie from "../../components/Movie/Movie";
 
 function Favorites() {
   const [movies, setMovies] = useState([]);
