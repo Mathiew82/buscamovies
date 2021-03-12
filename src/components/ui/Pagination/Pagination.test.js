@@ -2,13 +2,13 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Pagination from "./Pagination";
 
-describe("Pagination Component Tests", () => {
-  test("Component should render correctly", () => {
+describe("pagination", () => {
+  test("component should render correctly", () => {
     const handleClickPage = () => {};
     const currentPage = 1;
     const paginationLength = 200;
 
-    const { asFragment, unmount } = render(
+    const { queryByTestId, unmount } = render(
       <Pagination
         currentPage={currentPage}
         paginationLength={paginationLength}
@@ -16,8 +16,7 @@ describe("Pagination Component Tests", () => {
       />
     );
 
-    const firstRender = asFragment();
-    expect(firstRender).toMatchSnapshot(asFragment());
+    expect(queryByTestId("pagination-list")).toBeTruthy();
     unmount();
   });
 });

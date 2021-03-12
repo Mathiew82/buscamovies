@@ -6,8 +6,8 @@ import "@testing-library/jest-dom/extend-expect";
 
 import Favorites from "./Favorites";
 
-describe("Component rendering", () => {
-  test("Favorites component rendering", () => {
+describe("favorites", () => {
+  test("component should render correctly", () => {
     const history = createMemoryHistory();
     render(
       <Router history={history}>

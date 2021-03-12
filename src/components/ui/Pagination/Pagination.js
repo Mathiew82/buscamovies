@@ -29,7 +29,7 @@ function Pagination(props) {
       role="navigation"
       aria-label="pagination"
     >
-      <ul className="pagination-list">
+      <ul data-testid="pagination-list" className="pagination-list">
         <li style={{ display: doNotShowFirstPage() && "none" }}>
           <button type="button" className="pagination-link" onClick={clickPage}>
             1

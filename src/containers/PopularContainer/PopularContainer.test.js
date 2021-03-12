@@ -11,8 +11,8 @@ import PopularConatiner from "../../containers/PopularContainer/PopularConatiner
 
 const store = createStore(rootReducer);
 
-describe("Component rendering", () => {
-  test("Popular component rendering", () => {
+describe("popular container", () => {
+  test("component should render correctly", () => {
     const history = createMemoryHistory();
     render(
       <Provider store={store}>

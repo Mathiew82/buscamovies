@@ -11,8 +11,8 @@ import App from "./App";
 
 const store = createStore(rootReducer);
 
-describe("Components rendering", () => {
-  test("Full app rendering", () => {
+describe("app", () => {
+  test("component should render correctly", () => {
     const history = createMemoryHistory();
     render(
       <Provider store={store}>
