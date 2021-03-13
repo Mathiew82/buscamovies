@@ -22,7 +22,11 @@ function SearchForm(props) {
             />
           </div>
           <div className="control">
-            <button type="submit" className="button is-primary">
+            <button
+              type="submit"
+              data-testid="search-button"
+              className="button is-primary"
+            >
               Buscar
             </button>
           </div>
