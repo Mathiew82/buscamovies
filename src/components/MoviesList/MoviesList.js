@@ -108,7 +108,7 @@ function MoviesList(props) {
   }
 
   return (
-    <div>
+    <div data-testid="movies-list">
       <Loading loading={loadingResults} />
 
       <div className="is-flex is-justify-content-center is-fullwidth">

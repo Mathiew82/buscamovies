@@ -71,7 +71,7 @@ function Popular(props) {
   }
 
   return (
-    <div className="popular-page">
+    <div data-testid="popular-page" className="popular-page">
       <Loading loading={loading} />
 
       <Header />
