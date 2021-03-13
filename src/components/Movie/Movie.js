@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import useToggleFavorite from "../../hooks/useToggleFavorite/useToggleFavorite";
@@ -6,6 +6,20 @@ import useVoteAverage from "../../hooks/useVoteAverage/useVoteAverage";
 
 function Movie(props) {
   const { movie } = props;
+
+  const [loading, setLoading] = useState(false);
+  const [imgProcessed, setImgProcessed] = useState(false);
+
+  if (movie.poster_path && !imgProcessed) {
+    setImgProcessed(true);
+    setLoading(true);
+
+    const img = new Image();
+    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    img.onload = () => {
+      setLoading(false);
+    };
+  }
 
   const {
     isAddedToFavorites,
@@ -33,11 +47,17 @@ function Movie(props) {
         <span
           className="movies-list__img"
           style={{
-            backgroundImage: movie.poster_path
+            backgroundImage: loading
+              ? ""
+              : movie.poster_path
               ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
               : `url(${process.env.PUBLIC_URL}/default-movie.png)`,
           }}
         >
+          <span
+            className="loading is-movie is-grey"
+            style={{ display: !loading && "none" }}
+          />
           <span className="movies-list-vote-average-value">
             {voteAverage}
             <small>%</small>
