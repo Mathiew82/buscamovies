@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 function Subtitle({ children }) {
-  return <div className="subtitle">{children}</div>;
+  return <div className="subtitle">{children}</div>
 }
 
-export default Subtitle;
+export default Subtitle

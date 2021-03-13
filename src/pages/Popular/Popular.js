@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Loading from "../../components/Loading/Loading";
-import Header from "../../components/ui/Header/Header";
-import Title from "../../components/ui/Title/Title";
-import Movie from "../../components/Movie/Movie";
-import Pagination from "../../components/ui/Pagination/Pagination";
-import env from "../../env";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import Loading from '../../components/Loading/Loading'
+import Header from '../../components/ui/Header/Header'
+import Title from '../../components/ui/Title/Title'
+import Movie from '../../components/Movie/Movie'
+import Pagination from '../../components/ui/Pagination/Pagination'
+import env from '../../env'
 
-const { API_URL, API_KEY } = env;
+const { API_URL, API_KEY } = env
 
 function Popular(props) {
   const {
@@ -17,57 +17,57 @@ function Popular(props) {
     setCurrentPage,
     paginationLength,
     setPaginationLength,
-  } = props;
+  } = props
 
-  const [loading, setLoading] = useState(false);
-  const [popularMoviesAdded, setPopularMoviesAdded] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [popularMoviesAdded, setPopularMoviesAdded] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-    });
-  };
+    })
+  }
 
   const createUrl = (page) => {
-    const urlToSearch = new URL(`${API_URL}/discover/movie?api_key=${API_KEY}`);
+    const urlToSearch = new URL(`${API_URL}/discover/movie?api_key=${API_KEY}`)
 
-    urlToSearch.searchParams.append("sort_by", "popularity.desc");
-    urlToSearch.searchParams.append("page", page);
-    urlToSearch.searchParams.append("include_adult", false);
-    return urlToSearch;
-  };
+    urlToSearch.searchParams.append('sort_by', 'popularity.desc')
+    urlToSearch.searchParams.append('page', page)
+    urlToSearch.searchParams.append('include_adult', false)
+    return urlToSearch
+  }
 
   const setPopularMovies = (page = 1) => {
-    setLoading(true);
-    const url = createUrl(page);
+    setLoading(true)
+    const url = createUrl(page)
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const { results, total_pages } = data;
+        const { results, total_pages } = data
 
-        setMovies(results);
-        setPaginationLength(total_pages);
-        scrollToTop();
+        setMovies(results)
+        setPaginationLength(total_pages)
+        scrollToTop()
       })
       .catch((err) => {
-        throw new Error(`Error: ${err}`);
+        throw new Error(`Error: ${err}`)
       })
       .finally(() => {
-        setLoading(false);
-      });
-  };
+        setLoading(false)
+      })
+  }
 
   const handleClickPage = (event) => {
-    console.log("handleClickPage");
-    const currentValueButton = Number(event.target.innerHTML);
-    setCurrentPage(currentValueButton);
-    setPopularMovies(currentValueButton);
-  };
+    console.log('handleClickPage')
+    const currentValueButton = Number(event.target.innerHTML)
+    setCurrentPage(currentValueButton)
+    setPopularMovies(currentValueButton)
+  }
 
   if (movies.length < 1 && !popularMoviesAdded) {
-    setPopularMovies();
-    setPopularMoviesAdded(true);
+    setPopularMovies()
+    setPopularMoviesAdded(true)
   }
 
   return (
@@ -93,7 +93,7 @@ function Popular(props) {
         clickPage={handleClickPage}
       />
     </div>
-  );
+  )
 }
 
 Popular.propTypes = {
@@ -103,6 +103,6 @@ Popular.propTypes = {
   setCurrentPage: PropTypes.func,
   paginationLength: PropTypes.number,
   setPaginationLength: PropTypes.func,
-};
+}
 
-export default Popular;
+export default Popular

@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
-import MoviesList from "../../components/MoviesList/MoviesList";
+import { connect } from 'react-redux'
+import MoviesList from '../../components/MoviesList/MoviesList'
 
 const mapStateToProps = (state) => {
   return {
@@ -7,27 +7,27 @@ const mapStateToProps = (state) => {
     inputValue: state.inputValue,
     currentPage: state.currentPage,
     paginationLength: state.paginationLength,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setMovies: (movies) => {
-      dispatch({ type: "SET_MOVIES", payload: { movies } });
+      dispatch({ type: 'SET_MOVIES', payload: { movies } })
     },
     setInputValue: (inputValue) => {
-      dispatch({ type: "SET_INPUT_VALUE", payload: { inputValue } });
+      dispatch({ type: 'SET_INPUT_VALUE', payload: { inputValue } })
     },
     setCurrentPage: (currentPage) => {
-      dispatch({ type: "SET_CURRENT_PAGE", payload: { currentPage } });
+      dispatch({ type: 'SET_CURRENT_PAGE', payload: { currentPage } })
     },
     setPaginationLength: (paginationLength) => {
       dispatch({
-        type: "SET_PAGINATION_LENGTH",
+        type: 'SET_PAGINATION_LENGTH',
         payload: { paginationLength },
-      });
+      })
     },
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList)

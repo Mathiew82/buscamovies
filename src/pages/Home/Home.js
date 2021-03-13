@@ -1,6 +1,6 @@
-import React from "react";
-import Header from "../../components/ui/Header/Header";
-import MoviesListContainer from "../../containers/MoviesListContainer/MoviesListContainer";
+import React from 'react'
+import Header from '../../components/ui/Header/Header'
+import MoviesListContainer from '../../containers/MoviesListContainer/MoviesListContainer'
 
 function Home() {
   return (
@@ -8,7 +8,7 @@ function Home() {
       <Header />
       <MoviesListContainer />
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

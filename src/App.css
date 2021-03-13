@@ -388,7 +388,7 @@ ul {
   background-color: rgba(0, 0, 0, 0.9);
   border-radius: 4px 0 0 4px;
   color: white;
-  content: "Favorito";
+  content: 'Favorito';
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-weight: 700;
@@ -443,7 +443,7 @@ ul {
   background-color: rgba(0, 0, 0, 0.8);
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 25px;
-  content: "";
+  content: '';
   position: absolute;
   bottom: 5px;
   left: 5px;

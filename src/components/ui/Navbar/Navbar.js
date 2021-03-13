@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
-  const [isActive, setisActive] = useState(false);
+  const [isActive, setisActive] = useState(false)
 
   return (
     <nav
@@ -12,7 +12,7 @@ function Navbar() {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <Link to={"/"} className="navbar-item pl0">
+        <Link to={'/'} className="navbar-item pl0">
           <img
             src={`${process.env.PUBLIC_URL}/logo.png`}
             alt="Search Movies App"
@@ -22,10 +22,10 @@ function Navbar() {
 
         <a
           onClick={() => {
-            setisActive(!isActive);
+            setisActive(!isActive)
           }}
           role="button"
-          className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
+          className={`navbar-burger burger ${isActive ? 'is-active' : ''}`}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -38,22 +38,22 @@ function Navbar() {
 
       <div
         id="navbarBasicExample"
-        className={`navbar-menu ${isActive ? "is-active" : ""}`}
+        className={`navbar-menu ${isActive ? 'is-active' : ''}`}
       >
         <div className="navbar-start">
-          <Link to={"/"} className="navbar-item">
+          <Link to={'/'} className="navbar-item">
             Principal
           </Link>
-          <Link to={"/populares"} className="navbar-item">
+          <Link to={'/populares'} className="navbar-item">
             Populares
           </Link>
-          <Link to={"/favoritos"} className="navbar-item">
+          <Link to={'/favoritos'} className="navbar-item">
             Favoritos
           </Link>
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

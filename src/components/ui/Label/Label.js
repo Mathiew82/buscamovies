@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 function Label({ children }) {
-  return <span className="grey-label">{children}</span>;
+  return <span className="grey-label">{children}</span>
 }
 
-export default Label;
+export default Label

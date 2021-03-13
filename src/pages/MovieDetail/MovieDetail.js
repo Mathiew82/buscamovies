@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import useToggleFavorite from "../../hooks/useToggleFavorite/useToggleFavorite";
-import Header from "../../components/ui/Header/Header";
-import Title from "../../components/ui/Title/Title";
-import Subtitle from "../../components/ui/Subtitle/Subtitle";
-import Label from "../../components/ui/Label/Label";
-import useVoteAverage from "../../hooks/useVoteAverage/useVoteAverage";
-import env from "../../env";
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import useToggleFavorite from '../../hooks/useToggleFavorite/useToggleFavorite'
+import Header from '../../components/ui/Header/Header'
+import Title from '../../components/ui/Title/Title'
+import Subtitle from '../../components/ui/Subtitle/Subtitle'
+import Label from '../../components/ui/Label/Label'
+import useVoteAverage from '../../hooks/useVoteAverage/useVoteAverage'
+import env from '../../env'
 
-const { API_URL, API_KEY } = env;
+const { API_URL, API_KEY } = env
 
 function MovieDetail(props) {
-  const [movie, setMovie] = useState({});
+  const [movie, setMovie] = useState({})
 
   const {
     isAddedToFavorites,
     addToFavorites,
     removeToFavorites,
-  } = useToggleFavorite(props.movieId);
+  } = useToggleFavorite(props.movieId)
 
   const goToBack = () => {
-    window.history.back();
-  };
+    window.history.back()
+  }
 
   const formatRevenue = (value) => {
-    return new Intl.NumberFormat("es-ES", {
-      style: "currency",
-      currency: "EUR",
-    }).format(value);
-  };
+    return new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(value)
+  }
 
   useEffect(() => {
-    const { movieId } = props;
-    const url = new URL(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
-    url.searchParams.append("language", "es-ES");
+    const { movieId } = props
+    const url = new URL(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`)
+    url.searchParams.append('language', 'es-ES')
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setMovie(data);
+        setMovie(data)
       })
       .catch((err) => {
-        throw new Error(`Error: ${err}`);
-      });
-  }, [props]);
+        throw new Error(`Error: ${err}`)
+      })
+  }, [props])
 
-  const voteAverage = useVoteAverage(movie.vote_average);
-  const formattedRevenue = formatRevenue(movie.revenue);
+  const voteAverage = useVoteAverage(movie.vote_average)
+  const formattedRevenue = formatRevenue(movie.revenue)
 
   return (
     <div className="more-detail-page">
@@ -68,18 +68,18 @@ function MovieDetail(props) {
               }
             >
               {isAddedToFavorites()
-                ? "Eliminar de tus favoritos"
-                : "Agregar a tus favoritos"}
+                ? 'Eliminar de tus favoritos'
+                : 'Agregar a tus favoritos'}
             </button>
             <p>
               <span className="more-detail-page-vote-average-value">
                 {voteAverage} de 100 de valoración
               </span>
               <progress
-                className={`progress ${voteAverage < 15 ? "is-danger" : ""} ${
-                  voteAverage >= 15 && voteAverage < 30 ? "is-warning" : ""
-                } ${voteAverage >= 30 && voteAverage < 50 ? "is-info" : ""} ${
-                  voteAverage >= 50 ? "is-primary" : ""
+                className={`progress ${voteAverage < 15 ? 'is-danger' : ''} ${
+                  voteAverage >= 15 && voteAverage < 30 ? 'is-warning' : ''
+                } ${voteAverage >= 30 && voteAverage < 50 ? 'is-info' : ''} ${
+                  voteAverage >= 50 ? 'is-primary' : ''
                 }`}
                 value={`${voteAverage}`}
                 max="100"
@@ -98,17 +98,17 @@ function MovieDetail(props) {
               <Label>Fecha de lanzamiento:</Label> {movie.release_date}
             </p>
             <p>
-              <Label>Duración:</Label>{" "}
+              <Label>Duración:</Label>{' '}
               {movie.runtime === 0
-                ? "Sin información"
+                ? 'Sin información'
                 : `${movie.runtime} minutos`}
             </p>
             <p>
               <Label>Título original:</Label> {movie.original_title}
             </p>
             <p>
-              <Label>Ingresos:</Label>{" "}
-              {movie.revenue === 0 ? "Sin información" : formattedRevenue}
+              <Label>Ingresos:</Label>{' '}
+              {movie.revenue === 0 ? 'Sin información' : formattedRevenue}
             </p>
             {movie.production_countries.length > 0 && (
               <div>
@@ -157,13 +157,13 @@ function MovieDetail(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 MovieDetail.propTypes = {
   movieId: PropTypes.string,
   apiUrl: PropTypes.string,
   apiKey: PropTypes.string,
-};
+}
 
-export default MovieDetail;
+export default MovieDetail

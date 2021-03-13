@@ -1,11 +1,11 @@
-import "./App.css";
-import "bulma/css/bulma.css";
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import MovieDetail from "./pages/MovieDetail/MovieDetail";
-import PopularConatiner from "./containers/PopularContainer/PopularConatiner";
-import Favorites from "./pages/Favorites/Favorites";
+import './App.css'
+import 'bulma/css/bulma.css'
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Home from './pages/Home/Home'
+import MovieDetail from './pages/MovieDetail/MovieDetail'
+import PopularConatiner from './containers/PopularContainer/PopularConatiner'
+import Favorites from './pages/Favorites/Favorites'
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
               <Home />
             </Route>
             <Route
-              path={"/pelicula/:id"}
+              path={'/pelicula/:id'}
               render={(props) => (
                 <MovieDetail movieId={props.match.params.id} />
               )}
@@ -32,7 +32,7 @@ function App() {
         </BrowserRouter>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

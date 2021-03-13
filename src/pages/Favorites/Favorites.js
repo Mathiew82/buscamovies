@@ -1,32 +1,32 @@
-import React, { useState } from "react";
-import Header from "../../components/ui/Header/Header";
-import Title from "../../components/ui/Title/Title";
-import Movie from "../../components/Movie/Movie";
+import React, { useState } from 'react'
+import Header from '../../components/ui/Header/Header'
+import Title from '../../components/ui/Title/Title'
+import Movie from '../../components/Movie/Movie'
 
 function Favorites() {
-  const [movies, setMovies] = useState([]);
-  const [favoriteMoviesAdded, setFavoriteMoviesAdded] = useState(false);
+  const [movies, setMovies] = useState([])
+  const [favoriteMoviesAdded, setFavoriteMoviesAdded] = useState(false)
 
   const setFavoriteMovies = () => {
     let favoriteMovies = JSON.parse(
-      window.localStorage.getItem("favoriteMovies")
-    );
+      window.localStorage.getItem('favoriteMovies')
+    )
 
     if (favoriteMovies) {
       favoriteMovies = favoriteMovies.map((movie) => {
-        movie.isFavorite = true;
-        return movie;
-      });
+        movie.isFavorite = true
+        return movie
+      })
     }
 
-    if (!favoriteMovies) favoriteMovies = [];
+    if (!favoriteMovies) favoriteMovies = []
 
-    if (movies !== favoriteMovies) setMovies(favoriteMovies);
-  };
+    if (movies !== favoriteMovies) setMovies(favoriteMovies)
+  }
 
   if (!favoriteMoviesAdded) {
-    setFavoriteMovies();
-    setFavoriteMoviesAdded(true);
+    setFavoriteMovies()
+    setFavoriteMoviesAdded(true)
   }
 
   return (
@@ -46,7 +46,7 @@ function Favorites() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Favorites;
+export default Favorites
