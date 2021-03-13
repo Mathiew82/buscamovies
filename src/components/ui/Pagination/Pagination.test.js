@@ -8,7 +8,7 @@ describe('pagination', () => {
     const currentPage = 1
     const paginationLength = 200
 
-    const { queryByTestId, unmount } = render(
+    const { queryByTestId } = render(
       <Pagination
         currentPage={currentPage}
         paginationLength={paginationLength}
@@ -17,6 +17,5 @@ describe('pagination', () => {
     )
 
     expect(queryByTestId('pagination-list')).toBeTruthy()
-    unmount()
   })
 })
