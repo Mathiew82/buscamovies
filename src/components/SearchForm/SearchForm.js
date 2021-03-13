@@ -10,7 +10,7 @@ function SearchForm(props) {
 
   return (
     <div className="is-fullwidth">
-      <form onSubmit={(event) => submit(event, 1)}>
+      <form data-testid="search-form" onSubmit={(event) => submit(event, 1)}>
         <div className="search-wrapper field has-addons is-flex is-justify-content-center">
           <div className="is-fullwidth control">
             <input
