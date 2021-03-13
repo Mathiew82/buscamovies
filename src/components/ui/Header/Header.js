@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar'
 
 function Header() {
   return (
-    <header>
+    <header data-testid="header">
       <Navbar />
     </header>
   )

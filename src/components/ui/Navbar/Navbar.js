@@ -7,6 +7,7 @@ function Navbar() {
 
   return (
     <nav
+      data-testid="navbar"
       className="navbar is-fullwidth"
       role="navigation"
       aria-label="main navigation"
