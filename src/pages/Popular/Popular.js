@@ -58,11 +58,9 @@ function Popular(props) {
       })
   }
 
-  const handleClickPage = (event) => {
-    console.log('handleClickPage')
-    const currentValueButton = Number(event.target.innerHTML)
-    setCurrentPage(currentValueButton)
-    setPopularMovies(currentValueButton)
+  const handleClickPage = (page) => {
+    setCurrentPage(page)
+    setPopularMovies(page)
   }
 
   if (movies.length < 1 && !popularMoviesAdded) {
