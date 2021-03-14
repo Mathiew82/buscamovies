@@ -58,6 +58,7 @@ function MovieDetail(props) {
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
               className="more-detail-page-img"
+              style={{ display: !movie.poster_path && 'none' }}
             />
             <button
               type="button"

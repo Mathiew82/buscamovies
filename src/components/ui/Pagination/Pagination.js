@@ -31,7 +31,11 @@ function Pagination(props) {
     >
       <ul data-testid="pagination-list" className="pagination-list">
         <li style={{ display: doNotShowFirstPage() && 'none' }}>
-          <button type="button" className="pagination-link" onClick={clickPage}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={() => clickPage(1)}
+          >
             1
           </button>
         </li>
@@ -39,7 +43,11 @@ function Pagination(props) {
           <span className="pagination-ellipsis">&hellip;</span>
         </li>
         <li style={{ display: doNotShowPrevPage() && 'none' }}>
-          <button type="button" className="pagination-link" onClick={clickPage}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={() => clickPage(currentPage - 1)}
+          >
             {currentPage - 1}
           </button>
         </li>
@@ -48,13 +56,17 @@ function Pagination(props) {
             type="button"
             className="pagination-link is-current"
             aria-current="page"
-            onClick={clickPage}
+            onClick={() => clickPage(currentPage)}
           >
             {currentPage}
           </button>
         </li>
         <li style={{ display: doNotShowNextPage() && 'none' }}>
-          <button type="button" className="pagination-link" onClick={clickPage}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={() => clickPage(currentPage + 1)}
+          >
             {currentPage + 1}
           </button>
         </li>
@@ -62,7 +74,11 @@ function Pagination(props) {
           <span className="pagination-ellipsis">&hellip;</span>
         </li>
         <li style={{ display: doNotShowLastPage() && 'none' }}>
-          <button type="button" className="pagination-link" onClick={clickPage}>
+          <button
+            type="button"
+            className="pagination-link"
+            onClick={() => clickPage(paginationLength)}
+          >
             {paginationLength}
           </button>
         </li>

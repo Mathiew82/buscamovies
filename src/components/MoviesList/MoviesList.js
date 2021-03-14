@@ -57,10 +57,9 @@ function MoviesList(props) {
     scrollToTop()
   }
 
-  const handleClickPage = (event) => {
-    const currentValueButton = Number(event.target.innerHTML)
-    setCurrentPage(currentValueButton)
-    handleSubmit(undefined, currentValueButton)
+  const handleClickPage = (page) => {
+    setCurrentPage(page)
+    handleSubmit(undefined, page)
   }
 
   const checkValueInput = (val) => {
