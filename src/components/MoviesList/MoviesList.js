@@ -99,7 +99,9 @@ function MoviesList(props) {
         showResults(data)
       })
       .catch((err) => {
-        throw new Error(`Error: ${err}`)
+        throw new Error(
+          'Error: Hubo un error en la petición de info sobre el listado de películas'
+        )
       })
       .finally(() => {
         setLoadingResults(false)

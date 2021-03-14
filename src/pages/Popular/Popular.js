@@ -50,8 +50,10 @@ function Popular(props) {
         setPaginationLength(total_pages)
         scrollToTop()
       })
-      .catch((err) => {
-        throw new Error(`Error: ${err}`)
+      .catch(() => {
+        throw new Error(
+          'Error: Hubo un error en la petición de info sobre las películas populares'
+        )
       })
       .finally(() => {
         setLoading(false)
