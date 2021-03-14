@@ -12,6 +12,7 @@ const { API_URL, API_KEY } = env
 
 function MovieDetail(props) {
   const [movie, setMovie] = useState({})
+  const [actors, setActors] = useState([])
 
   const {
     isAddedToFavorites,
@@ -30,16 +31,48 @@ function MovieDetail(props) {
     }).format(value)
   }
 
+  const fetchMovie = (movieId) => {
+    return new Promise((resolve, reject) => {
+      const movieUrl = new URL(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`)
+      movieUrl.searchParams.append('language', 'es-ES')
+
+      fetch(movieUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          setMovie(data)
+          resolve()
+        })
+        .catch(() => {
+          reject('Hubo un error en la petición de info sobre la película')
+        })
+    })
+  }
+
+  const fetchCredits = (movieId) => {
+    return new Promise((resolve, reject) => {
+      const creditsUrl = new URL(
+        `${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
+      )
+
+      fetch(creditsUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          setActors(data.cast.slice(0, 10))
+          resolve()
+        })
+        .catch(() => {
+          reject(
+            'Hubo un error en la petición de info sobre los actores de la película'
+          )
+        })
+    })
+  }
+
   useEffect(() => {
     const { movieId } = props
-    const url = new URL(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`)
-    url.searchParams.append('language', 'es-ES')
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setMovie(data)
-      })
+    fetchMovie(movieId)
+      .then(() => fetchCredits(movieId))
       .catch((err) => {
         throw new Error(`Error: ${err}`)
       })
@@ -111,6 +144,18 @@ function MovieDetail(props) {
               <Label>Ingresos:</Label>{' '}
               {movie.revenue === 0 ? 'Sin información' : formattedRevenue}
             </p>
+            {actors.length > 0 && (
+              <div>
+                <p>
+                  <Label>Actores principales:</Label>
+                </p>
+                <ul>
+                  {actors.map((actor) => (
+                    <li key={actor.name}>{actor.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {movie.production_countries.length > 0 && (
               <div>
                 <p>
