@@ -77,12 +77,34 @@ function MoviesList(props) {
     return urlToSearch
   }
 
-  const handleSubmit = (event, page) => {
+  const fetchMovies = (url) => {
+    return new Promise((resolve, reject) => {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          showResults(data)
+        })
+        .catch((err) => {
+          throw new Error(
+            'Error: Hubo un error en la petición de info sobre el listado de películas'
+          )
+        })
+        .finally(() => {
+          setLoadingResults(false)
+        })
+    })
+  }
+
+  const checkIfSubmitForm = (event, page) => {
     if (typeof event !== 'undefined') {
       event.preventDefault()
       setCurrentPage(page)
       window.document.querySelector('.search-wrapper .button').blur()
     }
+  }
+
+  const handleSubmit = (event, page) => {
+    checkIfSubmitForm(event, page)
 
     if (!checkValueInput(inputValue)) {
       setInputValue('')
@@ -92,20 +114,7 @@ function MoviesList(props) {
     setLoadingResults(true)
 
     const url = createUrl(page)
-
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        showResults(data)
-      })
-      .catch((err) => {
-        throw new Error(
-          'Error: Hubo un error en la petición de info sobre el listado de películas'
-        )
-      })
-      .finally(() => {
-        setLoadingResults(false)
-      })
+    fetchMovies(url)
   }
 
   return (
