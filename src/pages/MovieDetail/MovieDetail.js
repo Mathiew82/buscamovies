@@ -12,6 +12,7 @@ const { API_URL, API_KEY } = env
 
 function MovieDetail(props) {
   const [movie, setMovie] = useState({})
+  const [director, setDirector] = useState('')
   const [actors, setActors] = useState([])
 
   const {
@@ -48,6 +49,11 @@ function MovieDetail(props) {
     })
   }
 
+  const getDirector = (arr) => {
+    const onlyDirectors = arr.find((item) => item.job === 'Director')
+    return onlyDirectors ? onlyDirectors.name : 'Sin información'
+  }
+
   const fetchCredits = (movieId) => {
     return new Promise((resolve, reject) => {
       const creditsUrl = new URL(
@@ -56,10 +62,7 @@ function MovieDetail(props) {
 
       fetch(creditsUrl)
         .then((response) => response.json())
-        .then((data) => {
-          setActors(data.cast.slice(0, 10))
-          resolve()
-        })
+        .then((data) => resolve(data))
         .catch(() => {
           reject(
             'Hubo un error en la petición de info sobre los actores de la película'
@@ -73,6 +76,10 @@ function MovieDetail(props) {
 
     fetchMovie(movieId)
       .then(() => fetchCredits(movieId))
+      .then((data) => {
+        setDirector(getDirector(data.crew))
+        setActors(data.cast.slice(0, 10))
+      })
       .catch((err) => {
         throw new Error(`Error: ${err}`)
       })
@@ -128,6 +135,9 @@ function MovieDetail(props) {
             <Subtitle>{movie.tagline}</Subtitle>
 
             <p>{movie.overview}</p>
+            <p>
+              <Label>Director:</Label> {director}
+            </p>
             <p>
               <Label>Fecha de lanzamiento:</Label> {movie.release_date}
             </p>
