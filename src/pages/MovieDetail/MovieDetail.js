@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import useToggleFavorite from '../../hooks/useToggleFavorite/useToggleFavorite'
+import Loading from '../../components/Loading/Loading'
 import Header from '../../components/ui/Header/Header'
 import Title from '../../components/ui/Title/Title'
 import Subtitle from '../../components/ui/Subtitle/Subtitle'
@@ -11,6 +12,7 @@ import env from '../../env'
 const { API_URL, API_KEY } = env
 
 function MovieDetail(props) {
+  const [loadingData, setLoadingData] = useState(false)
   const [movie, setMovie] = useState({})
   const [director, setDirector] = useState('')
   const [actors, setActors] = useState([])
@@ -74,6 +76,8 @@ function MovieDetail(props) {
   useEffect(() => {
     const { movieId } = props
 
+    setLoadingData(true)
+
     fetchMovie(movieId)
       .then(() => fetchCredits(movieId))
       .then((data) => {
@@ -83,6 +87,9 @@ function MovieDetail(props) {
       .catch((err) => {
         throw new Error(`Error: ${err}`)
       })
+      .finally(() => {
+        setLoadingData(false)
+      })
   }, [props])
 
   const voteAverage = useVoteAverage(movie.vote_average)
@@ -90,6 +97,8 @@ function MovieDetail(props) {
 
   return (
     <div className="more-detail-page">
+      <Loading loading={loadingData} />
+
       <Header />
       {movie && Object.keys(movie).length > 0 && (
         <div className="row">
