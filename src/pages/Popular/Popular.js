@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../../components/Loading/Loading'
 import Header from '../../components/ui/Header/Header'
+import Footer from '../../components/ui/Footer/Footer'
 import Title from '../../components/ui/Title/Title'
 import Movie from '../../components/Movie/Movie'
 import Pagination from '../../components/ui/Pagination/Pagination'
@@ -92,6 +93,8 @@ function Popular(props) {
         paginationLength={paginationLength}
         clickPage={handleClickPage}
       />
+
+      <Footer />
     </div>
   )
 }

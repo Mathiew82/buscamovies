@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../components/ui/Header/Header'
+import Footer from '../../components/ui/Footer/Footer'
 import MoviesListContainer from '../../containers/MoviesListContainer/MoviesListContainer'
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
     <div className="home-page">
       <Header />
       <MoviesListContainer />
+      <Footer />
     </div>
   )
 }

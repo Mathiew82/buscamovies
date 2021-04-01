@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import useToggleFavorite from '../../hooks/useToggleFavorite/useToggleFavorite'
 import Loading from '../../components/Loading/Loading'
 import Header from '../../components/ui/Header/Header'
+import Footer from '../../components/ui/Footer/Footer'
 import Title from '../../components/ui/Title/Title'
 import Subtitle from '../../components/ui/Subtitle/Subtitle'
 import Label from '../../components/ui/Label/Label'
@@ -221,6 +222,8 @@ function MovieDetail(props) {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   )
 }

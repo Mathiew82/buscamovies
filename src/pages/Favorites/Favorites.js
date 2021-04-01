@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Header from '../../components/ui/Header/Header'
+import Footer from '../../components/ui/Footer/Footer'
 import Title from '../../components/ui/Title/Title'
 import Movie from '../../components/Movie/Movie'
 
@@ -45,6 +46,8 @@ function Favorites() {
           No tienes películas agregadas a favoritos
         </div>
       )}
+
+      <Footer />
     </div>
   )
 }

@@ -595,3 +595,8 @@ ul {
 .more-detail-page-vote-average-value > .grey-label {
   font-weight: 400;
 }
+
+footer {
+  margin-top: 4rem;
+  text-align: center;
+}
