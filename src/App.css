@@ -176,6 +176,7 @@
   --primary-color: black;
   --secondary-color: #41bbda;
   --semiblack-color: #222;
+  --grey-color: #999;
 }
 
 @keyframes loading-animation {
@@ -544,7 +545,7 @@ ul {
 }
 
 .pagination-link {
-  background-color: #f0f1f2 !important;
+  background-color: white !important;
   border-color: rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -560,6 +561,7 @@ ul {
 .pagination-link.is-current {
   background-color: var(--semiblack-color) !important;
   border-color: var(--semiblack-color) !important;
+  cursor: default;
   transition: background-color 0.2s;
 }
 
@@ -597,6 +599,8 @@ ul {
 }
 
 footer {
+  color: var(--grey-color);
+  font-size: 14px;
   margin-top: 4rem;
   text-align: center;
 }

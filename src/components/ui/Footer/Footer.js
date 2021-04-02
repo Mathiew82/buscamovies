@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer data-testid="footer">
       BuscaMovies - App desarrollada por{' '}
-      <a href="https://github.com/Mathiew82" target="_blank" rel="noreferrer">
+      <a href="https://amateo82.es/" target="_blank" rel="noreferrer">
         Alberto Mateo
       </a>
     </footer>
