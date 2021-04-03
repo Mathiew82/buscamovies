@@ -1,9 +1,4 @@
-const INITIAL_STATE = {
-  movies: [],
-  inputValue: '',
-  currentPage: 1,
-  paginationLength: 0,
-}
+import { INITIAL_STATE } from './state'
 
 export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
