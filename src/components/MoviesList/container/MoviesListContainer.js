@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { actionsMoviesList } from '../../store/moviesList/actions'
-import MoviesList from '../../components/MoviesList/MoviesList'
+import { actionsMoviesList } from '../../../store/moviesList/actions'
+import MoviesList from '../MoviesList'
 
 const mapStateToProps = (state) => {
   return state

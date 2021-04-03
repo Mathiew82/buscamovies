@@ -5,10 +5,10 @@ import { createMemoryHistory } from 'history'
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { rootReducer } from './reducers'
+import storeModules from './store'
 import App from './App'
 
-const store = createStore(rootReducer)
+const store = createStore(storeModules)
 
 describe('app', () => {
   test('component should render correctly', () => {

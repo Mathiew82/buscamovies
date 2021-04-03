@@ -5,10 +5,10 @@ import { createMemoryHistory } from 'history'
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { rootReducer } from '../../reducers'
-import PopularConatiner from '../../containers/PopularContainer/PopularConatiner'
+import storeModules from '../../../store'
+import PopularConatiner from './PopularConatiner'
 
-const store = createStore(rootReducer)
+const store = createStore(storeModules)
 
 describe('popular container', () => {
   test('component should render correctly', () => {

@@ -4,7 +4,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import MovieDetail from './pages/MovieDetail/MovieDetail'
-import PopularConatiner from './containers/PopularContainer/PopularConatiner'
+import PopularConatiner from './pages/Popular/container/PopularConatiner'
 import Favorites from './pages/Favorites/Favorites'
 
 function App() {
