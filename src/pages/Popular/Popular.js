@@ -12,11 +12,9 @@ const { API_URL, API_KEY } = env
 
 function Popular(props) {
   const {
-    movies,
+    popularMovies,
     setMovies,
-    currentPage,
     setCurrentPage,
-    paginationLength,
     setPaginationLength,
   } = props
 
@@ -66,7 +64,7 @@ function Popular(props) {
     setPopularMovies(page)
   }
 
-  if (movies.length < 1 && !popularMoviesAdded) {
+  if (popularMovies.movies.length < 1 && !popularMoviesAdded) {
     setPopularMovies()
     setPopularMoviesAdded(true)
   }
@@ -78,9 +76,9 @@ function Popular(props) {
       <Header />
       <Title>Las Populares</Title>
 
-      {movies.length > 0 ? (
+      {popularMovies.movies.length > 0 ? (
         <ul className="movies-list">
-          {movies.map((movie) => (
+          {popularMovies.movies.map((movie) => (
             <Movie key={movie.id} movie={movie} />
           ))}
         </ul>
@@ -89,8 +87,8 @@ function Popular(props) {
       )}
 
       <Pagination
-        currentPage={currentPage}
-        paginationLength={paginationLength}
+        currentPage={popularMovies.currentPage}
+        paginationLength={popularMovies.paginationLength}
         clickPage={handleClickPage}
       />
 
@@ -100,11 +98,9 @@ function Popular(props) {
 }
 
 Popular.propTypes = {
-  movies: PropTypes.array,
+  popularMovies: PropTypes.object,
   setMovies: PropTypes.func,
-  currentPage: PropTypes.number,
   setCurrentPage: PropTypes.func,
-  paginationLength: PropTypes.number,
   setPaginationLength: PropTypes.func,
 }
 

@@ -10,13 +10,10 @@ const { API_URL, API_KEY } = env
 
 function MoviesList(props) {
   const {
-    movies,
+    moviesList,
     setMovies,
-    inputValue,
     setInputValue,
-    currentPage,
     setCurrentPage,
-    paginationLength,
     setPaginationLength,
   } = props
 
@@ -70,7 +67,7 @@ function MoviesList(props) {
   const createUrl = (page) => {
     const urlToSearch = new URL(`${API_URL}/search/movie?api_key=${API_KEY}`)
 
-    urlToSearch.searchParams.append('query', inputValue)
+    urlToSearch.searchParams.append('query', moviesList.inputValue)
     urlToSearch.searchParams.append('page', page)
     urlToSearch.searchParams.append('language', 'es-ES')
     urlToSearch.searchParams.append('include_adult', false)
@@ -106,7 +103,7 @@ function MoviesList(props) {
   const handleSubmit = (event, page) => {
     checkIfSubmitForm(event, page)
 
-    if (!checkValueInput(inputValue)) {
+    if (!checkValueInput(moviesList.inputValue)) {
       setInputValue('')
       return false
     }
@@ -123,15 +120,15 @@ function MoviesList(props) {
 
       <div className="is-flex is-justify-content-center is-fullwidth">
         <SearchForm
-          inputValue={inputValue}
+          inputValue={moviesList.inputValue}
           setInputValue={setInputValue}
           submit={handleSubmit}
         />
       </div>
 
-      {movies.length > 0 ? (
+      {moviesList.movies.length > 0 ? (
         <ul className="movies-list">
-          {movies.map((movie) => (
+          {moviesList.movies.map((movie) => (
             <Movie key={movie.id} movie={movie} />
           ))}
         </ul>
@@ -146,8 +143,8 @@ function MoviesList(props) {
       )}
 
       <Pagination
-        currentPage={currentPage}
-        paginationLength={paginationLength}
+        currentPage={moviesList.currentPage}
+        paginationLength={moviesList.paginationLength}
         clickPage={handleClickPage}
       />
     </div>
@@ -155,13 +152,10 @@ function MoviesList(props) {
 }
 
 MoviesList.propTypes = {
-  movies: PropTypes.array,
+  moviesList: PropTypes.object,
   setMovies: PropTypes.func,
-  inputValue: PropTypes.string,
   setInputValue: PropTypes.func,
-  currentPage: PropTypes.number,
   setCurrentPage: PropTypes.func,
-  paginationLength: PropTypes.number,
   setPaginationLength: PropTypes.func,
 }
 
