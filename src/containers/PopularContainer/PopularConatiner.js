@@ -2,11 +2,7 @@ import { connect } from 'react-redux'
 import Popular from '../../pages/Popular/Popular'
 
 const mapStateToProps = (state) => {
-  return {
-    movies: state.popularMovies,
-    currentPage: state.popularCurrentPage,
-    paginationLength: state.popularPaginationLength,
-  }
+  return state
 }
 
 const mapDispatchToProps = (dispatch) => {

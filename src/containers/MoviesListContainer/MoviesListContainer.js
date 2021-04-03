@@ -2,12 +2,7 @@ import { connect } from 'react-redux'
 import MoviesList from '../../components/MoviesList/MoviesList'
 
 const mapStateToProps = (state) => {
-  return {
-    movies: state.movies,
-    inputValue: state.inputValue,
-    currentPage: state.currentPage,
-    paginationLength: state.paginationLength,
-  }
+  return state
 }
 
 const mapDispatchToProps = (dispatch) => {
