@@ -1,25 +1,11 @@
 import { connect } from 'react-redux'
+import { actionsPopularMovies } from '../../store/popularMovies/actions'
 import Popular from '../../pages/Popular/Popular'
 
 const mapStateToProps = (state) => {
   return state
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setMovies: (movies) => {
-      dispatch({ type: 'SET_POPULAR_MOVIES', payload: { movies } })
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch({ type: 'SET_POPULAR_CURRENT_PAGE', payload: { currentPage } })
-    },
-    setPaginationLength: (paginationLength) => {
-      dispatch({
-        type: 'SET_POPULAR_PAGINATION_LENGTH',
-        payload: { paginationLength },
-      })
-    },
-  }
-}
+const mapDispatchToProps = actionsPopularMovies
 
 export default connect(mapStateToProps, mapDispatchToProps)(Popular)
