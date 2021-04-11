@@ -22,10 +22,10 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
 
       - name: Prettier Write
-        run: npm run format
+        run: yarn format
 
       - name: Test
-        run: npm test
+        run: yarn test
