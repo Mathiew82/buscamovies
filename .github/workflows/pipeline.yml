@@ -1,9 +1,9 @@
-name: test
+name: pipeline
 
 on: push
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,10 +22,15 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
 
-      - name: Prettier Write
-        run: npx prettier --write .
+      - name: Run Prettier
+        run: yarn format
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply Prettier Changes
 
       - name: Test
-        run: npm test
+        run: yarn test
