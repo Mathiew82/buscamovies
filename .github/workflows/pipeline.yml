@@ -1,9 +1,9 @@
-name: test
+name: pipeline
 
 on: push
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
