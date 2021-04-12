@@ -1,4 +1,3 @@
-import './App.css'
 import 'bulma/css/bulma.css'
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
