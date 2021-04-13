@@ -9,6 +9,7 @@ import Subtitle from '../../components/ui/Subtitle/Subtitle'
 import Label from '../../components/ui/Label/Label'
 import useVoteAverage from '../../hooks/useVoteAverage/useVoteAverage'
 import env from '../../env'
+import './MovieDetail.scss'
 
 const { API_URL, API_KEY } = env
 

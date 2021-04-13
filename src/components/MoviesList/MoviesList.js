@@ -5,6 +5,7 @@ import Loading from '../Loading/Loading'
 import Pagination from '../ui/Pagination/Pagination'
 import Movie from '../Movie/Movie'
 import env from '../../env'
+import './MoviesList.scss'
 
 const { API_URL, API_KEY } = env
 

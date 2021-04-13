@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './Loading.scss'
 
 function Loading(props) {
   const { loading } = props

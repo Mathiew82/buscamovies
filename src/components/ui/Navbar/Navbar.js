@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import './Navbar.scss'
 
 function Navbar() {
   const [isActive, setisActive] = useState(false)
