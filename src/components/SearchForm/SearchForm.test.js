@@ -14,7 +14,7 @@ const handleSubmit = jest.fn((e) => {
 })
 
 describe('searchform', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const { queryByTestId } = render(
       <SearchForm
         inputValue={inputValue}
@@ -27,7 +27,7 @@ describe('searchform', () => {
     expect(searchForm).toBeTruthy()
   })
 
-  test('updates on change', () => {
+  it('updates on change', () => {
     const { queryByTestId } = render(
       <SearchForm
         inputValue={inputValue}
@@ -42,7 +42,7 @@ describe('searchform', () => {
     expect(setInputValue()).toBe(inputText)
   })
 
-  test('the form is submitted correctly', () => {
+  it('the form is submitted correctly', () => {
     const { queryByTestId } = render(
       <SearchForm
         inputValue={inputValue}

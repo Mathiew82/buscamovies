@@ -6,7 +6,7 @@ import Label from './Label'
 const text = 'Test'
 
 describe('label', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     render(<Label>{text}</Label>)
 
     expect(screen.getByText(text)).toBeInTheDocument()

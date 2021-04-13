@@ -11,7 +11,7 @@ import App from './App'
 const store = createStore(storeModules)
 
 describe('app', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const history = createMemoryHistory()
     render(
       <Provider store={store}>

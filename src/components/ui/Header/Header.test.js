@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history'
 import Header from './Header'
 
 describe('header', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const history = createMemoryHistory()
     const { queryByTestId } = render(
       <Router history={history}>

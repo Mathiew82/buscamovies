@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history'
 import Movie from './Movie'
 
 describe('movie', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const movie = {}
     const movieId = 1
 

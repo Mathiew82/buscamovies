@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history'
 import Popular from './Popular'
 
 describe('popular', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const popularMovies = {
       movies: [],
       currentPage: 1,
