@@ -3,7 +3,7 @@ import './Footer.scss'
 
 function Footer() {
   return (
-    <footer data-testid="footer">
+    <footer>
       BuscaMovies - App desarrollada por{' '}
       <a href="https://amateo82.es/" target="_blank" rel="noreferrer">
         Alberto Mateo

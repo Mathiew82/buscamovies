@@ -1,18 +1,12 @@
 import React from 'react'
-import { Router } from 'react-router-dom'
-import { render } from '@testing-library/react'
-import { createMemoryHistory } from 'history'
+import { render, screen } from '@testing-library/react'
 import Footer from './Footer'
 
-describe('footer', () => {
-  it('component should render correctly', () => {
-    const history = createMemoryHistory()
-    const { queryByTestId } = render(
-      <Router history={history}>
-        <Footer />
-      </Router>
-    )
+describe('Footer Component', () => {
+  it('should render correctly', () => {
+    render(<Footer />)
+    const link = screen.getByRole('link', { name: 'Alberto Mateo' })
 
-    expect(queryByTestId('footer')).toBeTruthy()
+    expect(link).toBeInTheDocument()
   })
 })
