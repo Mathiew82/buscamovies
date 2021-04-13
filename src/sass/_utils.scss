@@ -1,6 +1,6 @@
 /** Utils */
 .inline-block {
-  display: inline-block;
+  display: inline-block !important;
 }
 
 .is-fullwidth {
@@ -8,11 +8,11 @@
 }
 
 .tac {
-  text-align: center;
+  text-align: center !important;
 }
 
 .mt-6 {
-  margin-top: 6rem;
+  margin-top: 6rem !important;
 }
 
 .pr0 {
