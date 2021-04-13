@@ -8,43 +8,6 @@
   height: 22px;
 }
 
-header {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header > h1 {
-  width: 60%;
-  display: inline-block;
-}
-
-header > nav {
-  width: 40%;
-  display: inline-block;
-}
-
-header > nav > ul {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
-}
-
-header > nav li > a {
-  color: var(--secondary-color);
-  font-size: 18px;
-  font-weight: 700;
-  margin-left: 1.5rem;
-  padding: 7px 0;
-}
-
-.title {
-  font-size: 28px !important;
-  margin-bottom: 1rem !important;
-}
-
 .subtitle {
   font-size: 18px;
   font-weight: 700;
