@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Pagination from './Pagination'
 
 describe('pagination', () => {
@@ -8,7 +8,7 @@ describe('pagination', () => {
     const currentPage = 1
     const paginationLength = 200
 
-    const { queryByTestId } = render(
+    const { container } = render(
       <Pagination
         currentPage={currentPage}
         paginationLength={paginationLength}
@@ -16,6 +16,6 @@ describe('pagination', () => {
       />
     )
 
-    expect(queryByTestId('pagination-list')).toBeTruthy()
+    expect(container.getElementsByClassName('is-current').length).toBe(1)
   })
 })

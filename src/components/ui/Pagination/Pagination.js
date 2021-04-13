@@ -30,7 +30,7 @@ function Pagination(props) {
       role="navigation"
       aria-label="pagination"
     >
-      <ul data-testid="pagination-list" className="pagination-list">
+      <ul className="pagination-list">
         <li style={{ display: doNotShowFirstPage() && 'none' }}>
           <button
             type="button"
