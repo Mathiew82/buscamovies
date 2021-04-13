@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import useToggleFavorite from '../../hooks/useToggleFavorite/useToggleFavorite'
 import useVoteAverage from '../../hooks/useVoteAverage/useVoteAverage'
+import './Movie.scss'
 
 function Movie(props) {
   const { movie } = props

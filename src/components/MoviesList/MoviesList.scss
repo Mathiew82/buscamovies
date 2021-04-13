@@ -1,0 +1,12 @@
+.no-movie-results {
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+
+.movies-list {
+  margin: 1rem 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
