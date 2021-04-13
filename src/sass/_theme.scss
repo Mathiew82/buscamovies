@@ -26,21 +26,17 @@ ul {
 }
 
 .app {
-  padding: 0.5rem 14px 4rem 14px;
+  padding: 0.5rem 0.8rem 4rem 0.8rem;
 }
 
 .button.is-primary {
   background-color: var(--semiblack-color) !important;
   padding: 7px 25px;
   transition: background-color 0.2s;
-}
-
-.button.is-primary:hover {
-  background-color: var(--secondary-color) !important;
-}
-
-@media (max-width: 576px) {
-  .button.is-primary:hover {
-    background-color: var(--semiblack-color) !important;
+  &:hover {
+    background-color: var(--secondary-color) !important;
+    @media (max-width: 576px) {
+      background-color: var(--semiblack-color) !important;
+    }
   }
 }
