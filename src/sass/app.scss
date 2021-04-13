@@ -4,43 +4,6 @@
 @import 'layout.scss';
 @import 'theme.scss';
 
-.logo {
-  height: 22px;
-}
-
-.search-wrapper input {
-  border-top: 2px solid rgba(0, 0, 0, 0.4);
-  border-right: none;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
-  border-left: 2px solid rgba(0, 0, 0, 0.4);
-  border-radius: 8px 0 0 8px;
-  padding: 7px 25px;
-}
-
-.search-wrapper .button {
-  border-radius: 8px;
-}
-
-.is-fullwidth {
-  width: 100% !important;
-}
-
-.button.is-primary {
-  background-color: var(--semiblack-color) !important;
-  padding: 7px 25px;
-  transition: background-color 0.2s;
-}
-
-.button.is-primary:hover {
-  background-color: var(--secondary-color) !important;
-}
-
-@media (max-width: 576px) {
-  .button.is-primary:hover {
-    background-color: var(--semiblack-color) !important;
-  }
-}
-
 .more-detail-page-img {
   width: 100%;
   border-radius: 10px;
@@ -54,6 +17,7 @@
   padding-right: 0;
   padding-left: 2rem;
 }
+
 @media (max-width: 768px) {
   .more-detail-page__left,
   .more-detail-page__right {
