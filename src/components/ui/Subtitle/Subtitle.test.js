@@ -5,8 +5,8 @@ import Subtitle from './Subtitle'
 /** Variables for testing */
 const text = 'Test'
 
-describe('subtitle', () => {
-  test('component should render correctly', () => {
+describe('Subtitle Component', () => {
+  it('should render correctly', () => {
     render(<Subtitle>{text}</Subtitle>)
 
     expect(screen.getByText(text)).toBeInTheDocument()

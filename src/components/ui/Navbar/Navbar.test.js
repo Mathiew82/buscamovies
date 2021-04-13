@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history'
 import Navbar from './Navbar'
 
 describe('navbar', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const history = createMemoryHistory()
     const { queryByTestId } = render(
       <Router history={history}>

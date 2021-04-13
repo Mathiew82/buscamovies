@@ -11,7 +11,7 @@ import PopularConatiner from './PopularConatiner'
 const store = createStore(storeModules)
 
 describe('popular container', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const history = createMemoryHistory()
     render(
       <Provider store={store}>

@@ -3,7 +3,7 @@ import { render } from '@testing-library/react'
 import MoviesList from './MoviesList'
 
 describe('movieslist', () => {
-  test('component should render correctly', () => {
+  it('component should render correctly', () => {
     const moviesList = {
       movies: [],
       inputValue: '',
