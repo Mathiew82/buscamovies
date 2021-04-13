@@ -4,7 +4,7 @@ import './Header.scss'
 
 function Header() {
   return (
-    <header data-testid="header">
+    <header>
       <Navbar />
     </header>
   )
