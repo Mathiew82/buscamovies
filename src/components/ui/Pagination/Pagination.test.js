@@ -16,8 +16,9 @@ describe('Pagination Component', () => {
         clickPage={handleClickPage}
       />
     )
+    const currentLink = container.querySelector('.is-current')
 
-    expect(container.getElementsByClassName('is-current').length).toBe(1)
+    expect(currentLink).toBeInTheDocument()
   })
 
   it('should call clickPage correctly of current link', () => {
@@ -32,8 +33,8 @@ describe('Pagination Component', () => {
         clickPage={handleClickPage}
       />
     )
-    const currentPageButton = container.getElementsByClassName('is-current')
-    userEvent.click(currentPageButton[0])
+    const currentPageButton = container.querySelector('.is-current')
+    userEvent.click(currentPageButton)
 
     expect(handleClickPage.mock.calls).toHaveLength(1)
   })
