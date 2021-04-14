@@ -1,58 +1,62 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import SearchForm from './SearchForm'
 
-/** Variables for testing */
-const inputText = 'test'
+describe('SearchForm Component', () => {
+  it('should render correctly', () => {
+    const inputValue = ''
+    const setInputValue = jest.fn()
+    const handleSubmit = jest.fn()
 
-/** Props */
-let inputValue = ''
-const setInputValue = () => inputText
-const handleSubmit = jest.fn((e) => {
-  e.preventDefault()
-  return true
-})
-
-describe('searchform', () => {
-  it('component should render correctly', () => {
-    const { queryByTestId } = render(
+    const { container } = render(
       <SearchForm
         inputValue={inputValue}
         setInputValue={setInputValue}
         submit={handleSubmit}
       />
     )
+    const form = container.querySelector('form')
 
-    const searchForm = queryByTestId('search-form')
-    expect(searchForm).toBeTruthy()
+    expect(form).toBeInTheDocument()
   })
 
-  it('updates on change', () => {
-    const { queryByTestId } = render(
+  it('should be updated correctly the input value', async () => {
+    let inputValue = ''
+    const setInputValue = jest.fn()
+    const handleSubmit = jest.fn()
+
+    render(
       <SearchForm
         inputValue={inputValue}
         setInputValue={setInputValue}
         submit={handleSubmit}
       />
     )
+    const input = screen.getByRole('textbox')
+    userEvent.type(input, 'Hello')
 
-    const searchButton = queryByTestId('search-button')
-    fireEvent.change(searchButton, { target: { value: inputText } })
-    expect(searchButton.value).toBe(inputText)
-    expect(setInputValue()).toBe(inputText)
+    expect(input).toHaveValue('Hello')
   })
 
   it('the form is submitted correctly', () => {
-    const { queryByTestId } = render(
+    let inputValue = ''
+    const setInputValue = jest.fn()
+    const handleSubmit = jest.fn((e) => {
+      e.preventDefault()
+      return true
+    })
+
+    render(
       <SearchForm
         inputValue={inputValue}
         setInputValue={setInputValue}
         submit={handleSubmit}
       />
     )
+    const buttonForm = screen.queryByRole('button')
+    userEvent.click(buttonForm)
 
-    const searchForm = queryByTestId('search-form')
-    fireEvent.submit(searchForm)
-    expect(handleSubmit).toHaveBeenCalled()
+    expect(handleSubmit.mock.calls).toHaveLength(1)
   })
 })
