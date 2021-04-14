@@ -1,18 +1,21 @@
 import React from 'react'
 import { Router } from 'react-router-dom'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import Header from './Header'
 
-describe('header', () => {
-  it('component should render correctly', () => {
+describe('Header Component', () => {
+  it('should render correctly', () => {
     const history = createMemoryHistory()
-    const { queryByTestId } = render(
+
+    render(
       <Router history={history}>
         <Header />
       </Router>
     )
 
-    expect(queryByTestId('header')).toBeTruthy()
+    expect(
+      screen.getByRole('navigation', { name: 'main navigation' })
+    ).toBeInTheDocument()
   })
 })

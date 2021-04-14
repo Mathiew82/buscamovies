@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom'
 import './Navbar.scss'
 
 function Navbar() {
-  const [isActive, setisActive] = useState(false)
+  const [isActive, setIsActive] = useState(false)
 
   return (
     <nav
-      data-testid="navbar"
       className="navbar is-fullwidth"
       role="navigation"
       aria-label="main navigation"
@@ -24,7 +23,7 @@ function Navbar() {
 
         <a
           onClick={() => {
-            setisActive(!isActive)
+            setIsActive(!isActive)
           }}
           role="button"
           className={`navbar-burger burger ${isActive ? 'is-active' : ''}`}

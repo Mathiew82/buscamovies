@@ -11,7 +11,7 @@ function SearchForm(props) {
 
   return (
     <div className="is-fullwidth">
-      <form data-testid="search-form" onSubmit={(event) => submit(event, 1)}>
+      <form onSubmit={(event) => submit(event, 1)}>
         <div className="search-wrapper field has-addons is-flex is-justify-content-center">
           <div className="is-fullwidth control">
             <input
@@ -19,15 +19,10 @@ function SearchForm(props) {
               type="text"
               placeholder="Busca una película"
               onChange={handleChange}
-              value={inputValue}
             />
           </div>
           <div className="control">
-            <button
-              type="submit"
-              data-testid="search-button"
-              className="button is-primary"
-            >
+            <button type="submit" className="button is-primary">
               Buscar
             </button>
           </div>
