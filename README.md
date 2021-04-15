@@ -1,4 +1,4 @@
-# Search Movies React JS
+# BuscaMovies
 
 [http://buscamovies.surge.sh/](http://buscamovies.surge.sh/)
 
