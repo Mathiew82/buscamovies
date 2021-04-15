@@ -12,14 +12,6 @@ function Favorites() {
     let favoriteMovies = JSON.parse(
       window.localStorage.getItem('favoriteMovies')
     )
-
-    if (favoriteMovies) {
-      favoriteMovies = favoriteMovies.map((movie) => {
-        movie.isFavorite = true
-        return movie
-      })
-    }
-
     if (!favoriteMovies) favoriteMovies = []
 
     if (movies !== favoriteMovies) setMovies(favoriteMovies)
