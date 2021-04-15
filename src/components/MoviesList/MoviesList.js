@@ -22,6 +22,8 @@ function MoviesList(props) {
   const [noMatches, setNoMatches] = useState(false)
 
   const scrollToTop = () => {
+    if (typeof window === 'undefined') return
+
     window.scrollTo({
       top: 0,
     })
@@ -79,17 +81,12 @@ function MoviesList(props) {
     return new Promise((resolve, reject) => {
       fetch(url)
         .then((response) => response.json())
-        .then((data) => {
-          showResults(data)
-        })
-        .catch((err) => {
-          throw new Error(
+        .then((data) => resolve(data))
+        .catch(() =>
+          reject(
             'Error: Hubo un error en la petición de info sobre el listado de películas'
           )
-        })
-        .finally(() => {
-          setLoadingResults(false)
-        })
+        )
     })
   }
 
@@ -113,10 +110,19 @@ function MoviesList(props) {
 
     const url = createUrl(page)
     fetchMovies(url)
+      .then((data) => {
+        showResults(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setLoadingResults(false)
+      })
   }
 
   return (
-    <div data-testid="movies-list">
+    <div>
       <Loading loading={loadingResults} />
 
       <div className="is-flex is-justify-content-center is-fullwidth">
