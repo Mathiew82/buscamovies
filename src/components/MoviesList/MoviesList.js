@@ -22,23 +22,11 @@ function MoviesList(props) {
   const [noMatches, setNoMatches] = useState(false)
 
   const scrollToTop = () => {
+    if (typeof window === 'undefined') return
+
     window.scrollTo({
       top: 0,
     })
-  }
-
-  const addFavoriteMovies = (results) => {
-    let favoriteMovies = JSON.parse(
-      window.localStorage.getItem('favoriteMovies')
-    )
-    if (!favoriteMovies) favoriteMovies = []
-
-    results.forEach((item) => {
-      let currentMovie = favoriteMovies.find((i) => i.id === item.id)
-      if (currentMovie) item.isFavorite = true
-    })
-
-    return results
   }
 
   const showResults = (data) => {
@@ -48,9 +36,7 @@ function MoviesList(props) {
     if (results.length === 0) setNoMatches(true)
     if (results.length > 0) setNoMatches(false)
 
-    const resultsWithFavorites = addFavoriteMovies(results)
-
-    setMovies(resultsWithFavorites)
+    setMovies(results)
     setPaginationLength(total_pages)
     scrollToTop()
   }
@@ -79,17 +65,12 @@ function MoviesList(props) {
     return new Promise((resolve, reject) => {
       fetch(url)
         .then((response) => response.json())
-        .then((data) => {
-          showResults(data)
-        })
-        .catch((err) => {
-          throw new Error(
+        .then((data) => resolve(data))
+        .catch(() =>
+          reject(
             'Error: Hubo un error en la petición de info sobre el listado de películas'
           )
-        })
-        .finally(() => {
-          setLoadingResults(false)
-        })
+        )
     })
   }
 
@@ -113,10 +94,19 @@ function MoviesList(props) {
 
     const url = createUrl(page)
     fetchMovies(url)
+      .then((data) => {
+        showResults(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setLoadingResults(false)
+      })
   }
 
   return (
-    <div data-testid="movies-list">
+    <div>
       <Loading loading={loadingResults} />
 
       <div className="is-flex is-justify-content-center is-fullwidth">

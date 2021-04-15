@@ -4,18 +4,22 @@ import { render } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import Movie from './Movie'
 
-describe('movie', () => {
-  it('component should render correctly', () => {
-    const movie = {}
+describe('Movie Component', () => {
+  it('should render correctly', () => {
+    const movie = {
+      poster_path:
+        'https://image.tmdb.org/t/p/w500/mUELlV4u3m50eN5pRnhzqLjEvFc.jpg',
+    }
     const movieId = 1
-
     const history = createMemoryHistory()
-    const { queryByTestId } = render(
+
+    const { container } = render(
       <Router history={history}>
         <Movie key={movieId} movie={movie} />
       </Router>
     )
+    const li = container.querySelector('li')
 
-    expect(queryByTestId('movie-item')).toBeTruthy()
+    expect(li).toBeInTheDocument()
   })
 })

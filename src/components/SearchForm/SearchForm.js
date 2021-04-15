@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './SearchForm.scss'
 
 function SearchForm(props) {
-  const { inputValue, setInputValue, submit } = props
+  const { setInputValue, submit } = props
 
   const handleChange = (event) => {
     setInputValue(event.target.value)

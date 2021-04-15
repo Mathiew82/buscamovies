@@ -5,9 +5,10 @@ import { createMemoryHistory } from 'history'
 
 import Favorites from './Favorites'
 
-describe('favorites', () => {
-  it('component should render correctly', () => {
+describe('Favorites Component', () => {
+  it('should render correctly', () => {
     const history = createMemoryHistory()
+
     render(
       <Router history={history}>
         <Favorites />

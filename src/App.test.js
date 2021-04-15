@@ -13,6 +13,7 @@ const store = createStore(storeModules)
 describe('App Component', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory()
+
     render(
       <Provider store={store}>
         <Router history={history}>

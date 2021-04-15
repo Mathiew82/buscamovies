@@ -31,7 +31,7 @@ function Movie(props) {
   const voteAverage = useVoteAverage(movie.vote_average)
 
   return (
-    <li data-testid="movie-item">
+    <li>
       <span className="icon-wrapper">
         <span
           className="click-zone"
