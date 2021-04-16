@@ -98,7 +98,7 @@ function MoviesList(props) {
         showResults(data)
       })
       .catch((err) => {
-        console.log(err)
+        console.log(`Error: ${err}`)
       })
       .finally(() => {
         setLoadingResults(false)
