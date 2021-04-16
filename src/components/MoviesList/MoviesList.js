@@ -4,6 +4,7 @@ import SearchForm from '../SearchForm/SearchForm'
 import Loading from '../Loading/Loading'
 import Pagination from '../ui/Pagination/Pagination'
 import Movie from '../Movie/Movie'
+import { searchMovies } from '../../services/MoviesRepository'
 import env from '../../env'
 import './MoviesList.scss'
 
@@ -61,19 +62,6 @@ function MoviesList(props) {
     return urlToSearch
   }
 
-  const fetchMovies = (url) => {
-    return new Promise((resolve, reject) => {
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => resolve(data))
-        .catch(() =>
-          reject(
-            'Error: Hubo un error en la petición de info sobre el listado de películas'
-          )
-        )
-    })
-  }
-
   const checkIfSubmitForm = (event, page) => {
     if (typeof event !== 'undefined') {
       event.preventDefault()
@@ -93,12 +81,14 @@ function MoviesList(props) {
     setLoadingResults(true)
 
     const url = createUrl(page)
-    fetchMovies(url)
+    searchMovies(url)
       .then((data) => {
         showResults(data)
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
+        console.log(
+          'Error: Hubo un error en la petición de info sobre el listado de películas'
+        )
       })
       .finally(() => {
         setLoadingResults(false)

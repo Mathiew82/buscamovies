@@ -14,8 +14,6 @@ describe('Header Component', () => {
       </Router>
     )
 
-    expect(
-      screen.getByRole('navigation', { name: 'main navigation' })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('banner')).toBeInTheDocument()
   })
 })

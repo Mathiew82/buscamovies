@@ -5,7 +5,7 @@ import Footer from './Footer'
 describe('Footer Component', () => {
   it('should render correctly', () => {
     render(<Footer />)
-    const link = screen.getByRole('link', { name: 'Alberto Mateo' })
+    const link = screen.getByRole('contentinfo')
 
     expect(link).toBeInTheDocument()
   })

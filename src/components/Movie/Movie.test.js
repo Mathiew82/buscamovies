@@ -6,12 +6,12 @@ import Movie from './Movie'
 
 describe('Movie Component', () => {
   it('should render correctly', () => {
+    const history = createMemoryHistory()
     const movie = {
       poster_path:
         'https://image.tmdb.org/t/p/w500/mUELlV4u3m50eN5pRnhzqLjEvFc.jpg',
     }
     const movieId = 1
-    const history = createMemoryHistory()
 
     const { container } = render(
       <Router history={history}>

@@ -8,6 +8,7 @@ import Title from '../../components/ui/Title/Title'
 import Subtitle from '../../components/ui/Subtitle/Subtitle'
 import Label from '../../components/ui/Label/Label'
 import useVoteAverage from '../../hooks/useVoteAverage/useVoteAverage'
+import { searchMovie, searchCredits } from '../../services/MoviesRepository'
 import env from '../../env'
 import './MovieDetail.scss'
 
@@ -41,11 +42,10 @@ function MovieDetail(props) {
       const movieUrl = new URL(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`)
       movieUrl.searchParams.append('language', 'es-ES')
 
-      fetch(movieUrl)
-        .then((response) => response.json())
+      searchMovie(movieUrl)
         .then((data) => {
           setMovie(data)
-          resolve()
+          resolve(data)
         })
         .catch(() => {
           reject('Hubo un error en la petición de info sobre la película')
@@ -64,8 +64,7 @@ function MovieDetail(props) {
         `${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
       )
 
-      fetch(creditsUrl)
-        .then((response) => response.json())
+      searchCredits(creditsUrl)
         .then((data) => resolve(data))
         .catch(() => {
           reject(
@@ -87,15 +86,25 @@ function MovieDetail(props) {
         setActors(data.cast.slice(0, 10))
       })
       .catch((err) => {
-        throw new Error(`Error: ${err}`)
+        console.log(`Error: ${err}`)
       })
       .finally(() => {
         setLoadingData(false)
       })
+
+    return () => {
+      setDirector('')
+      setActors([])
+      setLoadingData(false)
+    }
   }, [props])
 
-  const voteAverage = useVoteAverage(movie.vote_average)
-  const formattedRevenue = formatRevenue(movie.revenue)
+  const movieExists = (movie) => {
+    return movie && Object.keys(movie).length > 0
+  }
+
+  const voteAverage = useVoteAverage(movieExists() ? movie.vote_average : 0)
+  const formattedRevenue = formatRevenue(movieExists() ? movie.revenue : 0)
 
   return (
     <div className="more-detail-page">
