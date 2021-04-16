@@ -6,6 +6,7 @@ import Footer from '../../components/ui/Footer/Footer'
 import Title from '../../components/ui/Title/Title'
 import Movie from '../../components/Movie/Movie'
 import Pagination from '../../components/ui/Pagination/Pagination'
+import { searchPopularMovies } from '../../services/MoviesRepository'
 import env from '../../env'
 
 const { API_URL, API_KEY } = env
@@ -40,8 +41,7 @@ function Popular(props) {
     setLoading(true)
     const url = createUrl(page)
 
-    fetch(url)
-      .then((response) => response.json())
+    searchPopularMovies(url)
       .then((data) => {
         const { results, total_pages } = data
 
@@ -50,7 +50,7 @@ function Popular(props) {
         scrollToTop()
       })
       .catch(() => {
-        throw new Error(
+        console.log(
           'Error: Hubo un error en la petición de info sobre las películas populares'
         )
       })
@@ -70,7 +70,7 @@ function Popular(props) {
   }
 
   return (
-    <div data-testid="popular-page" className="popular-page">
+    <div className="popular-page">
       <Loading loading={loading} />
 
       <Header />

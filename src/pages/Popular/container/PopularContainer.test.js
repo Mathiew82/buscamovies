@@ -13,6 +13,7 @@ const store = createStore(storeModules)
 describe('popular container', () => {
   it('component should render correctly', () => {
     const history = createMemoryHistory()
+
     render(
       <Provider store={store}>
         <Router history={history}>

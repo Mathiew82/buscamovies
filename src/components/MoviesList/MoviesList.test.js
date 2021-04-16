@@ -40,7 +40,6 @@ describe('MoviesList Component', () => {
 
   it('should render correctly with one movie', () => {
     const history = createMemoryHistory()
-
     const moviesList = {
       movies: [
         {
@@ -77,7 +76,6 @@ describe('MoviesList Component', () => {
 
   it('should search movies by correctly calling the fetchMovies method', async () => {
     const history = createMemoryHistory()
-
     const moviesList = {
       movies: [
         {
