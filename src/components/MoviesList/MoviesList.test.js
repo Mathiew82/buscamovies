@@ -1,10 +1,13 @@
 import React from 'react'
 import { Router } from 'react-router-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 import { createMemoryHistory } from 'history'
+import { searchMovies } from '../../services/MoviesRepository'
 import MoviesList from './MoviesList'
+
+jest.mock('../../services/MoviesRepository')
 
 describe('MoviesList Component', () => {
   it('should render correctly without movies', () => {
@@ -93,15 +96,10 @@ describe('MoviesList Component', () => {
     const setCurrentPage = jest.fn()
     const setPaginationLength = jest.fn()
     window.scrollTo = jest.fn()
-    const globalFetch = (global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () =>
-          Promise.resolve({
-            results: moviesList.movies,
-            total_pages: moviesList.paginationLength,
-          }),
-      })
-    ))
+    searchMovies.mockResolvedValueOnce({
+      results: moviesList.movies,
+      total_pages: moviesList.paginationLength,
+    })
 
     await act(async () => {
       await render(
@@ -118,7 +116,9 @@ describe('MoviesList Component', () => {
       const formButton = screen.getByRole('button', { name: 'Buscar' })
       userEvent.click(formButton)
 
-      expect(globalFetch.mock.calls).toHaveLength(1)
+      await waitFor(() => {
+        expect(screen.getByText('Title Test')).toBeInTheDocument()
+      })
     })
   })
 })
