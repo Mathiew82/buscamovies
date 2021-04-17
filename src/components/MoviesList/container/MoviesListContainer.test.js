@@ -6,22 +6,22 @@ import { createMemoryHistory } from 'history'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import storeModules from '../../../store'
-import PopularContainer from './PopularContainer'
+import MoviesListContainer from './MoviesListContainer'
 
 const store = createStore(storeModules)
 
-describe('PopularContainer', () => {
+describe('MoviesListContainer', () => {
   it('mapStateToProps should return state', () => {
     const history = createMemoryHistory()
 
     render(
       <Provider store={store}>
         <Router history={history}>
-          <PopularContainer />
+          <MoviesListContainer />
         </Router>
       </Provider>
     )
 
-    expect(screen.getByText('Las Populares')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Buscar' })).toBeInTheDocument()
   })
 })

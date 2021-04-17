@@ -1,6 +1,6 @@
 import React from 'react'
 import { Router } from 'react-router-dom'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import { createMemoryHistory } from 'history'
 import { searchPopularMovies } from '../../services/MoviesRepository'

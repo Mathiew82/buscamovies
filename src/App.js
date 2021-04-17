@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import MovieDetail from './pages/MovieDetail/MovieDetail'
-import PopularConatiner from './pages/Popular/container/PopularConatiner'
+import PopularContainer from './pages/Popular/container/PopularContainer'
 import Favorites from './pages/Favorites/Favorites'
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
               )}
             />
             <Route path="/populares">
-              <PopularConatiner />
+              <PopularContainer />
             </Route>
             <Route path="/favoritos">
               <Favorites />
