@@ -22,11 +22,8 @@ function Movie(props) {
     }
   }
 
-  const {
-    isAddedToFavorites,
-    addToFavorites,
-    removeToFavorites,
-  } = useToggleFavorite(movie.id)
+  const { isAddedToFavorites, addToFavorites, removeToFavorites } =
+    useToggleFavorite(movie.id)
 
   const voteAverage = useVoteAverage(movie.vote_average)
 
