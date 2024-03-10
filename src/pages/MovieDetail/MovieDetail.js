@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 import useToggleFavorite from '../../hooks/useToggleFavorite/useToggleFavorite'
 import Loading from '../../components/Loading/Loading'
 import Header from '../../components/ui/Header/Header'
@@ -14,17 +15,15 @@ import './MovieDetail.scss'
 
 const { API_URL, API_KEY } = env
 
-function MovieDetail(props) {
+function MovieDetail() {
+  const { id: movieId } = useParams()
   const [loadingData, setLoadingData] = useState(false)
   const [movie, setMovie] = useState({})
   const [director, setDirector] = useState('')
   const [actors, setActors] = useState([])
 
-  const {
-    isAddedToFavorites,
-    addToFavorites,
-    removeToFavorites,
-  } = useToggleFavorite(props.movieId)
+  const { isAddedToFavorites, addToFavorites, removeToFavorites } =
+    useToggleFavorite(movieId)
 
   const goToBack = () => {
     window.history.back()
@@ -75,8 +74,6 @@ function MovieDetail(props) {
   }
 
   useEffect(() => {
-    const { movieId } = props
-
     setLoadingData(true)
 
     fetchMovie(movieId)
@@ -97,7 +94,7 @@ function MovieDetail(props) {
       setActors([])
       setLoadingData(false)
     }
-  }, [props])
+  }, [movieId])
 
   const movieExists = (movie) => {
     return movie && Object.keys(movie).length > 0
