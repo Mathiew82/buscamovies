@@ -20,7 +20,8 @@
     > .navbar-item {
       color: white;
       font-weight: 700;
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: transparent;
         color: var(--primary-color);
       }
