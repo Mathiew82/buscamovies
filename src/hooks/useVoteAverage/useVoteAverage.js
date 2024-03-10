@@ -3,7 +3,7 @@ const useVoteAverage = (voteAverage) => {
     return value * 10
   }
 
-  return getVoteAverageInteger(voteAverage)
+  return getVoteAverageInteger(voteAverage).toFixed(0)
 }
 
 export default useVoteAverage

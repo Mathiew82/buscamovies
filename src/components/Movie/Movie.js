@@ -22,11 +22,8 @@ function Movie(props) {
     }
   }
 
-  const {
-    isAddedToFavorites,
-    addToFavorites,
-    removeToFavorites,
-  } = useToggleFavorite(movie.id)
+  const { isAddedToFavorites, addToFavorites, removeToFavorites } =
+    useToggleFavorite(movie.id)
 
   const voteAverage = useVoteAverage(movie.vote_average)
 
@@ -64,10 +61,10 @@ function Movie(props) {
             <small>%</small>
           </span>
           <progress
-            className={`progress ${voteAverage < 15 ? 'is-danger' : ''} ${
-              voteAverage >= 15 && voteAverage < 30 ? 'is-warning' : ''
-            } ${voteAverage >= 30 && voteAverage < 50 ? 'is-info' : ''} ${
-              voteAverage >= 50 ? 'is-primary' : ''
+            className={`progress ${voteAverage < 25 ? 'is-danger' : ''} ${
+              voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
+            } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
+              voteAverage >= 75 ? 'is-primary' : ''
             }`}
             value={`${voteAverage}`}
             max="100"

@@ -4,8 +4,8 @@
     background-color: white !important;
     border-color: rgba(0, 0, 0, 0.4) !important;
     &.is-current {
-      background-color: var(--semiblack-color) !important;
-      border-color: var(--semiblack-color) !important;
+      background-color: var(--semiwhite-color) !important;
+      border-color: var(--semiwhite-color) !important;
       cursor: default;
       transition: background-color 0.2s;
     }

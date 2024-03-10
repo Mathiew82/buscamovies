@@ -1,4 +1,5 @@
 .navbar {
+  background-color: transparent;
   margin-bottom: 2rem !important;
   > .navbar-brand {
     .logo {
@@ -17,7 +18,12 @@
   }
   .navbar-start {
     > .navbar-item {
+      color: white;
       font-weight: 700;
+      &:hover {
+        background-color: transparent;
+        color: var(--primary-color);
+      }
       @media (max-width: 576px) {
         padding: 0.8rem 0;
       }
