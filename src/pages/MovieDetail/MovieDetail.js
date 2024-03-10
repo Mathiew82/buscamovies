@@ -119,7 +119,7 @@ function MovieDetail() {
             />
             <button
               type="button"
-              className="button is-danger is-outlined is-fullwidth"
+              className="button is-outlined is-fullwidth"
               data-movie={JSON.stringify(movie)}
               onClick={
                 isAddedToFavorites() ? removeToFavorites : addToFavorites
@@ -219,11 +219,7 @@ function MovieDetail() {
                 </ul>
               </div>
             )}
-            <button
-              type="button"
-              className="button is-primary mt-6"
-              onClick={goToBack}
-            >
+            <button type="button" className="button mt-6" onClick={goToBack}>
               Volver atrás
             </button>
           </div>
