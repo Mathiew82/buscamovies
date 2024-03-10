@@ -12,12 +12,8 @@ import env from '../../env'
 const { API_URL, API_KEY } = env
 
 function Popular(props) {
-  const {
-    popularMovies,
-    setMovies,
-    setCurrentPage,
-    setPaginationLength,
-  } = props
+  const { popularMovies, setMovies, setCurrentPage, setPaginationLength } =
+    props
 
   const [loading, setLoading] = useState(false)
   const [popularMoviesAdded, setPopularMoviesAdded] = useState(false)
