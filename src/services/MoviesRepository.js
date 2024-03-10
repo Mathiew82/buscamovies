@@ -1,15 +1,19 @@
-export const searchMovie = (url) => {
-  return fetch(url).then((response) => response.json())
+export const searchMovie = async (url) => {
+  const response = await fetch(url).then((response) => response.json())
+  return response
 }
 
-export const searchMovies = (url) => {
-  return fetch(url).then((response) => response.json())
+export const searchMovies = async (url) => {
+  const response = await fetch(url).then((response) => response.json())
+  return response
 }
 
-export const searchPopularMovies = (url) => {
-  return fetch(url).then((response) => response.json())
+export const searchPopularMovies = async (url) => {
+  const response = await fetch(url).then((response) => response.json())
+  return response
 }
 
-export const searchCredits = (url) => {
-  return fetch(url).then((response) => response.json())
+export const searchCredits = async (url) => {
+  const response = await fetch(url).then((response) => response.json())
+  return response
 }
