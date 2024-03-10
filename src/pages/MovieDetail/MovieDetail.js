@@ -144,74 +144,74 @@ function MovieDetail() {
                 value={`${voteAverage}`}
                 max="100"
               />
-              <div className="tac">
+              <span className="is-block tac">
                 <Label>Votos totales: {movie.vote_count}</Label>
-              </div>
+              </span>
             </p>
           </div>
           <div className="col xs-12 sm-12 md-8 lg-8 more-detail-page__right">
             <Title>{movie.title}</Title>
             <Subtitle>{movie.tagline}</Subtitle>
 
-            <p>{movie.overview}</p>
-            <p>
+            <div className="p">{movie.overview}</div>
+            <div className="p">
               <Label>Director:</Label> {director}
-            </p>
-            <p>
+            </div>
+            <div className="p">
               <Label>Fecha de lanzamiento:</Label> {movie.release_date}
-            </p>
-            <p>
+            </div>
+            <div className="p">
               <Label>Duración:</Label>{' '}
               {movie.runtime === 0
                 ? 'Sin información'
                 : `${movie.runtime} minutos`}
-            </p>
-            <p>
+            </div>
+            <div className="p">
               <Label>Título original:</Label> {movie.original_title}
-            </p>
-            <p>
+            </div>
+            <div className="p">
               <Label>Ingresos:</Label>{' '}
               {movie.revenue === 0 ? 'Sin información' : formattedRevenue}
-            </p>
+            </div>
             {actors.length > 0 && (
-              <p>
+              <div className="p">
                 <Label>Actores principales:</Label>
                 <ul>
                   {actors.map((actor) => (
                     <li key={actor.name}>{actor.name}</li>
                   ))}
                 </ul>
-              </p>
+              </div>
             )}
             {movie.production_countries.length > 0 && (
-              <p>
+              <div className="p">
                 <Label>Producida en:</Label>
                 <ul>
                   {movie.production_countries.map((country) => (
                     <li key={country.name}>{country.name}</li>
                   ))}
                 </ul>
-              </p>
+              </div>
             )}
             {movie.genres.length > 0 && (
-              <p>
+              <div className="p">
                 <Label>Géneros:</Label>
                 <ul>
                   {movie.genres.map((genre) => (
                     <li key={genre.name}>{genre.name}</li>
                   ))}
                 </ul>
-              </p>
+              </div>
             )}
             {movie.production_companies.length > 0 && (
-              <p>
+              <div className="p">
                 <Label>Compañías de producción:</Label>
                 <ul>
                   {movie.production_companies.map((company) => (
                     <li key={company.name}>{company.name}</li>
                   ))}
                 </ul>
-              </p>
+              </div>
             )}
             <button type="button" className="button mt-2" onClick={goToBack}>
               Volver atrás
