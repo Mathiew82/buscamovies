@@ -1,13 +1,27 @@
 .search-wrapper {
   input {
-    border-top: 2px solid rgba(0, 0, 0, 0.4);
+    background-color: rgb(34, 16, 58);
+    border-top: 2px solid rgb(104, 86, 128);
     border-right: none;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
-    border-left: 2px solid rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid rgb(104, 86, 128);
+    border-left: 2px solid rgb(104, 86, 128);
     border-radius: 8px 0 0 8px;
+    color: white;
     padding: 7px 25px;
+    &::placeholder {
+      color: rgb(124, 106, 148);
+      opacity: 1;
+    }
+    &:hover {
+      border-color: rgb(154, 136, 178);
+    }
   }
   .button {
+    background-color: rgb(104, 86, 128) !important;
     border-radius: 8px;
+    &:hover {
+      background-color: var(--secondary-color) !important;
+      color: rgb(34, 16, 58);
+    }
   }
 }
