@@ -100,8 +100,10 @@ function MovieDetail() {
     return movie && Object.keys(movie).length > 0
   }
 
-  const voteAverage = useVoteAverage(movieExists() ? movie.vote_average : 0)
-  const formattedRevenue = formatRevenue(movieExists() ? movie.revenue : 0)
+  const voteAverage = useVoteAverage(
+    movieExists(movie) ? movie.vote_average : 0
+  )
+  const formattedRevenue = formatRevenue(movieExists(movie) ? movie.revenue : 0)
 
   return (
     <div className="more-detail-page">
@@ -134,10 +136,10 @@ function MovieDetail() {
                 {voteAverage} de 100 de valoración
               </span>
               <progress
-                className={`progress ${voteAverage < 15 ? 'is-danger' : ''} ${
-                  voteAverage >= 15 && voteAverage < 30 ? 'is-warning' : ''
-                } ${voteAverage >= 30 && voteAverage < 50 ? 'is-info' : ''} ${
-                  voteAverage >= 50 ? 'is-primary' : ''
+                className={`progress ${voteAverage < 25 ? 'is-danger' : ''} ${
+                  voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
+                } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
+                  voteAverage >= 75 ? 'is-primary' : ''
                 }`}
                 value={`${voteAverage}`}
                 max="100"
