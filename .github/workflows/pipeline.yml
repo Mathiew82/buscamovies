@@ -24,13 +24,5 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
-      - name: Run Prettier
-        run: yarn format
-
-      - name: Commit Changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Apply Prettier Changes
-
       - name: Test
         run: yarn test
