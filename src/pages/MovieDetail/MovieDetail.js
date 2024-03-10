@@ -172,54 +172,46 @@ function MovieDetail() {
               {movie.revenue === 0 ? 'Sin información' : formattedRevenue}
             </p>
             {actors.length > 0 && (
-              <div>
-                <p>
-                  <Label>Actores principales:</Label>
-                </p>
+              <p>
+                <Label>Actores principales:</Label>
                 <ul>
                   {actors.map((actor) => (
                     <li key={actor.name}>{actor.name}</li>
                   ))}
                 </ul>
-              </div>
+              </p>
             )}
             {movie.production_countries.length > 0 && (
-              <div>
-                <p>
-                  <Label>Producida en:</Label>
-                </p>
+              <p>
+                <Label>Producida en:</Label>
                 <ul>
                   {movie.production_countries.map((country) => (
                     <li key={country.name}>{country.name}</li>
                   ))}
                 </ul>
-              </div>
+              </p>
             )}
             {movie.genres.length > 0 && (
-              <div>
-                <p>
-                  <Label>Géneros:</Label>
-                </p>
+              <p>
+                <Label>Géneros:</Label>
                 <ul>
                   {movie.genres.map((genre) => (
                     <li key={genre.name}>{genre.name}</li>
                   ))}
                 </ul>
-              </div>
+              </p>
             )}
             {movie.production_companies.length > 0 && (
-              <div>
-                <p>
-                  <Label>Compañías de producción:</Label>
-                </p>
+              <p>
+                <Label>Compañías de producción:</Label>
                 <ul>
                   {movie.production_companies.map((company) => (
                     <li key={company.name}>{company.name}</li>
                   ))}
                 </ul>
-              </div>
+              </p>
             )}
-            <button type="button" className="button mt-6" onClick={goToBack}>
+            <button type="button" className="button mt-2" onClick={goToBack}>
               Volver atrás
             </button>
           </div>

@@ -1,4 +1,20 @@
 .more-detail-page {
+  p {
+    margin-bottom: 1.5rem !important;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    > li {
+      margin-right: 1.5rem;
+      margin-bottom: 0.5rem;
+      white-space: nowrap;
+    }
+  }
   .button {
     background-color: var(--primary-color);
     border: 1px solid var(--primary-color);
