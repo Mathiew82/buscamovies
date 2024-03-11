@@ -5,7 +5,7 @@
     border-color: rgb(104, 86, 128) !important;
     color: white;
     &.is-current {
-      background-color: var(--secondary-color) !important;
+      background-color: white !important;
       border-color: rgba(0, 0, 0, 0.4) !important;
       color: var(--bg-color) !important;
       cursor: default;
@@ -13,8 +13,8 @@
     }
     @media (min-width: 769px) {
       &:hover {
-        background-color: white !important;
-        border-color: white !important;
+        background-color: var(--secondary-color) !important;
+        border-color: var(--secondary-color) !important;
         color: var(--bg-color) !important;
         cursor: pointer;
       }
