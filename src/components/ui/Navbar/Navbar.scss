@@ -12,11 +12,13 @@
       margin-top: 16px;
       span {
         width: 20px !important;
-        height: 3px !important;
+        height: 2px !important;
       }
     }
   }
   .navbar-start {
+    background-color: rgb(24, 6, 48);
+    border-radius: 10px;
     > .navbar-item {
       color: white;
       font-weight: 700;
@@ -26,12 +28,13 @@
         color: var(--primary-color);
       }
       @media (max-width: 576px) {
-        padding: 0.8rem 0;
+        padding: 1rem;
       }
     }
   }
   @media screen and (max-width: 1023px) {
     > .navbar-menu {
+      background-color: var(--bg-color) !important;
       box-shadow: none !important;
       padding: 0 !important;
     }
