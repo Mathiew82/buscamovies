@@ -17,8 +17,9 @@
     }
   }
   .navbar-start {
-    background-color: rgb(24, 6, 48);
+    background-color: transparent;
     border-radius: 10px;
+    padding: 0;
     > .navbar-item {
       color: white;
       font-weight: 700;
@@ -30,6 +31,10 @@
       @media (max-width: 576px) {
         padding: 1rem;
       }
+    }
+    @media (max-width: 1023px) {
+      background-color: rgb(24, 6, 48) !important;
+      padding: 0.5rem 0;
     }
   }
   @media screen and (max-width: 1023px) {
