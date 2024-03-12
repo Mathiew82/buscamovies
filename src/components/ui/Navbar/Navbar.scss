@@ -2,8 +2,16 @@
   background-color: transparent;
   margin-bottom: 2rem !important;
   > .navbar-brand {
-    .logo {
-      height: 22px;
+    .navbar-item {
+      padding: 0 2rem 0 0;
+      img {
+        max-height: 100%;
+      }
+      .logo {
+        width: 180px;
+        height: 38px;
+        margin-top: 2px;
+      }
     }
     > .navbar-burger {
       width: 24px !important;
