@@ -19,12 +19,12 @@
     background-color: var(--primary-color);
     border: 1px solid var(--primary-color);
     border-radius: 10px;
-    color: white;
+    color: black;
     margin-top: 1rem;
     &:hover {
       background-color: var(--secondary-color);
       border-color: var(--secondary-color);
-      color: var(--bg-color);
+      color: black;
     }
   }
   .more-detail-page__left {
