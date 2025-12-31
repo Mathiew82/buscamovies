@@ -1,3 +1,5 @@
+@use 'src/sass/variables';
+
 .more-detail-page {
   .p {
     margin-bottom: 1.5rem !important;
@@ -16,15 +18,14 @@
     }
   }
   .button {
-    background-color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    background: linear-gradient(45deg, #6ca4f6 0%, #977af3 50%, #cf6ce3 100%);
+    border: none;
     border-radius: 10px;
-    color: black;
+    color: white;
+    font-size: 18px;
     margin-top: 1rem;
     &:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-      color: black;
+      filter: brightness(1.08);
     }
   }
   .more-detail-page__left {
@@ -43,6 +44,38 @@
       > .grey-label {
         font-weight: 400;
       }
+    }
+    .progress {
+      margin-bottom: 5px;
+      appearance: none;
+      -webkit-appearance: none;
+      &::-webkit-progress-bar {
+        background-color: rgba(200, 200, 225, 0.2);
+      }
+      &.is-danger {
+        &::-webkit-progress-value {
+          background-color: variables.$progress-value-red;
+        }
+      }
+      &.is-warning {
+        &::-webkit-progress-value {
+          background-color: variables.$progress-value-orange;
+        }
+      }
+      &.is-info {
+        &::-webkit-progress-value {
+          background-color: variables.$progress-value-blue;
+        }
+      }
+      &.is-primary {
+        &::-webkit-progress-value {
+          background-color: variables.$progress-value-green;
+        }
+      }
+    }
+    .total-votes {
+      color: variables.$comments-color;
+      font-size: 14px;
     }
   }
 

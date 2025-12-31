@@ -14,7 +14,7 @@ function Navbar() {
     >
       <div className="navbar-brand">
         <Link to={'/'} className="navbar-item pl0">
-          <img src="./logo.png" alt="BuscaMovies App" class="logo" />
+          <img src="/logo.png" alt="BuscaMovies App" class="logo" />
         </Link>
 
         <a

@@ -105,22 +105,22 @@ li {
         }
         &.is-danger {
           .ring {
-            stroke: #ef4444;
+            stroke: variables.$progress-value-red;
           }
         }
         &.is-warning {
           .ring {
-            stroke: #f59e0b;
+            stroke: variables.$progress-value-orange;
           }
         }
         &.is-info {
           .ring {
-            stroke: #3b82f6;
+            stroke: variables.$progress-value-blue;
           }
         }
         &.is-primary {
           .ring {
-            stroke: #22c55e;
+            stroke: variables.$progress-value-green;
           }
         }
         .ring {

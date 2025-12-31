@@ -144,8 +144,8 @@ function MovieDetail() {
                 value={`${voteAverage}`}
                 max="100"
               />
-              <span className="is-block tac">
-                <Label>Votos totales: {movie.vote_count}</Label>
+              <span className="total-votes is-block tac">
+                Votos totales: {movie.vote_count}
               </span>
             </p>
           </div>

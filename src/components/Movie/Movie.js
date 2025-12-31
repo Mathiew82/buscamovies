@@ -57,15 +57,6 @@ function Movie(props) {
             style={{ display: !loading && 'none' }}
           />
           <span className="movies-list-vote-average-value">{voteAverage}</span>
-          {/* <progress
-            className={`progress ${voteAverage < 25 ? 'is-danger' : ''} ${
-              voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
-            } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
-              voteAverage >= 75 ? 'is-primary' : ''
-            }`}
-            value={`${voteAverage}`}
-            max="100"
-          />*/}
           <span
             className={`rating-ring ${voteAverage < 25 ? 'is-danger' : ''} ${
               voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
