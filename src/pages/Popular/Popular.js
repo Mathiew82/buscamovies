@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import Loading from '../../components/Loading/Loading'
 import Header from '../../components/ui/Header/Header'

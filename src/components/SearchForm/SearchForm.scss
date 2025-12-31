@@ -1,13 +1,17 @@
+@use 'src/sass/variables';
+
 .search-wrapper {
   input {
+    height: 50px;
+    line-height: 50px;
     background-color: rgb(26, 26, 40);
     border-top: 2px solid rgb(126, 126, 150);
     border-right: none;
     border-bottom: 2px solid rgb(126, 126, 150);
     border-left: 2px solid rgb(126, 126, 150);
-    border-radius: 8px 0 0 8px;
-    color: white;
-    padding: 7px 25px;
+    border-radius: 25px 0 0 25px;
+    color: variables.$text-color;
+    padding: 0 25px;
     &::placeholder {
       color: rgb(156, 156, 180);
       opacity: 1;
@@ -17,13 +21,17 @@
     }
   }
   .button {
-    background-color: rgb(94, 195, 255) !important;
-    border-radius: 8px;
-    color: black;
-    transition: all 0s;
+    height: 50px;
+    background: linear-gradient(45deg, #6ca4f6 0%, #977af3 50%, #cf6ce3 100%);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 30px;
+    transition: filter 0.15s ease;
     &:hover {
-      background-color: var(--secondary-color) !important;
-      color: black;
+      filter: brightness(1.08);
     }
   }
 }

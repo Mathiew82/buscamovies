@@ -1,5 +1,7 @@
+@use 'src/sass/variables';
+
 .subtitle {
-  color: white;
+  color: variables.$text-color;
   font-size: 18px;
   font-weight: 700;
   margin-top: 0 !important;

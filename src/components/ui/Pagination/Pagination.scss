@@ -1,11 +1,13 @@
+@use 'src/sass/variables';
+
 .pagination {
   margin: 2rem 0;
   .pagination-link {
     background-color: var(--bg-color) !important;
     border-color: rgb(96, 96, 110) !important;
-    color: white;
+    color: variables.$text-color;
     &.is-current {
-      background-color: white !important;
+      background-color: variables.$text-color !important;
       border-color: rgba(0, 0, 0, 0.4) !important;
       color: var(--bg-color) !important;
       cursor: default;

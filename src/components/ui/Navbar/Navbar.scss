@@ -1,3 +1,5 @@
+@use 'src/sass/variables';
+
 .navbar {
   background-color: transparent;
   margin-bottom: 2rem !important;
@@ -28,7 +30,7 @@
     border-radius: 10px;
     padding: 0;
     > .navbar-item {
-      color: white;
+      color: variables.$text-color;
       font-size: 18px;
       &:hover,
       &:focus {

@@ -1,3 +1,5 @@
+@use 'src/sass/variables';
+
 /** Theme */
 * {
   box-sizing: border-box;
@@ -11,7 +13,7 @@
 
 body {
   background-color: var(--bg-color);
-  color: white !important;
+  color: variables.$text-color !important;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -21,7 +23,7 @@ body {
 }
 
 a {
-  color: white !important;
+  color: variables.$text-color !important;
   &:hover {
     color: var(--primary-color) !important;
   }

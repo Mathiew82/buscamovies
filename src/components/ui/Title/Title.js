@@ -1,4 +1,3 @@
-import React from 'react'
 import './Title.scss'
 
 function Title({ children }) {

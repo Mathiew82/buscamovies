@@ -1,4 +1,3 @@
-import React from 'react'
 import './Subtitle.scss'
 
 function Subtitle({ children }) {

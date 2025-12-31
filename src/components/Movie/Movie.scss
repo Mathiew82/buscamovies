@@ -1,3 +1,5 @@
+@use 'src/sass/variables';
+
 li {
   margin-bottom: 1rem;
   position: relative;
@@ -20,7 +22,7 @@ li {
         line-height: 36px;
         background-color: rgba(0, 0, 0, 0.9);
         border-radius: 4px 0 0 4px;
-        color: white;
+        color: variables.$text-color;
         content: 'Favorito';
         font-family: Arial, Helvetica, sans-serif;
         font-size: 13px;
@@ -68,7 +70,7 @@ li {
       position: relative;
       > .movies-list-vote-average-value {
         width: 22px;
-        color: white;
+        color: variables.$text-color;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -146,7 +148,7 @@ li {
     > .movies-list__title {
       height: auto;
       line-height: 1.2;
-      color: white;
+      color: variables.$text-color;
       display: block;
       display: -webkit-box;
       font-size: 14px;

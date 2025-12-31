@@ -1,5 +1,7 @@
+@use 'src/sass/variables';
+
 footer {
-  color: var(--secondary-color);
+  color: variables.$text-color;
   font-size: 14px;
   margin-top: 5rem;
   text-align: center;

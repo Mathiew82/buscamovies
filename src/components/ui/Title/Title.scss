@@ -1,5 +1,7 @@
+@use 'src/sass/variables';
+
 .title {
-  color: white;
+  color: variables.$text-color;
   font-size: 24px !important;
   margin-bottom: 1rem !important;
 }

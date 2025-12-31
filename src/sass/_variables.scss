@@ -1,8 +1,20 @@
 /** Variables */
+$bg-color: #242432;
+$primary-color: #77b5ff;
+$secondary-color: #f1f0f2;
+$semiwhite-color: #eee;
+$grey-color: #bbb;
+$pink-color: #cf6ce3;
+$violet-color: #977af3;
+$text-color: #d0d4e0;
+$comments-color: #89c;
+
 :root {
-  --bg-color: #242432;
-  --primary-color: #67a5f8;
-  --secondary-color: #f1f0f2;
-  --semiwhite-color: #eee;
-  --grey-color: #bbb;
+  --bg-color: #{$bg-color};
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --semiwhite-color: #{$semiwhite-color};
+  --grey-color: #{$grey-color};
+  --pink-color: #{$pink-color};
+  --violet-color: #{$violet-color};
 }
