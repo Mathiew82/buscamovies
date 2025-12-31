@@ -23,6 +23,7 @@
     border-radius: 10px;
     color: white;
     font-size: 18px;
+    font-weight: 600;
     margin-top: 1rem;
     &:hover {
       filter: brightness(1.08);
@@ -82,6 +83,20 @@
   .more-detail-page__right {
     padding-right: 0;
     padding-left: 2rem;
+  }
+
+  .back-button {
+    background: rgba(200, 200, 225, 0.2);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 1rem;
+    padding: 10px 20px;
+    &:hover {
+      background: rgba(200, 200, 225, 0.3);
+    }
   }
 
   @media (max-width: 768px) {

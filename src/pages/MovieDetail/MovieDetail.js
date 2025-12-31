@@ -213,7 +213,11 @@ function MovieDetail() {
                 </ul>
               </div>
             )}
-            <button type="button" className="button mt-2" onClick={goToBack}>
+            <button
+              type="button"
+              className="back-button mt-2"
+              onClick={goToBack}
+            >
               Volver atrás
             </button>
           </div>
