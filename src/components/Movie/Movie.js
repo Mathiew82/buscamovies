@@ -56,11 +56,8 @@ function Movie(props) {
             className="loading is-movie is-grey"
             style={{ display: !loading && 'none' }}
           />
-          <span className="movies-list-vote-average-value">
-            {voteAverage}
-            <small>%</small>
-          </span>
-          <progress
+          <span className="movies-list-vote-average-value">{voteAverage}</span>
+          {/* <progress
             className={`progress ${voteAverage < 25 ? 'is-danger' : ''} ${
               voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
             } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
@@ -68,7 +65,26 @@ function Movie(props) {
             }`}
             value={`${voteAverage}`}
             max="100"
-          />
+          />*/}
+          <span
+            className={`rating-ring ${voteAverage < 25 ? 'is-danger' : ''} ${
+              voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
+            } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
+              voteAverage >= 75 ? 'is-primary' : ''
+            }`}
+            aria-hidden="true"
+          >
+            <svg viewBox="0 0 40 40">
+              <circle className="ring-bg" cx="20" cy="20" r="16" />
+              <circle
+                className="ring"
+                cx="20"
+                cy="20"
+                r="16"
+                style={{ strokeDashoffset: 100 - voteAverage }}
+              />
+            </svg>
+          </span>
         </span>
         <span className="movies-list__title" title={movie.title}>
           {movie.title}
