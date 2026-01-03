@@ -4,82 +4,85 @@ import './Pagination.scss'
 function Pagination(props) {
   const { currentPage, paginationLength, clickPage } = props
 
-  const doNotShowFirstPage = () => {
-    return currentPage === 1 || currentPage === 2
-  }
+  const MAX_PAGES = 500
+  const limitedPaginationLength = Math.min(paginationLength ?? 0, MAX_PAGES)
 
-  const doNotShowPrevPage = () => {
-    return currentPage === 1
-  }
+  const doNotShowFirstPage = () => currentPage === 1 || currentPage === 2
+  const doNotShowPrevPage = () => currentPage === 1
+  const doNotShowNextPage = () => currentPage + 1 > limitedPaginationLength
+  const doNotShowLastPage = () =>
+    currentPage === limitedPaginationLength ||
+    currentPage === limitedPaginationLength - 1
 
-  const doNotShowNextPage = () => {
-    return currentPage + 1 > paginationLength
-  }
-
-  const doNotShowLastPage = () => {
-    return (
-      currentPage === paginationLength || currentPage === paginationLength - 1
-    )
+  const safeClickPage = (page) => {
+    const safePage = Math.max(1, Math.min(page, limitedPaginationLength))
+    clickPage(safePage)
   }
 
   return (
     <nav
-      style={{ display: paginationLength < 2 && 'none' }}
+      style={{ display: limitedPaginationLength < 2 ? 'none' : undefined }}
       className="pagination is-centered"
       role="navigation"
       aria-label="pagination"
     >
       <ul className="pagination-list">
-        <li style={{ display: doNotShowFirstPage() && 'none' }}>
+        <li style={{ display: doNotShowFirstPage() ? 'none' : undefined }}>
           <button
             type="button"
             className="pagination-link"
-            onClick={() => clickPage(1)}
+            onClick={() => safeClickPage(1)}
           >
             1
           </button>
         </li>
-        <li style={{ display: doNotShowFirstPage() && 'none' }}>
+
+        <li style={{ display: doNotShowFirstPage() ? 'none' : undefined }}>
           <span className="pagination-ellipsis">&hellip;</span>
         </li>
-        <li style={{ display: doNotShowPrevPage() && 'none' }}>
+
+        <li style={{ display: doNotShowPrevPage() ? 'none' : undefined }}>
           <button
             type="button"
             className="pagination-link"
-            onClick={() => clickPage(currentPage - 1)}
+            onClick={() => safeClickPage(currentPage - 1)}
           >
             {currentPage - 1}
           </button>
         </li>
+
         <li>
           <button
             type="button"
             className="pagination-link is-current"
             aria-current="page"
-            onClick={() => clickPage(currentPage)}
+            onClick={() => safeClickPage(currentPage)}
           >
             {currentPage}
           </button>
         </li>
-        <li style={{ display: doNotShowNextPage() && 'none' }}>
+
+        <li style={{ display: doNotShowNextPage() ? 'none' : undefined }}>
           <button
             type="button"
             className="pagination-link"
-            onClick={() => clickPage(currentPage + 1)}
+            onClick={() => safeClickPage(currentPage + 1)}
           >
             {currentPage + 1}
           </button>
         </li>
-        <li style={{ display: doNotShowLastPage() && 'none' }}>
+
+        <li style={{ display: doNotShowLastPage() ? 'none' : undefined }}>
           <span className="pagination-ellipsis">&hellip;</span>
         </li>
-        <li style={{ display: doNotShowLastPage() && 'none' }}>
+
+        <li style={{ display: doNotShowLastPage() ? 'none' : undefined }}>
           <button
             type="button"
             className="pagination-link"
-            onClick={() => clickPage(paginationLength)}
+            onClick={() => safeClickPage(limitedPaginationLength)}
           >
-            {paginationLength}
+            {limitedPaginationLength}
           </button>
         </li>
       </ul>
