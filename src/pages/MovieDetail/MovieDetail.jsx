@@ -119,10 +119,13 @@ function MovieDetail() {
         <div className="row">
           <div className="col xs-12 sm-12 md-4 lg-4 more-detail-page__left">
             <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  : `/images/default-image.png`
+              }
               alt={movie.title}
               className="more-detail-page-img"
-              style={{ display: !movie.poster_path && 'none' }}
             />
             <button
               type="button"
