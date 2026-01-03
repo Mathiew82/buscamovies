@@ -1,9 +1,15 @@
-@use "@/sass/variables";
+@use '@/sass/variables';
 
 .no-movie-results {
   color: variables.$comments-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 2rem 0 0 0;
   text-align: center;
+  > svg {
+    margin-right: 5px;
+  }
 }
 
 .movies-list {
