@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react'
-import Subtitle from './Subtitle'
+import { describe, it, expect } from 'vitest'
+import Label from './Label'
 
 /** Variables for testing */
 const text = 'Test'
 
-describe('Subtitle Component', () => {
+describe('Label Component', () => {
   it('should render correctly', () => {
-    render(<Subtitle>{text}</Subtitle>)
+    render(<Label>{text}</Label>)
 
     expect(screen.getByText(text)).toBeInTheDocument()
   })

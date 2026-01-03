@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react'
-import Label from './Label'
+import { describe, it, expect } from 'vitest'
+import Title from './Title'
 
 /** Variables for testing */
 const text = 'Test'
 
-describe('Label Component', () => {
+describe('Title Component', () => {
   it('should render correctly', () => {
-    render(<Label>{text}</Label>)
+    render(<Title>{text}</Title>)
 
     expect(screen.getByText(text)).toBeInTheDocument()
   })
