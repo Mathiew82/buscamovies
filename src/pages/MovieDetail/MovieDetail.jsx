@@ -187,18 +187,19 @@ function MovieDetail() {
                     )
                   </span>
                 </Label>
-                {director?.popularity && (
-                  <div className="director-popularity">
-                    {[...Array(10)].map((_, index) => (
-                      <span
-                        key={index}
-                        className={`director-popularity__part ${
-                          index < director.popularity.toFixed(0) ? 'active' : ''
-                        }`}
-                      />
-                    ))}
-                  </div>
-                )}
+                {director?.popularity !== undefined &&
+                  director?.popularity !== null && (
+                    <div className="director-popularity">
+                      {[...Array(10)].map((_, index) => (
+                        <span
+                          key={index}
+                          className={`director-popularity__part ${
+                            index < director.popularity ? 'active' : ''
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
               </div>
             </div>
             <div className="p">
