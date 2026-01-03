@@ -1,31 +1,31 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import useToggleFavorite from "../../hooks/useToggleFavorite/useToggleFavorite";
-import useVoteAverage from "../../hooks/useVoteAverage/useVoteAverage";
-import "./Movie.scss";
+import { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import useToggleFavorite from '../../hooks/useToggleFavorite/useToggleFavorite'
+import useVoteAverage from '../../hooks/useVoteAverage/useVoteAverage'
+import './Movie.scss'
 
 function Movie(props) {
-  const { movie } = props;
+  const { movie } = props
 
-  const [loading, setLoading] = useState(false);
-  const [imgProcessed, setImgProcessed] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [imgProcessed, setImgProcessed] = useState(false)
 
   if (movie.poster_path && !imgProcessed) {
-    setImgProcessed(true);
-    setLoading(true);
+    setImgProcessed(true)
+    setLoading(true)
 
-    const img = new Image();
-    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    const img = new Image()
+    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     img.onload = () => {
-      setLoading(false);
-    };
+      setLoading(false)
+    }
   }
 
   const { isAddedToFavorites, addToFavorites, removeToFavorites } =
-    useToggleFavorite(movie.id);
+    useToggleFavorite(movie.id)
 
-  const voteAverage = useVoteAverage(movie.vote_average);
+  const voteAverage = useVoteAverage(movie.vote_average)
 
   return (
     <li>
@@ -74,22 +74,22 @@ function Movie(props) {
           className="movies-list__img"
           style={{
             backgroundImage: loading
-              ? ""
+              ? ''
               : movie.poster_path
                 ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
-                : `url(${import.meta.env.VITE_PUBLIC_URL}/default-movie.png)`,
+                : `url(${import.meta.env.VITE_PUBLIC_URL}/images/default-image.png)`,
           }}
         >
           <span
             className="loading is-movie is-grey"
-            style={{ display: !loading && "none" }}
+            style={{ display: !loading && 'none' }}
           />
           <span className="movies-list-vote-average-value">{voteAverage}</span>
           <span
-            className={`rating-ring ${voteAverage < 25 ? "is-danger" : ""} ${
-              voteAverage >= 25 && voteAverage < 50 ? "is-warning" : ""
-            } ${voteAverage >= 50 && voteAverage < 75 ? "is-info" : ""} ${
-              voteAverage >= 75 ? "is-primary" : ""
+            className={`rating-ring ${voteAverage < 25 ? 'is-danger' : ''} ${
+              voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
+            } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
+              voteAverage >= 75 ? 'is-primary' : ''
             }`}
             aria-hidden="true"
           >
@@ -110,11 +110,11 @@ function Movie(props) {
         </span>
       </Link>
     </li>
-  );
+  )
 }
 
 Movie.propTypes = {
   movie: PropTypes.object,
-};
+}
 
-export default Movie;
+export default Movie
