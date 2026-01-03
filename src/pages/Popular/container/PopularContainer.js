@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
-import { actionsPopularMovies } from '../../../store/popularMovies/actions'
-import Popular from '../Popular'
+import { connect } from "react-redux";
+import { actionsPopularMovies } from "@/store/popularMovies/actions";
+import Popular from "../Popular";
 
 const mapStateToProps = (state) => {
-  return state
-}
+  return state;
+};
 
-const mapDispatchToProps = actionsPopularMovies
+const mapDispatchToProps = actionsPopularMovies;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Popular)
+export default connect(mapStateToProps, mapDispatchToProps)(Popular);

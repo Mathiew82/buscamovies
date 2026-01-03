@@ -1,5 +1,5 @@
-@import 'variables.scss';
-@import 'utils.scss';
-@import 'animations.scss';
-@import 'layout.scss';
-@import 'theme.scss';
+@use "variables";
+@use "utils";
+@use "animations";
+@use "layout";
+@use "theme";

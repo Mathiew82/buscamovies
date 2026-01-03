@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
-import { actionsMoviesList } from '../../../store/moviesList/actions'
-import MoviesList from '../MoviesList'
+import { connect } from "react-redux";
+import { actionsMoviesList } from "@/store/moviesList/actions";
+import MoviesList from "../MoviesList";
 
 const mapStateToProps = (state) => {
-  return state
-}
+  return state;
+};
 
-const mapDispatchToProps = actionsMoviesList
+const mapDispatchToProps = actionsMoviesList;
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoviesList)
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

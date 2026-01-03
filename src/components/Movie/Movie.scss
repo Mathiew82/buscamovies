@@ -1,4 +1,4 @@
-@use 'src/sass/variables';
+@use "@/sass/variables";
 
 li {
   margin-bottom: 1rem;
@@ -23,7 +23,7 @@ li {
         background-color: rgba(0, 0, 0, 0.9);
         border-radius: 4px 0 0 4px;
         color: variables.$text-color;
-        content: 'Favorito';
+        content: "Favorito";
         font-family: Arial, Helvetica, sans-serif;
         font-size: 13px;
         font-weight: 700;
@@ -45,9 +45,9 @@ li {
       left: 0;
       z-index: 1;
     }
-    > .icon {
-      color: #eee;
-      font-size: 20px;
+    > svg {
+      width: 22px;
+      height: 22px;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -138,7 +138,7 @@ li {
         height: 38px;
         background-color: rgba(0, 0, 0, 0.7);
         border-radius: 25px;
-        content: '';
+        content: "";
         position: absolute;
         bottom: 5px;
         left: 5px;

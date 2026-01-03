@@ -1,5 +1,5 @@
 # BuscaMovies
 
-[http://buscamovies.surge.sh/](http://buscamovies.surge.sh/)
+[https://buscamovies.vercel.app](https://buscamovies.vercel.app)
 
-Proyecto de búsqueda de películas desarrollado en React JS y alimentado por la api de TMDb.
+Movie search project developed in React JS and powered by the TMDb API.
