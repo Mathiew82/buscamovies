@@ -55,7 +55,7 @@ function MovieDetail() {
 
   const getDirector = (arr) => {
     const onlyDirectors = arr.find((item) => item.job === 'Director')
-    return onlyDirectors ? onlyDirectors.name : 'Sin información'
+    return onlyDirectors ? onlyDirectors : null
   }
 
   const fetchCredits = (movieId) => {
@@ -162,8 +162,44 @@ function MovieDetail() {
             <Subtitle>{movie.tagline}</Subtitle>
 
             <div className="p">{movie.overview}</div>
-            <div className="p">
-              <Label>Director:</Label> {director}
+            <div className="director-wrapper">
+              <div className="director-left-content">
+                <div className="director-photo">
+                  <img
+                    src={
+                      director.profile_path
+                        ? `https://image.tmdb.org/t/p/w300_and_h450_face/${director.profile_path}`
+                        : '/images/default-image.png'
+                    }
+                  />
+                </div>
+              </div>
+              <div className="director-right-content">
+                <Label>
+                  Director:
+                  <span className="fwn ml-10px">{director.name || '-'}</span>
+                </Label>
+                <Label className="mt-10px">
+                  Popularidad:
+                  <span className="fwn ml-10px">
+                    (
+                    {director.popularity ? director.popularity.toFixed(1) : '-'}
+                    )
+                  </span>
+                </Label>
+                {director?.popularity && (
+                  <div className="director-popularity">
+                    {[...Array(10)].map((_, index) => (
+                      <span
+                        key={index}
+                        className={`director-popularity__part ${
+                          index < director.popularity.toFixed(0) ? 'active' : ''
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="p">
               <Label>Fecha de lanzamiento:</Label> {movie.release_date}

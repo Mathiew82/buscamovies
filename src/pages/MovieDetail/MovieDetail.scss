@@ -1,4 +1,4 @@
-@use "@/sass/variables";
+@use '@/sass/variables';
 
 .more-detail-page {
   .p {
@@ -83,6 +83,36 @@
   .more-detail-page__right {
     padding-right: 0;
     padding-left: 2rem;
+  }
+
+  .director-wrapper {
+    width: 100%;
+    display: flex;
+    margin-bottom: 25px;
+    > .director-right-content {
+      margin-left: 1.5rem;
+    }
+    .director-photo {
+      > img {
+        height: 100px;
+        border: 2px solid rgba(155, 200, 255, 0.3);
+        border-radius: 8px;
+      }
+    }
+    .director-popularity {
+      width: 100%;
+      display: flex;
+      .director-popularity__part {
+        width: 12px;
+        height: 16px;
+        background-color: rgba(255, 255, 255, 0.2);
+        display: inline-block;
+        margin-right: 2px;
+        &.active {
+          background-color: variables.$violet-color;
+        }
+      }
+    }
   }
 
   .back-button {
