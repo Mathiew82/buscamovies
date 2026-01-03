@@ -1,70 +1,69 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import Loading from "../../components/Loading/Loading";
-import Header from "../../components/ui/Header/Header";
-import Footer from "../../components/ui/Footer/Footer";
-import Title from "../../components/ui/Title/Title";
-import Movie from "../../components/Movie/Movie";
-import Pagination from "../../components/ui/Pagination/Pagination";
-import { searchPopularMovies } from "../../services/MoviesRepository";
-import env from "../../env";
+import { useState } from 'react'
+import PropTypes from 'prop-types'
+import Loading from '../../components/Loading/Loading'
+import Header from '../../components/ui/Header/Header'
+import Footer from '../../components/ui/Footer/Footer'
+import Title from '../../components/ui/Title/Title'
+import Movie from '../../components/Movie/Movie'
+import Pagination from '../../components/ui/Pagination/Pagination'
+import { searchPopularMovies } from '../../services/MoviesRepository'
 
-const { VITE_API_URL, VITE_API_KEY } = env;
+const { VITE_API_URL, VITE_API_KEY } = import.meta.env
 
 function Popular(props) {
   const { popularMovies, setMovies, setCurrentPage, setPaginationLength } =
-    props;
+    props
 
-  const [loading, setLoading] = useState(false);
-  const [popularMoviesAdded, setPopularMoviesAdded] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [popularMoviesAdded, setPopularMoviesAdded] = useState(false)
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-    });
-  };
+    })
+  }
 
   const createUrl = (page) => {
     const urlToSearch = new URL(
       `${VITE_API_URL}/discover/movie?api_key=${VITE_API_KEY}`,
-    );
+    )
 
-    urlToSearch.searchParams.append("sort_by", "popularity.desc");
-    urlToSearch.searchParams.append("page", page);
-    urlToSearch.searchParams.append("include_adult", false);
-    return urlToSearch;
-  };
+    urlToSearch.searchParams.append('sort_by', 'popularity.desc')
+    urlToSearch.searchParams.append('page', page)
+    urlToSearch.searchParams.append('include_adult', false)
+    return urlToSearch
+  }
 
   const setPopularMovies = (page = 1) => {
-    setLoading(true);
-    const url = createUrl(page);
+    setLoading(true)
+    const url = createUrl(page)
 
     searchPopularMovies(url)
       .then((data) => {
-        const { results, total_pages } = data;
+        const { results, total_pages } = data
 
-        setMovies(results);
-        setPaginationLength(total_pages);
-        scrollToTop();
+        setMovies(results)
+        setPaginationLength(total_pages)
+        scrollToTop()
       })
       .catch(() => {
         console.log(
-          "Error: Hubo un error en la petición de info sobre las películas populares",
-        );
+          'Error: Hubo un error en la petición de info sobre las películas populares',
+        )
       })
       .finally(() => {
-        setLoading(false);
-      });
-  };
+        setLoading(false)
+      })
+  }
 
   const handleClickPage = (page) => {
-    setCurrentPage(page);
-    setPopularMovies(page);
-  };
+    setCurrentPage(page)
+    setPopularMovies(page)
+  }
 
   if (popularMovies.movies.length < 1 && !popularMoviesAdded) {
-    setPopularMovies();
-    setPopularMoviesAdded(true);
+    setPopularMovies()
+    setPopularMoviesAdded(true)
   }
 
   return (
@@ -92,7 +91,7 @@ function Popular(props) {
 
       <Footer />
     </div>
-  );
+  )
 }
 
 Popular.propTypes = {
@@ -100,6 +99,6 @@ Popular.propTypes = {
   setMovies: PropTypes.func,
   setCurrentPage: PropTypes.func,
   setPaginationLength: PropTypes.func,
-};
+}
 
-export default Popular;
+export default Popular
