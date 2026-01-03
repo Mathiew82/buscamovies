@@ -1,6 +1,8 @@
 # BuscaMovies
 
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=flat-square&up_color=green&up_message=online&url=https%3A%2F%2Fbuscamovies.vercel.app%2F)
+
+<p></p>
 [https://buscamovies.vercel.app](https://buscamovies.vercel.app)
 
 Movie search project developed in React JS and powered by the TMDb API.
