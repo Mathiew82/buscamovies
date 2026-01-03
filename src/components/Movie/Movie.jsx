@@ -77,7 +77,7 @@ function Movie(props) {
               ? ''
               : movie.poster_path
                 ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
-                : `url(${import.meta.env.VITE_PUBLIC_URL}/images/default-image.png)`,
+                : `url(/images/default-image.png)`,
           }}
         >
           <span
