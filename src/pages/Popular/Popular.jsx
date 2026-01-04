@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
@@ -8,45 +8,61 @@ import Title from '@/components/ui/Title/Title'
 import Pagination from '@/components/ui/Pagination/Pagination'
 import { searchPopularMovies } from '@/services/MoviesRepository'
 
-function Popular(props) {
-  const { popularMovies, setMovies, setCurrentPage, setPaginationLength } =
-    props
-
+function Popular({
+  popularMovies,
+  setMovies,
+  setCurrentPage,
+  setPaginationLength,
+}) {
   const [loading, setLoading] = useState(false)
-  const [popularMoviesAdded, setPopularMoviesAdded] = useState(false)
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-    })
-  }
+  const isMountedRef = useRef(false)
+  const didFetchOnceRef = useRef(false)
 
-  const setPopularMovies = async (page = 1) => {
-    setLoading(true)
-
-    try {
-      const data = await searchPopularMovies(page)
-      const { results, total_pages } = data
-
-      setMovies(results)
-      setPaginationLength(total_pages)
-      scrollToTop()
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error)
-      console.error(`Error: ${message}`)
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    isMountedRef.current = true
+    return () => {
+      isMountedRef.current = false
     }
-  }
+  }, [])
+
+  const scrollToTop = () => window.scrollTo({ top: 0 })
+
+  const fetchPopularMovies = useCallback(
+    async (page = 1) => {
+      if (isMountedRef.current) setLoading(true)
+
+      try {
+        const { results, total_pages } = await searchPopularMovies(page)
+
+        if (!isMountedRef.current) return
+
+        setMovies(results)
+        setPaginationLength(total_pages)
+        scrollToTop()
+      } catch (error) {
+        if (!isMountedRef.current) return
+        const message = error instanceof Error ? error.message : String(error)
+        console.error(`Error: ${message}`)
+      } finally {
+        if (isMountedRef.current) setLoading(false)
+      }
+    },
+    [setMovies, setPaginationLength],
+  )
+
+  useEffect(() => {
+    if (didFetchOnceRef.current) return
+    didFetchOnceRef.current = true
+
+    if (popularMovies.movies.length < 1) {
+      fetchPopularMovies(1)
+    }
+  }, [fetchPopularMovies, popularMovies.movies.length])
 
   const handleClickPage = (page) => {
     setCurrentPage(page)
-    setPopularMovies(page)
-  }
-
-  if (popularMovies.movies.length < 1 && !popularMoviesAdded) {
-    setPopularMovies()
-    setPopularMoviesAdded(true)
+    fetchPopularMovies(page)
   }
 
   return (

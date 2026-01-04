@@ -7,8 +7,6 @@ import Loading from '@/components/ui/Loading/Loading'
 import Pagination from '@/components/ui/Pagination/Pagination'
 import './MoviesList.scss'
 
-const { VITE_API_URL, VITE_API_KEY } = import.meta.env
-
 function MoviesList(props) {
   const {
     moviesList,
