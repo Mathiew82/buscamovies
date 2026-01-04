@@ -18,7 +18,7 @@ function MovieDetail() {
   const { id: movieId } = useParams()
   const [loadingData, setLoadingData] = useState(false)
   const [movie, setMovie] = useState({})
-  const [director, setDirector] = useState('')
+  const [director, setDirector] = useState(null)
   const [actors, setActors] = useState([])
 
   const { isAddedToFavorites, addToFavorites, removeToFavorites } =
@@ -134,8 +134,8 @@ function MovieDetail() {
         const data = await fetchCredits(movieId)
 
         if (!alive) return
-        setDirector(getDirector(data.crew))
-        setActors(data.cast.slice(0, 10))
+        if (data.crew.length > 0) setDirector(getDirector(data.crew))
+        if (data.cast.length > 0) setActors(data.cast.slice(0, 8))
       } catch (err) {
         console.log(`Error: ${err}`)
       } finally {
@@ -216,8 +216,8 @@ function MovieDetail() {
                 <div className="director-photo">
                   <img
                     src={
-                      director.profile_path
-                        ? `https://image.tmdb.org/t/p/w300_and_h450_face/${director.profile_path}`
+                      director?.profile_path
+                        ? `https://image.tmdb.org/t/p/w300_and_h450_face/${director?.profile_path}`
                         : '/images/default-image.png'
                     }
                   />
@@ -226,13 +226,15 @@ function MovieDetail() {
               <div className="director-right-content">
                 <Label>
                   Director:
-                  <span className="fwn ml-10px">{director.name || '-'}</span>
+                  <span className="fwn ml-10px">{director?.name || '-'}</span>
                 </Label>
                 <Label className="mt-10px">
                   Popularidad:
                   <span className="fwn ml-10px">
                     (
-                    {director.popularity ? director.popularity.toFixed(1) : '-'}
+                    {director?.popularity
+                      ? director?.popularity.toFixed(1)
+                      : '-'}
                     )
                   </span>
                 </Label>
@@ -243,7 +245,7 @@ function MovieDetail() {
                         <span
                           key={index}
                           className={`director-popularity__part ${
-                            index < director.popularity ? 'active' : ''
+                            index < director?.popularity ? 'active' : ''
                           }`}
                         />
                       ))}
@@ -256,7 +258,7 @@ function MovieDetail() {
                 <Label>Actores principales:</Label>
                 <ul>
                   {actors.map((actor) => (
-                    <li key={actor.name} className="actor-item-list">
+                    <li key={actor.id} className="actor-item-list">
                       <div className="actor-item-list__wrapper">
                         <img
                           src={

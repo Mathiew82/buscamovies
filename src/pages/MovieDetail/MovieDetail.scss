@@ -122,6 +122,7 @@
       display: inline-block;
       img {
         width: 50px;
+        height: 72px;
         border: 1px solid rgba(155, 200, 255, 0.2);
         border-radius: 8px;
         cursor: pointer;
@@ -136,7 +137,7 @@
       bottom: -32px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.6);
       color: #fff;
       font-size: 12px;
       padding: 4px 8px;
