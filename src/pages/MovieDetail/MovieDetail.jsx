@@ -29,10 +29,59 @@ function MovieDetail() {
   }
 
   const formatRevenue = (value) => {
+    const number = Number(value)
+
+    if (isNaN(number)) return value
+
+    if (number >= 1_000_000) {
+      const millions = number / 1_000_000
+      const rounded = Number.isInteger(millions)
+        ? millions
+        : Math.round(millions * 10) / 10
+
+      const label = rounded === 1 ? 'millón' : 'millones'
+
+      return `${rounded} ${label} de euros`
+    }
+
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
       currency: 'EUR',
-    }).format(value)
+    }).format(number)
+  }
+
+  const minutesToHours = (text) => {
+    const totalMinutes = parseInt(text, 10)
+
+    if (isNaN(totalMinutes)) return text
+
+    const hours = Math.floor(totalMinutes / 60)
+    const minutes = totalMinutes % 60
+
+    const hourLabel = hours === 1 ? 'hora' : 'horas'
+    const minuteLabel = minutes === 1 ? 'minuto' : 'minutos'
+
+    if (hours && minutes) {
+      return `${hours} ${hourLabel} y ${minutes} ${minuteLabel}`
+    }
+
+    if (hours) {
+      return `${hours} ${hourLabel}`
+    }
+
+    return `${minutes} ${minuteLabel}`
+  }
+
+  const formatSpanishDate = (dateString) => {
+    const date = new Date(dateString)
+
+    if (isNaN(date)) return dateString
+
+    return new Intl.DateTimeFormat('es-ES', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(date)
   }
 
   const fetchMovie = (movieId) => {
@@ -203,13 +252,14 @@ function MovieDetail() {
               </div>
             </div>
             <div className="p">
-              <Label>Fecha de lanzamiento:</Label> {movie.release_date}
+              <Label>Fecha de lanzamiento:</Label>{' '}
+              {formatSpanishDate(movie.release_date)}
             </div>
             <div className="p">
               <Label>Duración:</Label>{' '}
               {movie.runtime === 0
                 ? 'Sin información'
-                : `${movie.runtime} minutos`}
+                : `${minutesToHours(movie.runtime)} minutos`}
             </div>
             <div className="p">
               <Label>Título original:</Label> {movie.original_title}
