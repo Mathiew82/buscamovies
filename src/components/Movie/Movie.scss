@@ -1,4 +1,4 @@
-@use "@/sass/variables";
+@use '@/sass/variables';
 
 li {
   margin-bottom: 1rem;
@@ -23,7 +23,7 @@ li {
         background-color: rgba(0, 0, 0, 0.9);
         border-radius: 4px 0 0 4px;
         color: variables.$text-color;
-        content: "Favorito";
+        content: 'Favorito';
         font-family: Arial, Helvetica, sans-serif;
         font-size: 13px;
         font-weight: 700;
@@ -58,16 +58,16 @@ li {
     }
   }
   > a {
-    > .movies-list__img {
+    .movies-list__img {
       width: 100%;
-      height: 380px;
+      aspect-ratio: 2 / 3;
+      height: auto;
       background-color: rgb(16, 16, 30);
-      background-position: center center;
-      background-size: cover;
       border-radius: 8px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-      display: inline-block;
       position: relative;
+      overflow: hidden;
+      display: block;
       > .movies-list-vote-average-value {
         width: 22px;
         color: variables.$text-color;
@@ -138,14 +138,21 @@ li {
         height: 38px;
         background-color: rgba(0, 0, 0, 0.7);
         border-radius: 25px;
-        content: "";
+        content: '';
         position: absolute;
         bottom: 5px;
         left: 5px;
         z-index: 1;
       }
     }
-    > .movies-list__title {
+    .movies-list__poster {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    .movies-list__title {
       height: auto;
       line-height: 1.2;
       color: variables.$text-color;

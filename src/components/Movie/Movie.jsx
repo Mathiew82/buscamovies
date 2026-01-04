@@ -70,16 +70,19 @@ function Movie(props) {
         )}
       </span>
       <Link to={`/pelicula/${movie.id}`}>
-        <span
-          className="movies-list__img"
-          style={{
-            backgroundImage: loading
-              ? ''
-              : movie.poster_path
-                ? `url(https://image.tmdb.org/t/p/w500${movie.poster_path})`
-                : `url(/images/default-image.png)`,
-          }}
-        >
+        <span className="movies-list__img">
+          {!loading && (
+            <img
+              className="movies-list__poster"
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  : '/images/default-image.png'
+              }
+              alt={movie.title}
+              loading="lazy"
+            />
+          )}
           <span
             className="loading is-movie is-grey"
             style={{ display: !loading && 'none' }}
