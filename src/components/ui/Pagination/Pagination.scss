@@ -1,23 +1,23 @@
-@use "@/sass/variables";
+@use '@/sass/variables';
 
 .pagination {
   margin: 2rem 0;
   .pagination-link {
-    background-color: var(--bg-color) !important;
-    border-color: rgb(96, 96, 110) !important;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-color: rgba(155, 200, 255, 0.2) !important;
+    border-radius: 8px !important;
     color: variables.$text-color;
     &.is-current {
-      background-color: variables.$text-color !important;
-      border-color: rgba(0, 0, 0, 0.4) !important;
-      color: var(--bg-color) !important;
-      cursor: default;
+      background-color: variables.$comments-color !important;
+      border-color: rgba(155, 200, 255, 0.4) !important;
+      color: variables.$black-color !important;
+      cursor: default !important;
+      font-weight: 600;
       transition: background-color 0.2s;
     }
     @media (min-width: 769px) {
       &:hover {
-        background-color: var(--secondary-color) !important;
-        border-color: var(--secondary-color) !important;
-        color: var(--bg-color) !important;
+        border-color: rgba(155, 200, 255, 0.4) !important;
         cursor: pointer;
       }
     }
