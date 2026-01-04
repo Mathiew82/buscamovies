@@ -1,4 +1,4 @@
-import Navbar from '../Navbar/Navbar'
+import Navbar from '@/components/ui/Navbar/Navbar'
 import './Header.scss'
 
 function Header() {

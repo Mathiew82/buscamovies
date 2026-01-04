@@ -1,10 +1,10 @@
 import { useState } from 'react'
+import { searchMovies } from '@/services/MoviesRepository'
 import PropTypes from 'prop-types'
-import SearchForm from '../SearchForm/SearchForm'
-import Loading from '../Loading/Loading'
-import Pagination from '../ui/Pagination/Pagination'
-import Movie from '../Movie/Movie'
-import { searchMovies } from '../../services/MoviesRepository'
+import SearchForm from '@/components/SearchForm/SearchForm'
+import Loading from '@/components/Loading/Loading'
+import Pagination from '@/components/ui/Pagination/Pagination'
+import Movie from '@/components/Movie/Movie'
 import './MoviesList.scss'
 
 const { VITE_API_URL, VITE_API_KEY } = import.meta.env
