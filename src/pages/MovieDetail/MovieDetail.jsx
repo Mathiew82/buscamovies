@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { searchMovie, searchCredits } from '@/services/MoviesRepository'
-import PropTypes from 'prop-types'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
 import Loading from '@/components/ui/Loading/Loading'
@@ -11,8 +10,6 @@ import Label from '@/components/ui/Label/Label'
 import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite'
 import useVoteAverage from '@/hooks/useVoteAverage/useVoteAverage'
 import './MovieDetail.scss'
-
-const { VITE_API_URL, VITE_API_KEY } = import.meta.env
 
 function MovieDetail() {
   const { id: movieId } = useParams()
@@ -84,43 +81,9 @@ function MovieDetail() {
     }).format(date)
   }
 
-  const fetchMovie = (movieId) => {
-    return new Promise((resolve, reject) => {
-      const movieUrl = new URL(
-        `${VITE_API_URL}/movie/${movieId}?api_key=${VITE_API_KEY}`,
-      )
-      movieUrl.searchParams.append('language', 'es-ES')
-
-      searchMovie(movieUrl)
-        .then((data) => {
-          setMovie(data)
-          resolve(data)
-        })
-        .catch(() => {
-          reject('Hubo un error en la petición de info sobre la película')
-        })
-    })
-  }
-
   const getDirector = (arr) => {
     const onlyDirectors = arr.find((item) => item.job === 'Director')
     return onlyDirectors ? onlyDirectors : null
-  }
-
-  const fetchCredits = (movieId) => {
-    return new Promise((resolve, reject) => {
-      const creditsUrl = new URL(
-        `${VITE_API_URL}/movie/${movieId}/credits?api_key=${VITE_API_KEY}`,
-      )
-
-      searchCredits(creditsUrl)
-        .then((data) => resolve(data))
-        .catch(() => {
-          reject(
-            'Hubo un error en la petición de info sobre los actores de la película',
-          )
-        })
-    })
   }
 
   useEffect(() => {
@@ -129,15 +92,27 @@ function MovieDetail() {
     const run = async () => {
       if (alive) setLoadingData(true)
 
+      setDirector(null)
+      setActors([])
+
       try {
-        await fetchMovie(movieId)
-        const data = await fetchCredits(movieId)
+        const [movieData, creditsData] = await Promise.all([
+          searchMovie(movieId),
+          searchCredits(movieId),
+        ])
 
         if (!alive) return
-        if (data.crew.length > 0) setDirector(getDirector(data.crew))
-        if (data.cast.length > 0) setActors(data.cast.slice(0, 8))
-      } catch (err) {
-        console.log(`Error: ${err}`)
+
+        setMovie(movieData)
+        if (creditsData?.crew?.length) {
+          setDirector(getDirector(creditsData.crew))
+        }
+        if (creditsData?.cast?.length) {
+          setActors(creditsData.cast.slice(0, 8))
+        }
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error)
+        console.error(`Error: ${message}`)
       } finally {
         if (alive) setLoadingData(false)
       }
@@ -340,12 +315,6 @@ function MovieDetail() {
       <Footer />
     </div>
   )
-}
-
-MovieDetail.propTypes = {
-  movieId: PropTypes.string,
-  apiUrl: PropTypes.string,
-  apiKey: PropTypes.string,
 }
 
 export default MovieDetail

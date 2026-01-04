@@ -1,4 +1,6 @@
 const useVoteAverage = (voteAverage) => {
+  if (!voteAverage) return 0
+
   const getVoteAverageInteger = (value) => {
     return value * 10
   }

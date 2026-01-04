@@ -51,18 +51,6 @@ function MoviesList(props) {
     return query.length > 0
   }
 
-  const createUrl = (page) => {
-    const urlToSearch = new URL(
-      `${VITE_API_URL}/search/movie?api_key=${VITE_API_KEY}`,
-    )
-
-    urlToSearch.searchParams.append('query', moviesList.inputValue)
-    urlToSearch.searchParams.append('page', page)
-    urlToSearch.searchParams.append('language', 'es-ES')
-    urlToSearch.searchParams.append('include_adult', false)
-    return urlToSearch
-  }
-
   const checkIfSubmitForm = (event, page) => {
     if (typeof event !== 'undefined') {
       event.preventDefault()
@@ -71,7 +59,7 @@ function MoviesList(props) {
     }
   }
 
-  const handleSubmit = (event, page) => {
+  const handleSubmit = async (event, page) => {
     checkIfSubmitForm(event, page)
 
     if (!checkValueInput(moviesList.inputValue)) {
@@ -81,19 +69,15 @@ function MoviesList(props) {
 
     setLoadingResults(true)
 
-    const url = createUrl(page)
-    searchMovies(url)
-      .then((data) => {
-        showResults(data)
-      })
-      .catch(() => {
-        console.log(
-          'Error: Hubo un error en la petición de info sobre el listado de películas',
-        )
-      })
-      .finally(() => {
-        setLoadingResults(false)
-      })
+    try {
+      const data = await searchMovies(moviesList.inputValue, page)
+      showResults(data)
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      console.error(`Error: ${message}`)
+    } finally {
+      setLoadingResults(false)
+    }
   }
 
   return (

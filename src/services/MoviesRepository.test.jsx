@@ -8,10 +8,10 @@ import {
 
 describe('MoviesRepository', () => {
   it('should execute correctly the searchMovie method', async () => {
-    const testURL = 'https://jsonplaceholder.typicode.com/todos/1'
+    const movieId = 1
 
     let response = null
-    await searchMovie(testURL).then((data) => {
+    await searchMovie(movieId).then((data) => {
       response = data
     })
 
@@ -19,10 +19,11 @@ describe('MoviesRepository', () => {
   })
 
   it('should execute correctly the searchMovies method', async () => {
-    const testURL = 'https://jsonplaceholder.typicode.com/todos/1'
+    const term = 'avatar'
+    const page = 1
 
     let response = null
-    await searchMovies(testURL).then((data) => {
+    await searchMovies(term, page).then((data) => {
       response = data
     })
 
