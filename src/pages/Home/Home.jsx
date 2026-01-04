@@ -1,5 +1,5 @@
-import Header from '@/components/ui/Header/Header'
-import Footer from '@/components/ui/Footer/Footer'
+import Header from '@/components/Header/Header'
+import Footer from '@/components/Footer/Footer'
 import MoviesListContainer from '@/components/MoviesList/container/MoviesListContainer'
 
 function Home() {
