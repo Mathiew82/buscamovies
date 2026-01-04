@@ -303,7 +303,7 @@ function MovieDetail() {
                 <Label>Géneros:</Label>
                 <ul>
                   {movie.genres.map((genre) => (
-                    <li key={genre.name} className="genre">
+                    <li key={genre.name} className="genre-item-list">
                       {genre.name}
                     </li>
                   ))}
