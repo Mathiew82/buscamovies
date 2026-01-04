@@ -38,16 +38,14 @@ export const searchMovies = (term, page) => {
   return apiClient(urlToSearch)
 }
 
-export const searchPopularMovies = async (url) => {
-  try {
-    const response = await fetch(url).then((response) => response.json())
+export const searchPopularMovies = async (page) => {
+  const urlToSearch = new URL(
+    `${VITE_API_URL}/discover/movie?api_key=${VITE_API_KEY}`,
+  )
 
-    if (response.status_code) {
-      throw `Error: ${response.status_message}`
-    }
+  urlToSearch.searchParams.append('sort_by', 'popularity.desc')
+  urlToSearch.searchParams.append('page', page)
+  urlToSearch.searchParams.append('include_adult', false)
 
-    return response
-  } catch (error) {
-    throw `Error: ${error}`
-  }
+  return apiClient(urlToSearch)
 }

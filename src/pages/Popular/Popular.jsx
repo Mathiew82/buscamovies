@@ -8,8 +8,6 @@ import Title from '@/components/ui/Title/Title'
 import Pagination from '@/components/ui/Pagination/Pagination'
 import { searchPopularMovies } from '@/services/MoviesRepository'
 
-const { VITE_API_URL, VITE_API_KEY } = import.meta.env
-
 function Popular(props) {
   const { popularMovies, setMovies, setCurrentPage, setPaginationLength } =
     props
@@ -23,37 +21,22 @@ function Popular(props) {
     })
   }
 
-  const createUrl = (page) => {
-    const urlToSearch = new URL(
-      `${VITE_API_URL}/discover/movie?api_key=${VITE_API_KEY}`,
-    )
-
-    urlToSearch.searchParams.append('sort_by', 'popularity.desc')
-    urlToSearch.searchParams.append('page', page)
-    urlToSearch.searchParams.append('include_adult', false)
-    return urlToSearch
-  }
-
-  const setPopularMovies = (page = 1) => {
+  const setPopularMovies = async (page = 1) => {
     setLoading(true)
-    const url = createUrl(page)
 
-    searchPopularMovies(url)
-      .then((data) => {
-        const { results, total_pages } = data
+    try {
+      const data = await searchPopularMovies(page)
+      const { results, total_pages } = data
 
-        setMovies(results)
-        setPaginationLength(total_pages)
-        scrollToTop()
-      })
-      .catch(() => {
-        console.log(
-          'Error: Hubo un error en la petición de info sobre las películas populares',
-        )
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+      setMovies(results)
+      setPaginationLength(total_pages)
+      scrollToTop()
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      console.error(`Error: ${message}`)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleClickPage = (page) => {
