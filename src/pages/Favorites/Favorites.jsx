@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import Header from '../../components/ui/Header/Header'
-import Footer from '../../components/ui/Footer/Footer'
-import Title from '../../components/ui/Title/Title'
-import Movie from '../../components/Movie/Movie'
+import Header from '@/components/ui/Header/Header'
+import Footer from '@/components/ui/Footer/Footer'
+import Title from '@/components/ui/Title/Title'
+import Movie from '@/components/Movie/Movie'
 
 function Favorites() {
   const [movies, setMovies] = useState([])
@@ -10,7 +10,7 @@ function Favorites() {
 
   const setFavoriteMovies = () => {
     let favoriteMovies = JSON.parse(
-      window.localStorage.getItem('favoriteMovies')
+      window.localStorage.getItem('favoriteMovies'),
     )
     if (!favoriteMovies) favoriteMovies = []
 

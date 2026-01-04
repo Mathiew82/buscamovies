@@ -1,6 +1,6 @@
-import Header from '../../components/ui/Header/Header'
-import Footer from '../../components/ui/Footer/Footer'
-import MoviesListContainer from '../../components/MoviesList/container/MoviesListContainer'
+import Header from '@/components/ui/Header/Header'
+import Footer from '@/components/ui/Footer/Footer'
+import MoviesListContainer from '@/components/MoviesList/container/MoviesListContainer'
 
 function Home() {
   return (

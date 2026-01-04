@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
-import Loading from '../../components/Loading/Loading'
-import Header from '../../components/ui/Header/Header'
-import Footer from '../../components/ui/Footer/Footer'
-import Title from '../../components/ui/Title/Title'
-import Movie from '../../components/Movie/Movie'
-import Pagination from '../../components/ui/Pagination/Pagination'
-import { searchPopularMovies } from '../../services/MoviesRepository'
+import Loading from '@/components/Loading/Loading'
+import Header from '@/components/ui/Header/Header'
+import Footer from '@/components/ui/Footer/Footer'
+import Title from '@/components/ui/Title/Title'
+import Movie from '@/components/Movie/Movie'
+import Pagination from '@/components/ui/Pagination/Pagination'
+import { searchPopularMovies } from '@/services/MoviesRepository'
 
 const { VITE_API_URL, VITE_API_KEY } = import.meta.env
 
