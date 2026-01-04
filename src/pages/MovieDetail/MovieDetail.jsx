@@ -238,22 +238,24 @@ function MovieDetail() {
                 </ul>
               </div>
             )}
-            {movie.genres.length > 0 && (
-              <div className="p">
-                <Label>Géneros:</Label>
-                <ul>
-                  {movie.genres.map((genre) => (
-                    <li key={genre.name}>{genre.name}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
             {movie.production_companies.length > 0 && (
               <div className="p">
                 <Label>Compañías de producción:</Label>
                 <ul>
                   {movie.production_companies.map((company) => (
                     <li key={company.name}>{company.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {movie.genres.length > 0 && (
+              <div className="p">
+                <Label>Géneros:</Label>
+                <ul>
+                  {movie.genres.map((genre) => (
+                    <li key={genre.name} className="genre">
+                      {genre.name}
+                    </li>
                   ))}
                 </ul>
               </div>
