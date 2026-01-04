@@ -251,6 +251,33 @@ function MovieDetail() {
                   )}
               </div>
             </div>
+            {actors.length > 0 && (
+              <div className="p">
+                <Label>Actores principales:</Label>
+                <ul>
+                  {actors.map((actor) => (
+                    <li key={actor.name} className="actor-item-list">
+                      <div className="actor-item-list__wrapper">
+                        <img
+                          src={
+                            actor.profile_path
+                              ? `https://image.tmdb.org/t/p/w300_and_h450_face/${actor.profile_path}`
+                              : '/images/default-image.png'
+                          }
+                          alt={actor.name}
+                        />
+                        <span className="actor-item-list__tooltip">
+                          {actor.name}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="p">
+              <Label>Título original:</Label> {movie.original_title}
+            </div>
             <div className="p">
               <Label>Fecha de lanzamiento:</Label>{' '}
               {formatSpanishDate(movie.release_date)}
@@ -262,22 +289,9 @@ function MovieDetail() {
                 : `${minutesToHours(movie.runtime)} minutos`}
             </div>
             <div className="p">
-              <Label>Título original:</Label> {movie.original_title}
-            </div>
-            <div className="p">
               <Label>Ingresos:</Label>{' '}
               {movie.revenue === 0 ? 'Sin información' : formattedRevenue}
             </div>
-            {actors.length > 0 && (
-              <div className="p">
-                <Label>Actores principales:</Label>
-                <ul>
-                  {actors.map((actor) => (
-                    <li key={actor.name}>{actor.name}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
             {movie.production_countries.length > 0 && (
               <div className="p">
                 <Label>Producida en:</Label>

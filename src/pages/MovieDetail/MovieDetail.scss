@@ -115,6 +115,39 @@
     }
   }
 
+  .actor-item-list {
+    margin-top: 5px;
+    .actor-item-list__wrapper {
+      position: relative;
+      display: inline-block;
+      img {
+        width: 50px;
+        border: 1px solid rgba(155, 200, 255, 0.2);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      &:hover .actor-item-list__tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    .actor-item-list__tooltip {
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
   .genre-item-list {
     height: 40px;
     line-height: 40px;
