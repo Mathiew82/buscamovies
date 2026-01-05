@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.scss';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.scss";
 
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
@@ -12,7 +12,7 @@ function Navbar() {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <Link to={'/'} className="navbar-item pl0">
+        <Link to={"/"} className="navbar-item pl0">
           <img src="/logo.png" alt="BuscaMovies App" className="logo" />
         </Link>
 
@@ -21,7 +21,7 @@ function Navbar() {
             setIsActive(!isActive);
           }}
           role="button"
-          className={`navbar-burger burger ${isActive ? 'is-active' : ''}`}
+          className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -34,13 +34,13 @@ function Navbar() {
 
       <div
         id="navbarBasicExample"
-        className={`navbar-menu ${isActive ? 'is-active' : ''}`}
+        className={`navbar-menu ${isActive ? "is-active" : ""}`}
       >
         <div className="navbar-start">
-          <Link to={'/populares'} className="navbar-item">
+          <Link to={"/populares"} className="navbar-item">
             Populares
           </Link>
-          <Link to={'/favoritos'} className="navbar-item">
+          <Link to={"/favoritos"} className="navbar-item">
             Favoritos
           </Link>
         </div>

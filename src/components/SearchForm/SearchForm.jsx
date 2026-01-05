@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import './SearchForm.scss';
+import PropTypes from "prop-types";
+import "./SearchForm.scss";
 
 function SearchForm(props) {
   const { setInputValue, submit } = props;

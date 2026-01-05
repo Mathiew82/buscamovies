@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite';
-import useVoteAverage from '@/hooks/useVoteAverage/useVoteAverage';
-import './Movie.scss';
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import useToggleFavorite from "@/hooks/useToggleFavorite/useToggleFavorite";
+import useVoteAverage from "@/hooks/useVoteAverage/useVoteAverage";
+import "./Movie.scss";
 
 function Movie(props) {
   const { movie } = props;
@@ -78,7 +78,7 @@ function Movie(props) {
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : '/images/default-image.png'
+                  : "/images/default-image.png"
               }
               alt={movie.title}
               loading="lazy"
@@ -86,14 +86,14 @@ function Movie(props) {
           )}
           <span
             className="loading is-movie is-grey"
-            style={{ display: !loading && 'none' }}
+            style={{ display: !loading && "none" }}
           />
           <span className="movies-list-vote-average-value">{voteAverage}</span>
           <span
-            className={`rating-ring ${voteAverage < 25 ? 'is-danger' : ''} ${
-              voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
-            } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
-              voteAverage >= 75 ? 'is-primary' : ''
+            className={`rating-ring ${voteAverage < 25 ? "is-danger" : ""} ${
+              voteAverage >= 25 && voteAverage < 50 ? "is-warning" : ""
+            } ${voteAverage >= 50 && voteAverage < 75 ? "is-info" : ""} ${
+              voteAverage >= 75 ? "is-primary" : ""
             }`}
             aria-hidden="true"
           >

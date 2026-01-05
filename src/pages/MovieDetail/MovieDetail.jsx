@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { searchMovie, searchCredits } from '@/services/MoviesRepository';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import Loading from '@/components/ui/Loading/Loading';
-import Title from '@/components/ui/Title/Title';
-import Subtitle from '@/components/ui/Subtitle/Subtitle';
-import Label from '@/components/ui/Label/Label';
-import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite';
-import useVoteAverage from '@/hooks/useVoteAverage/useVoteAverage';
-import './MovieDetail.scss';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { searchMovie, searchCredits } from "@/services/MoviesRepository";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import Loading from "@/components/ui/Loading/Loading";
+import Title from "@/components/ui/Title/Title";
+import Subtitle from "@/components/ui/Subtitle/Subtitle";
+import Label from "@/components/ui/Label/Label";
+import useToggleFavorite from "@/hooks/useToggleFavorite/useToggleFavorite";
+import useVoteAverage from "@/hooks/useVoteAverage/useVoteAverage";
+import "./MovieDetail.scss";
 
 function MovieDetail() {
   const { id: movieId } = useParams();
@@ -36,14 +36,14 @@ function MovieDetail() {
         ? millions
         : Math.round(millions * 10) / 10;
 
-      const label = rounded === 1 ? 'millón' : 'millones';
+      const label = rounded === 1 ? "millón" : "millones";
 
       return `${rounded} ${label} de euros`;
     }
 
-    return new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
+    return new Intl.NumberFormat("es-ES", {
+      style: "currency",
+      currency: "EUR",
     }).format(number);
   };
 
@@ -55,8 +55,8 @@ function MovieDetail() {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
 
-    const hourLabel = hours === 1 ? 'hora' : 'horas';
-    const minuteLabel = minutes === 1 ? 'minuto' : 'minutos';
+    const hourLabel = hours === 1 ? "hora" : "horas";
+    const minuteLabel = minutes === 1 ? "minuto" : "minutos";
 
     if (hours && minutes) {
       return `${hours} ${hourLabel} y ${minutes} ${minuteLabel}`;
@@ -74,15 +74,15 @@ function MovieDetail() {
 
     if (isNaN(date)) return dateString;
 
-    return new Intl.DateTimeFormat('es-ES', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
+    return new Intl.DateTimeFormat("es-ES", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     }).format(date);
   };
 
   const getDirector = (arr) => {
-    const onlyDirectors = arr.find((item) => item.job === 'Director');
+    const onlyDirectors = arr.find((item) => item.job === "Director");
     return onlyDirectors ? onlyDirectors : null;
   };
 
@@ -162,18 +162,18 @@ function MovieDetail() {
               }
             >
               {isAddedToFavorites()
-                ? 'Eliminar de tus favoritos'
-                : 'Agregar a tus favoritos'}
+                ? "Eliminar de tus favoritos"
+                : "Agregar a tus favoritos"}
             </button>
             <p>
               <span className="more-detail-page-vote-average-value">
                 {voteAverage} de 100 de valoración
               </span>
               <progress
-                className={`progress ${voteAverage < 25 ? 'is-danger' : ''} ${
-                  voteAverage >= 25 && voteAverage < 50 ? 'is-warning' : ''
-                } ${voteAverage >= 50 && voteAverage < 75 ? 'is-info' : ''} ${
-                  voteAverage >= 75 ? 'is-primary' : ''
+                className={`progress ${voteAverage < 25 ? "is-danger" : ""} ${
+                  voteAverage >= 25 && voteAverage < 50 ? "is-warning" : ""
+                } ${voteAverage >= 50 && voteAverage < 75 ? "is-info" : ""} ${
+                  voteAverage >= 75 ? "is-primary" : ""
                 }`}
                 value={`${voteAverage}`}
                 max="100"
@@ -195,7 +195,7 @@ function MovieDetail() {
                     src={
                       director?.profile_path
                         ? `https://image.tmdb.org/t/p/w300_and_h450_face/${director?.profile_path}`
-                        : '/images/default-image.png'
+                        : "/images/default-image.png"
                     }
                   />
                 </div>
@@ -203,7 +203,7 @@ function MovieDetail() {
               <div className="director-right-content">
                 <Label>
                   Director:
-                  <span className="fwn ml-10px">{director?.name || '-'}</span>
+                  <span className="fwn ml-10px">{director?.name || "-"}</span>
                 </Label>
                 <Label className="mt-10px">
                   Popularidad:
@@ -211,7 +211,7 @@ function MovieDetail() {
                     (
                     {director?.popularity
                       ? director?.popularity.toFixed(1)
-                      : '-'}
+                      : "-"}
                     )
                   </span>
                 </Label>
@@ -222,7 +222,7 @@ function MovieDetail() {
                         <span
                           key={index}
                           className={`director-popularity__part ${
-                            index < director?.popularity ? 'active' : ''
+                            index < director?.popularity ? "active" : ""
                           }`}
                         />
                       ))}
@@ -241,7 +241,7 @@ function MovieDetail() {
                           src={
                             actor.profile_path
                               ? `https://image.tmdb.org/t/p/w300_and_h450_face/${actor.profile_path}`
-                              : '/images/default-image.png'
+                              : "/images/default-image.png"
                           }
                           alt={actor.name}
                         />
@@ -258,18 +258,18 @@ function MovieDetail() {
               <Label>Título original:</Label> {movie.original_title}
             </div>
             <div className="p">
-              <Label>Fecha de lanzamiento:</Label>{' '}
+              <Label>Fecha de lanzamiento:</Label>{" "}
               {formatSpanishDate(movie.release_date)}
             </div>
             <div className="p">
-              <Label>Duración:</Label>{' '}
+              <Label>Duración:</Label>{" "}
               {movie.runtime === 0
-                ? 'Sin información'
+                ? "Sin información"
                 : `${minutesToHours(movie.runtime)}`}
             </div>
             <div className="p">
-              <Label>Ingresos:</Label>{' '}
-              {movie.revenue === 0 ? 'Sin información' : formattedRevenue}
+              <Label>Ingresos:</Label>{" "}
+              {movie.revenue === 0 ? "Sin información" : formattedRevenue}
             </div>
             {movie.production_countries.length > 0 && (
               <div className="p">

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import './Pagination.scss';
+import PropTypes from "prop-types";
+import "./Pagination.scss";
 
 function Pagination(props) {
   const { currentPage, paginationLength, clickPage } = props;
@@ -21,13 +21,13 @@ function Pagination(props) {
 
   return (
     <nav
-      style={{ display: limitedPaginationLength < 2 ? 'none' : undefined }}
+      style={{ display: limitedPaginationLength < 2 ? "none" : undefined }}
       className="pagination is-centered"
       role="navigation"
       aria-label="pagination"
     >
       <ul className="pagination-list">
-        <li style={{ display: doNotShowFirstPage() ? 'none' : undefined }}>
+        <li style={{ display: doNotShowFirstPage() ? "none" : undefined }}>
           <button
             type="button"
             className="pagination-link"
@@ -37,11 +37,11 @@ function Pagination(props) {
           </button>
         </li>
 
-        <li style={{ display: doNotShowFirstPage() ? 'none' : undefined }}>
+        <li style={{ display: doNotShowFirstPage() ? "none" : undefined }}>
           <span className="pagination-ellipsis">&hellip;</span>
         </li>
 
-        <li style={{ display: doNotShowPrevPage() ? 'none' : undefined }}>
+        <li style={{ display: doNotShowPrevPage() ? "none" : undefined }}>
           <button
             type="button"
             className="pagination-link"
@@ -62,7 +62,7 @@ function Pagination(props) {
           </button>
         </li>
 
-        <li style={{ display: doNotShowNextPage() ? 'none' : undefined }}>
+        <li style={{ display: doNotShowNextPage() ? "none" : undefined }}>
           <button
             type="button"
             className="pagination-link"
@@ -72,11 +72,11 @@ function Pagination(props) {
           </button>
         </li>
 
-        <li style={{ display: doNotShowLastPage() ? 'none' : undefined }}>
+        <li style={{ display: doNotShowLastPage() ? "none" : undefined }}>
           <span className="pagination-ellipsis">&hellip;</span>
         </li>
 
-        <li style={{ display: doNotShowLastPage() ? 'none' : undefined }}>
+        <li style={{ display: doNotShowLastPage() ? "none" : undefined }}>
           <button
             type="button"
             className="pagination-link"

@@ -1,12 +1,12 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
-import PropTypes from 'prop-types';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import Movie from '@/components/Movie/Movie';
-import Loading from '@/components/ui/Loading/Loading';
-import Title from '@/components/ui/Title/Title';
-import Pagination from '@/components/ui/Pagination/Pagination';
-import { searchPopularMovies } from '@/services/MoviesRepository';
+import { useState, useEffect, useCallback, useRef } from "react";
+import PropTypes from "prop-types";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import Movie from "@/components/Movie/Movie";
+import Loading from "@/components/ui/Loading/Loading";
+import Title from "@/components/ui/Title/Title";
+import Pagination from "@/components/ui/Pagination/Pagination";
+import { searchPopularMovies } from "@/services/MoviesRepository";
 
 function Popular({
   popularMovies,

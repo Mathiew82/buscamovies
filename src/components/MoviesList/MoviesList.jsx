@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { searchMovies } from '@/services/MoviesRepository';
-import PropTypes from 'prop-types';
-import SearchForm from '@/components/SearchForm/SearchForm';
-import Movie from '@/components/Movie/Movie';
-import Loading from '@/components/ui/Loading/Loading';
-import Pagination from '@/components/ui/Pagination/Pagination';
-import './MoviesList.scss';
+import { useState } from "react";
+import { searchMovies } from "@/services/MoviesRepository";
+import PropTypes from "prop-types";
+import SearchForm from "@/components/SearchForm/SearchForm";
+import Movie from "@/components/Movie/Movie";
+import Loading from "@/components/ui/Loading/Loading";
+import Pagination from "@/components/ui/Pagination/Pagination";
+import "./MoviesList.scss";
 
 function MoviesList(props) {
   const {
@@ -20,7 +20,7 @@ function MoviesList(props) {
   const [noMatches, setNoMatches] = useState(false);
 
   const scrollToTop = () => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     window.scrollTo({
       top: 0,
@@ -50,10 +50,10 @@ function MoviesList(props) {
   };
 
   const checkIfSubmitForm = (event, page) => {
-    if (typeof event !== 'undefined') {
+    if (typeof event !== "undefined") {
       event.preventDefault();
       setCurrentPage(page);
-      window.document.querySelector('.search-wrapper .button').blur();
+      window.document.querySelector(".search-wrapper .button").blur();
     }
   };
 
@@ -61,7 +61,7 @@ function MoviesList(props) {
     checkIfSubmitForm(event, page);
 
     if (!checkValueInput(moviesList.inputValue)) {
-      setInputValue('');
+      setInputValue("");
       return false;
     }
 

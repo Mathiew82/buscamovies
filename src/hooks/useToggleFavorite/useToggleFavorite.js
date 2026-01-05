@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const useToggleFavorite = (movieId) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -6,7 +6,7 @@ const useToggleFavorite = (movieId) => {
 
   const checkIfItsFavorite = () => {
     let favoriteMovies = JSON.parse(
-      window.localStorage.getItem('favoriteMovies'),
+      window.localStorage.getItem("favoriteMovies"),
     );
     if (!favoriteMovies) favoriteMovies = [];
 
@@ -14,7 +14,7 @@ const useToggleFavorite = (movieId) => {
       (item) => item.id === Number(movieId),
     );
 
-    return typeof findCurrentMovie !== 'undefined' ? true : false;
+    return typeof findCurrentMovie !== "undefined" ? true : false;
   };
 
   if (!checkedFilm) {
@@ -26,14 +26,14 @@ const useToggleFavorite = (movieId) => {
     const currentMovie = JSON.parse(event.target.dataset.movie);
 
     let favoriteMovies = JSON.parse(
-      window.localStorage.getItem('favoriteMovies'),
+      window.localStorage.getItem("favoriteMovies"),
     );
     if (!favoriteMovies) favoriteMovies = [];
 
     favoriteMovies.push(currentMovie);
 
     window.localStorage.setItem(
-      'favoriteMovies',
+      "favoriteMovies",
       JSON.stringify(favoriteMovies),
     );
 
@@ -44,7 +44,7 @@ const useToggleFavorite = (movieId) => {
     const currentMovie = JSON.parse(event.target.dataset.movie);
 
     let favoriteMovies = JSON.parse(
-      window.localStorage.getItem('favoriteMovies'),
+      window.localStorage.getItem("favoriteMovies"),
     );
 
     const movieToDelete = favoriteMovies.find(
@@ -54,7 +54,7 @@ const useToggleFavorite = (movieId) => {
     favoriteMovies.splice(moviePositionInArray, 1);
 
     window.localStorage.setItem(
-      'favoriteMovies',
+      "favoriteMovies",
       JSON.stringify(favoriteMovies),
     );
 

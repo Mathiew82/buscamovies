@@ -1,5 +1,5 @@
-import Navbar from '@/components/ui/Navbar/Navbar';
-import './Header.scss';
+import Navbar from "@/components/ui/Navbar/Navbar";
+import "./Header.scss";
 
 function Header() {
   return (

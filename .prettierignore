@@ -3,6 +3,5 @@
 /coverage
 /node_modules
 
-**/*.scss
 pnpm-lock.yaml
 README.md

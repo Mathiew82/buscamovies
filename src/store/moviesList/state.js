@@ -1,6 +1,6 @@
 export const INITIAL_STATE = {
   movies: [],
-  inputValue: '',
+  inputValue: "",
   currentPage: 1,
   paginationLength: 0,
 };

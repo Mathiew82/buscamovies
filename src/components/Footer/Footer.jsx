@@ -1,9 +1,9 @@
-import './Footer.scss';
+import "./Footer.scss";
 
 function Footer() {
   return (
     <footer>
-      BuscaMovies - App desarrollada por{' '}
+      BuscaMovies - App desarrollada por{" "}
       <a href="https://amateo82.es/" target="_blank" rel="noreferrer">
         Alberto Mateo
       </a>

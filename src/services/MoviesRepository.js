@@ -12,7 +12,7 @@ export const searchMovie = (movieId) => {
     `${VITE_API_URL}/movie/${movieId}?api_key=${VITE_API_KEY}`,
   );
 
-  movieUrl.searchParams.append('language', 'es-ES');
+  movieUrl.searchParams.append("language", "es-ES");
 
   return apiClient(movieUrl);
 };
@@ -30,10 +30,10 @@ export const searchMovies = (term, page) => {
     `${VITE_API_URL}/search/movie?api_key=${VITE_API_KEY}`,
   );
 
-  urlToSearch.searchParams.append('query', term);
-  urlToSearch.searchParams.append('page', page);
-  urlToSearch.searchParams.append('language', 'es-ES');
-  urlToSearch.searchParams.append('include_adult', false);
+  urlToSearch.searchParams.append("query", term);
+  urlToSearch.searchParams.append("page", page);
+  urlToSearch.searchParams.append("language", "es-ES");
+  urlToSearch.searchParams.append("include_adult", false);
 
   return apiClient(urlToSearch);
 };
@@ -43,9 +43,9 @@ export const searchPopularMovies = async (page) => {
     `${VITE_API_URL}/discover/movie?api_key=${VITE_API_KEY}`,
   );
 
-  urlToSearch.searchParams.append('sort_by', 'popularity.desc');
-  urlToSearch.searchParams.append('page', page);
-  urlToSearch.searchParams.append('include_adult', false);
+  urlToSearch.searchParams.append("sort_by", "popularity.desc");
+  urlToSearch.searchParams.append("page", page);
+  urlToSearch.searchParams.append("include_adult", false);
 
   return apiClient(urlToSearch);
 };
