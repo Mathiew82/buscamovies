@@ -61,14 +61,12 @@ function Popular({
       <Header />
       <Title>Las Populares</Title>
 
-      {popularMovies.movies.length > 0 ? (
+      {!loading && popularMovies.movies.length > 0 && (
         <ul className="movies-list">
           {popularMovies.movies.map((movie) => (
             <Movie key={movie.id} movie={movie} />
           ))}
         </ul>
-      ) : (
-        <div className="no-movie-results">No hay películas populares</div>
       )}
 
       <Pagination
