@@ -1,12 +1,12 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
-import PropTypes from 'prop-types'
-import Header from '@/components/Header/Header'
-import Footer from '@/components/Footer/Footer'
-import Movie from '@/components/Movie/Movie'
-import Loading from '@/components/ui/Loading/Loading'
-import Title from '@/components/ui/Title/Title'
-import Pagination from '@/components/ui/Pagination/Pagination'
-import { searchPopularMovies } from '@/services/MoviesRepository'
+import { useState, useEffect, useCallback, useRef } from 'react';
+import PropTypes from 'prop-types';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import Movie from '@/components/Movie/Movie';
+import Loading from '@/components/ui/Loading/Loading';
+import Title from '@/components/ui/Title/Title';
+import Pagination from '@/components/ui/Pagination/Pagination';
+import { searchPopularMovies } from '@/services/MoviesRepository';
 
 function Popular({
   popularMovies,
@@ -14,45 +14,45 @@ function Popular({
   setCurrentPage,
   setPaginationLength,
 }) {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const didFetchOnceRef = useRef(false)
+  const didFetchOnceRef = useRef(false);
 
-  const scrollToTop = () => window.scrollTo({ top: 0 })
+  const scrollToTop = () => window.scrollTo({ top: 0 });
 
   const fetchPopularMovies = useCallback(
     async (page = 1) => {
-      setLoading(true)
+      setLoading(true);
 
       try {
-        const { results, total_pages } = await searchPopularMovies(page)
+        const { results, total_pages } = await searchPopularMovies(page);
 
-        setMovies(results)
-        setPaginationLength(total_pages)
-        scrollToTop()
+        setMovies(results);
+        setPaginationLength(total_pages);
+        scrollToTop();
       } catch (error) {
-        const message = error instanceof Error ? error.message : String(error)
-        console.error(`Error: ${message}`)
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`Error: ${message}`);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     },
     [setMovies, setPaginationLength],
-  )
+  );
 
   useEffect(() => {
-    if (didFetchOnceRef.current) return
-    didFetchOnceRef.current = true
+    if (didFetchOnceRef.current) return;
+    didFetchOnceRef.current = true;
 
     if (popularMovies.movies.length < 1) {
-      fetchPopularMovies(1)
+      fetchPopularMovies(1);
     }
-  }, [fetchPopularMovies, popularMovies.movies.length])
+  }, [fetchPopularMovies, popularMovies.movies.length]);
 
   const handleClickPage = (page) => {
-    setCurrentPage(page)
-    fetchPopularMovies(page)
-  }
+    setCurrentPage(page);
+    fetchPopularMovies(page);
+  };
 
   return (
     <div className="popular-page">
@@ -77,7 +77,7 @@ function Popular({
 
       <Footer />
     </div>
-  )
+  );
 }
 
 Popular.propTypes = {
@@ -85,6 +85,6 @@ Popular.propTypes = {
   setMovies: PropTypes.func,
   setCurrentPage: PropTypes.func,
   setPaginationLength: PropTypes.func,
-}
+};
 
-export default Popular
+export default Popular;

@@ -1,32 +1,32 @@
-import { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite'
-import useVoteAverage from '@/hooks/useVoteAverage/useVoteAverage'
-import './Movie.scss'
+import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite';
+import useVoteAverage from '@/hooks/useVoteAverage/useVoteAverage';
+import './Movie.scss';
 
 function Movie(props) {
-  const { movie } = props
+  const { movie } = props;
 
-  const [loading, setLoading] = useState(Boolean(movie.poster_path))
-  const imgProcessedRef = useRef(false)
+  const [loading, setLoading] = useState(Boolean(movie.poster_path));
+  const imgProcessedRef = useRef(false);
 
   const { isAddedToFavorites, addToFavorites, removeToFavorites } =
-    useToggleFavorite(movie.id)
+    useToggleFavorite(movie.id);
 
-  const voteAverage = useVoteAverage(movie.vote_average)
+  const voteAverage = useVoteAverage(movie.vote_average);
 
   useEffect(() => {
-    if (!movie.poster_path || imgProcessedRef.current) return
+    if (!movie.poster_path || imgProcessedRef.current) return;
 
-    imgProcessedRef.current = true
+    imgProcessedRef.current = true;
 
-    const img = new Image()
-    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    const img = new Image();
+    img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     img.onload = () => {
-      setLoading(false)
-    }
-  }, [movie.poster_path])
+      setLoading(false);
+    };
+  }, [movie.poster_path]);
 
   return (
     <li>
@@ -114,11 +114,11 @@ function Movie(props) {
         </span>
       </Link>
     </li>
-  )
+  );
 }
 
 Movie.propTypes = {
   movie: PropTypes.object,
-}
+};
 
-export default Movie
+export default Movie;

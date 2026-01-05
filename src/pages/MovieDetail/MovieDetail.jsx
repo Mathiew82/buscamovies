@@ -1,138 +1,140 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { searchMovie, searchCredits } from '@/services/MoviesRepository'
-import Header from '@/components/Header/Header'
-import Footer from '@/components/Footer/Footer'
-import Loading from '@/components/ui/Loading/Loading'
-import Title from '@/components/ui/Title/Title'
-import Subtitle from '@/components/ui/Subtitle/Subtitle'
-import Label from '@/components/ui/Label/Label'
-import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite'
-import useVoteAverage from '@/hooks/useVoteAverage/useVoteAverage'
-import './MovieDetail.scss'
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { searchMovie, searchCredits } from '@/services/MoviesRepository';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import Loading from '@/components/ui/Loading/Loading';
+import Title from '@/components/ui/Title/Title';
+import Subtitle from '@/components/ui/Subtitle/Subtitle';
+import Label from '@/components/ui/Label/Label';
+import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite';
+import useVoteAverage from '@/hooks/useVoteAverage/useVoteAverage';
+import './MovieDetail.scss';
 
 function MovieDetail() {
-  const { id: movieId } = useParams()
-  const [loadingData, setLoadingData] = useState(false)
-  const [movie, setMovie] = useState({})
-  const [director, setDirector] = useState(null)
-  const [actors, setActors] = useState([])
+  const { id: movieId } = useParams();
+  const [loadingData, setLoadingData] = useState(false);
+  const [movie, setMovie] = useState({});
+  const [director, setDirector] = useState(null);
+  const [actors, setActors] = useState([]);
 
   const { isAddedToFavorites, addToFavorites, removeToFavorites } =
-    useToggleFavorite(movieId)
+    useToggleFavorite(movieId);
 
   const goToBack = () => {
-    window.history.back()
-  }
+    window.history.back();
+  };
 
   const formatRevenue = (value) => {
-    const number = Number(value)
+    const number = Number(value);
 
-    if (isNaN(number)) return value
+    if (isNaN(number)) return value;
 
     if (number >= 1_000_000) {
-      const millions = number / 1_000_000
+      const millions = number / 1_000_000;
       const rounded = Number.isInteger(millions)
         ? millions
-        : Math.round(millions * 10) / 10
+        : Math.round(millions * 10) / 10;
 
-      const label = rounded === 1 ? 'millón' : 'millones'
+      const label = rounded === 1 ? 'millón' : 'millones';
 
-      return `${rounded} ${label} de euros`
+      return `${rounded} ${label} de euros`;
     }
 
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
       currency: 'EUR',
-    }).format(number)
-  }
+    }).format(number);
+  };
 
   const minutesToHours = (text) => {
-    const totalMinutes = parseInt(text, 10)
+    const totalMinutes = parseInt(text, 10);
 
-    if (isNaN(totalMinutes)) return text
+    if (isNaN(totalMinutes)) return text;
 
-    const hours = Math.floor(totalMinutes / 60)
-    const minutes = totalMinutes % 60
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
 
-    const hourLabel = hours === 1 ? 'hora' : 'horas'
-    const minuteLabel = minutes === 1 ? 'minuto' : 'minutos'
+    const hourLabel = hours === 1 ? 'hora' : 'horas';
+    const minuteLabel = minutes === 1 ? 'minuto' : 'minutos';
 
     if (hours && minutes) {
-      return `${hours} ${hourLabel} y ${minutes} ${minuteLabel}`
+      return `${hours} ${hourLabel} y ${minutes} ${minuteLabel}`;
     }
 
     if (hours) {
-      return `${hours} ${hourLabel}`
+      return `${hours} ${hourLabel}`;
     }
 
-    return `${minutes} ${minuteLabel}`
-  }
+    return `${minutes} ${minuteLabel}`;
+  };
 
   const formatSpanishDate = (dateString) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString);
 
-    if (isNaN(date)) return dateString
+    if (isNaN(date)) return dateString;
 
     return new Intl.DateTimeFormat('es-ES', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
-    }).format(date)
-  }
+    }).format(date);
+  };
 
   const getDirector = (arr) => {
-    const onlyDirectors = arr.find((item) => item.job === 'Director')
-    return onlyDirectors ? onlyDirectors : null
-  }
+    const onlyDirectors = arr.find((item) => item.job === 'Director');
+    return onlyDirectors ? onlyDirectors : null;
+  };
 
   useEffect(() => {
-    let alive = true
+    let alive = true;
 
     const run = async () => {
-      if (alive) setLoadingData(true)
+      if (alive) setLoadingData(true);
 
-      setDirector(null)
-      setActors([])
+      setDirector(null);
+      setActors([]);
 
       try {
         const [movieData, creditsData] = await Promise.all([
           searchMovie(movieId),
           searchCredits(movieId),
-        ])
+        ]);
 
-        if (!alive) return
+        if (!alive) return;
 
-        setMovie(movieData)
+        setMovie(movieData);
         if (creditsData?.crew?.length) {
-          setDirector(getDirector(creditsData.crew))
+          setDirector(getDirector(creditsData.crew));
         }
         if (creditsData?.cast?.length) {
-          setActors(creditsData.cast.slice(0, 8))
+          setActors(creditsData.cast.slice(0, 8));
         }
       } catch (error) {
-        const message = error instanceof Error ? error.message : String(error)
-        console.error(`Error: ${message}`)
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`Error: ${message}`);
       } finally {
-        if (alive) setLoadingData(false)
+        if (alive) setLoadingData(false);
       }
-    }
+    };
 
-    run()
+    run();
 
     return () => {
-      alive = false
-    }
-  }, [movieId])
+      alive = false;
+    };
+  }, [movieId]);
 
   const movieExists = (movie) => {
-    return movie && Object.keys(movie).length > 0
-  }
+    return movie && Object.keys(movie).length > 0;
+  };
 
   const voteAverage = useVoteAverage(
     movieExists(movie) ? movie.vote_average : 0,
-  )
-  const formattedRevenue = formatRevenue(movieExists(movie) ? movie.revenue : 0)
+  );
+  const formattedRevenue = formatRevenue(
+    movieExists(movie) ? movie.revenue : 0,
+  );
 
   return (
     <div className="more-detail-page">
@@ -314,7 +316,7 @@ function MovieDetail() {
 
       <Footer />
     </div>
-  )
+  );
 }
 
-export default MovieDetail
+export default MovieDetail;

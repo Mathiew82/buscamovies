@@ -1,23 +1,23 @@
-import PropTypes from 'prop-types'
-import './Pagination.scss'
+import PropTypes from 'prop-types';
+import './Pagination.scss';
 
 function Pagination(props) {
-  const { currentPage, paginationLength, clickPage } = props
+  const { currentPage, paginationLength, clickPage } = props;
 
-  const MAX_PAGES = 500
-  const limitedPaginationLength = Math.min(paginationLength ?? 0, MAX_PAGES)
+  const MAX_PAGES = 500;
+  const limitedPaginationLength = Math.min(paginationLength ?? 0, MAX_PAGES);
 
-  const doNotShowFirstPage = () => currentPage === 1 || currentPage === 2
-  const doNotShowPrevPage = () => currentPage === 1
-  const doNotShowNextPage = () => currentPage + 1 > limitedPaginationLength
+  const doNotShowFirstPage = () => currentPage === 1 || currentPage === 2;
+  const doNotShowPrevPage = () => currentPage === 1;
+  const doNotShowNextPage = () => currentPage + 1 > limitedPaginationLength;
   const doNotShowLastPage = () =>
     currentPage === limitedPaginationLength ||
-    currentPage === limitedPaginationLength - 1
+    currentPage === limitedPaginationLength - 1;
 
   const safeClickPage = (page) => {
-    const safePage = Math.max(1, Math.min(page, limitedPaginationLength))
-    clickPage(safePage)
-  }
+    const safePage = Math.max(1, Math.min(page, limitedPaginationLength));
+    clickPage(safePage);
+  };
 
   return (
     <nav
@@ -87,13 +87,13 @@ function Pagination(props) {
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
 Pagination.propTypes = {
   currentPage: PropTypes.number,
   paginationLength: PropTypes.number,
   clickPage: PropTypes.func,
-}
+};
 
-export default Pagination
+export default Pagination;

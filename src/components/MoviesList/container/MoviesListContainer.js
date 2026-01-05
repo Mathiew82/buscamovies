@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
-import { actionsMoviesList } from "@/store/moviesList/actions";
-import MoviesList from "../MoviesList";
+import { connect } from 'react-redux';
+import { actionsMoviesList } from '@/store/moviesList/actions';
+import MoviesList from '../MoviesList';
 
 const mapStateToProps = (state) => {
   return state;

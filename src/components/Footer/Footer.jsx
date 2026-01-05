@@ -1,4 +1,4 @@
-import './Footer.scss'
+import './Footer.scss';
 
 function Footer() {
   return (
@@ -8,7 +8,7 @@ function Footer() {
         Alberto Mateo
       </a>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

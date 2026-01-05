@@ -1,25 +1,25 @@
-import { useState } from 'react'
-import Header from '@/components/Header/Header'
-import Footer from '@/components/Footer/Footer'
-import Movie from '@/components/Movie/Movie'
-import Title from '@/components/ui/Title/Title'
+import { useState } from 'react';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import Movie from '@/components/Movie/Movie';
+import Title from '@/components/ui/Title/Title';
 
 function Favorites() {
-  const [movies, setMovies] = useState([])
-  const [favoriteMoviesAdded, setFavoriteMoviesAdded] = useState(false)
+  const [movies, setMovies] = useState([]);
+  const [favoriteMoviesAdded, setFavoriteMoviesAdded] = useState(false);
 
   const setFavoriteMovies = () => {
     let favoriteMovies = JSON.parse(
       window.localStorage.getItem('favoriteMovies'),
-    )
-    if (!favoriteMovies) favoriteMovies = []
+    );
+    if (!favoriteMovies) favoriteMovies = [];
 
-    if (movies !== favoriteMovies) setMovies(favoriteMovies)
-  }
+    if (movies !== favoriteMovies) setMovies(favoriteMovies);
+  };
 
   if (!favoriteMoviesAdded) {
-    setFavoriteMovies()
-    setFavoriteMoviesAdded(true)
+    setFavoriteMovies();
+    setFavoriteMoviesAdded(true);
   }
 
   return (
@@ -58,7 +58,7 @@ function Favorites() {
 
       <Footer />
     </div>
-  )
+  );
 }
 
-export default Favorites
+export default Favorites;

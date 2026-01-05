@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'
-import './SearchForm.scss'
+import PropTypes from 'prop-types';
+import './SearchForm.scss';
 
 function SearchForm(props) {
-  const { setInputValue, submit } = props
+  const { setInputValue, submit } = props;
 
   const handleChange = (event) => {
-    setInputValue(event.target.value)
-  }
+    setInputValue(event.target.value);
+  };
 
   return (
     <div className="is-fullwidth">
@@ -28,13 +28,13 @@ function SearchForm(props) {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
 SearchForm.propTypes = {
   inputValue: PropTypes.string,
   setInputValue: PropTypes.func,
   submit: PropTypes.func,
-}
+};
 
-export default SearchForm
+export default SearchForm;

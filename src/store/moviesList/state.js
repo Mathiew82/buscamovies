@@ -3,4 +3,4 @@ export const INITIAL_STATE = {
   inputValue: '',
   currentPage: 1,
   paginationLength: 0,
-}
+};

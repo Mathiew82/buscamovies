@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './Navbar.scss'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.scss';
 
 function Navbar() {
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <nav
@@ -18,7 +18,7 @@ function Navbar() {
 
         <a
           onClick={() => {
-            setIsActive(!isActive)
+            setIsActive(!isActive);
           }}
           role="button"
           className={`navbar-burger burger ${isActive ? 'is-active' : ''}`}
@@ -46,7 +46,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

@@ -1,7 +1,7 @@
-import './Label.scss'
+import './Label.scss';
 
 function Label({ children }) {
-  return <span className="label">{children}</span>
+  return <span className="label">{children}</span>;
 }
 
-export default Label
+export default Label;

@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { searchMovies } from '@/services/MoviesRepository'
-import PropTypes from 'prop-types'
-import SearchForm from '@/components/SearchForm/SearchForm'
-import Movie from '@/components/Movie/Movie'
-import Loading from '@/components/ui/Loading/Loading'
-import Pagination from '@/components/ui/Pagination/Pagination'
-import './MoviesList.scss'
+import { useState } from 'react';
+import { searchMovies } from '@/services/MoviesRepository';
+import PropTypes from 'prop-types';
+import SearchForm from '@/components/SearchForm/SearchForm';
+import Movie from '@/components/Movie/Movie';
+import Loading from '@/components/ui/Loading/Loading';
+import Pagination from '@/components/ui/Pagination/Pagination';
+import './MoviesList.scss';
 
 function MoviesList(props) {
   const {
@@ -14,69 +14,69 @@ function MoviesList(props) {
     setInputValue,
     setCurrentPage,
     setPaginationLength,
-  } = props
+  } = props;
 
-  const [loadingResults, setLoadingResults] = useState(false)
-  const [noMatches, setNoMatches] = useState(false)
+  const [loadingResults, setLoadingResults] = useState(false);
+  const [noMatches, setNoMatches] = useState(false);
 
   const scrollToTop = () => {
-    if (typeof window === 'undefined') return
+    if (typeof window === 'undefined') return;
 
     window.scrollTo({
       top: 0,
-    })
-  }
+    });
+  };
 
   const showResults = (data) => {
-    const { results, total_pages } = data
+    const { results, total_pages } = data;
 
-    if (!results) return
-    if (results.length === 0) setNoMatches(true)
-    if (results.length > 0) setNoMatches(false)
+    if (!results) return;
+    if (results.length === 0) setNoMatches(true);
+    if (results.length > 0) setNoMatches(false);
 
-    setMovies(results)
-    setPaginationLength(total_pages)
-    scrollToTop()
-  }
+    setMovies(results);
+    setPaginationLength(total_pages);
+    scrollToTop();
+  };
 
   const handleClickPage = (page) => {
-    setCurrentPage(page)
-    handleSubmit(undefined, page)
-  }
+    setCurrentPage(page);
+    handleSubmit(undefined, page);
+  };
 
   const checkValueInput = (val) => {
-    const query = val.trim()
-    return query.length > 0
-  }
+    const query = val.trim();
+    return query.length > 0;
+  };
 
   const checkIfSubmitForm = (event, page) => {
     if (typeof event !== 'undefined') {
-      event.preventDefault()
-      setCurrentPage(page)
-      window.document.querySelector('.search-wrapper .button').blur()
+      event.preventDefault();
+      setCurrentPage(page);
+      window.document.querySelector('.search-wrapper .button').blur();
     }
-  }
+  };
 
   const handleSubmit = async (event, page) => {
-    checkIfSubmitForm(event, page)
+    checkIfSubmitForm(event, page);
 
     if (!checkValueInput(moviesList.inputValue)) {
-      setInputValue('')
-      return false
+      setInputValue('');
+      return false;
     }
 
-    setLoadingResults(true)
+    setLoadingResults(true);
 
     try {
-      const data = await searchMovies(moviesList.inputValue, page)
-      showResults(data)
+      const data = await searchMovies(moviesList.inputValue, page);
+      showResults(data);
     } catch (error) {
-      const message = error instanceof Error ? error.message : String(error)
-      console.error(`Error: ${message}`)
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`Error: ${message}`);
     } finally {
-      setLoadingResults(false)
+      setLoadingResults(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -144,7 +144,7 @@ function MoviesList(props) {
         clickPage={handleClickPage}
       />
     </div>
-  )
+  );
 }
 
 MoviesList.propTypes = {
@@ -153,6 +153,6 @@ MoviesList.propTypes = {
   setInputValue: PropTypes.func,
   setCurrentPage: PropTypes.func,
   setPaginationLength: PropTypes.func,
-}
+};
 
-export default MoviesList
+export default MoviesList;
