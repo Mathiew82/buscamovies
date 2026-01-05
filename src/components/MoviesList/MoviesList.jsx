@@ -90,7 +90,7 @@ function MoviesList(props) {
         />
       </div>
 
-      {moviesList.movies.length > 0 ? (
+      {!loadingResults && moviesList.movies.length > 0 ? (
         <ul className="movies-list">
           {moviesList.movies.map((movie) => (
             <Movie key={movie.id} movie={movie} />
