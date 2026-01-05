@@ -15,13 +15,25 @@
       }
     }
     > .navbar-burger {
-      width: 24px !important;
-      height: 20px !important;
+      width: 34px !important;
+      height: 24px !important;
       background-color: transparent !important;
-      margin-top: 16px;
+      margin-top: 22px;
       span {
-        width: 20px !important;
-        height: 2px !important;
+        width: 34px !important;
+        height: 3px !important;
+        &:nth-child(1) {
+          top: 0;
+          left: calc(0%);
+        }
+        &:nth-child(2) {
+          top: 9px;
+          left: calc(0%);
+        }
+        &:nth-child(3) {
+          top: 18px;
+          left: calc(0%);
+        }
       }
     }
   }
@@ -29,6 +41,8 @@
     background-color: transparent;
     border-radius: 10px;
     padding: 0;
+    position: relative;
+    top: 14px;
     > .navbar-item {
       color: variables.$text-color;
       font-size: 18px;
@@ -42,7 +56,7 @@
       }
     }
     @media (max-width: 1023px) {
-      background-color: rgb(24, 6, 48) !important;
+      background-color: rgba(0, 0, 0, 0.6) !important;
       padding: 0.5rem 0;
     }
   }
