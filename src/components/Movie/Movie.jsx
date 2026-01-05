@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import useToggleFavorite from '@/hooks/useToggleFavorite/useToggleFavorite'
@@ -8,24 +8,25 @@ import './Movie.scss'
 function Movie(props) {
   const { movie } = props
 
-  const [loading, setLoading] = useState(false)
-  const [imgProcessed, setImgProcessed] = useState(false)
+  const [loading, setLoading] = useState(Boolean(movie.poster_path))
+  const imgProcessedRef = useRef(false)
 
-  if (movie.poster_path && !imgProcessed) {
-    setImgProcessed(true)
-    setLoading(true)
+  const { isAddedToFavorites, addToFavorites, removeToFavorites } =
+    useToggleFavorite(movie.id)
+
+  const voteAverage = useVoteAverage(movie.vote_average)
+
+  useEffect(() => {
+    if (!movie.poster_path || imgProcessedRef.current) return
+
+    imgProcessedRef.current = true
 
     const img = new Image()
     img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     img.onload = () => {
       setLoading(false)
     }
-  }
-
-  const { isAddedToFavorites, addToFavorites, removeToFavorites } =
-    useToggleFavorite(movie.id)
-
-  const voteAverage = useVoteAverage(movie.vote_average)
+  }, [movie.poster_path])
 
   return (
     <li>

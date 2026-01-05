@@ -16,36 +16,25 @@ function Popular({
 }) {
   const [loading, setLoading] = useState(false)
 
-  const isMountedRef = useRef(false)
   const didFetchOnceRef = useRef(false)
-
-  useEffect(() => {
-    isMountedRef.current = true
-    return () => {
-      isMountedRef.current = false
-    }
-  }, [])
 
   const scrollToTop = () => window.scrollTo({ top: 0 })
 
   const fetchPopularMovies = useCallback(
     async (page = 1) => {
-      if (isMountedRef.current) setLoading(true)
+      setLoading(true)
 
       try {
         const { results, total_pages } = await searchPopularMovies(page)
-
-        if (!isMountedRef.current) return
 
         setMovies(results)
         setPaginationLength(total_pages)
         scrollToTop()
       } catch (error) {
-        if (!isMountedRef.current) return
         const message = error instanceof Error ? error.message : String(error)
         console.error(`Error: ${message}`)
       } finally {
-        if (isMountedRef.current) setLoading(false)
+        setLoading(false)
       }
     },
     [setMovies, setPaginationLength],
