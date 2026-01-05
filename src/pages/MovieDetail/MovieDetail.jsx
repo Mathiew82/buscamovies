@@ -108,7 +108,7 @@ function MovieDetail() {
           setDirector(getDirector(creditsData.crew));
         }
         if (creditsData?.cast?.length) {
-          setActors(creditsData.cast.slice(0, 8));
+          setActors(creditsData.cast.slice(0, 10));
         }
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
@@ -265,7 +265,7 @@ function MovieDetail() {
               <Label>Duración:</Label>{' '}
               {movie.runtime === 0
                 ? 'Sin información'
-                : `${minutesToHours(movie.runtime)} minutos`}
+                : `${minutesToHours(movie.runtime)}`}
             </div>
             <div className="p">
               <Label>Ingresos:</Label>{' '}

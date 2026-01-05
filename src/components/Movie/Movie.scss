@@ -166,6 +166,10 @@ li {
       overflow: hidden;
       text-overflow: ellipsis;
       transition: color 0.2s;
+      @media (max-width: 576px) {
+        font-size: 16px;
+        text-align: center;
+      }
     }
   }
   &:hover {
