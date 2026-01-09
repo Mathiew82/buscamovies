@@ -137,7 +137,7 @@
       bottom: -32px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.8);
       color: #fff;
       font-size: 12px;
       padding: 4px 8px;
@@ -146,6 +146,7 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+      z-index: 1;
     }
   }
 
